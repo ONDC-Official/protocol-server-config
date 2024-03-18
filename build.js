@@ -15,13 +15,7 @@ async function baseYMLFile(file) {
   }
 
   baseYMLFile(indexYamlPath).then((res)=>{
-    // console.log(res)
     const jsonDump = "let build_spec = " + JSON.stringify(res);
     fs.writeFileSync(uiPath, jsonDump, "utf8");
   })
-//   console.log()
-
-// const spec_file = fs.readFileSync(indexYamlPath);
-// const spec = yaml.load(spec_file);
-
 

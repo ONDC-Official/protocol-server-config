@@ -8,6 +8,8 @@ protocol:
         value: data.context.bap_uri
       - beckn_key: cityCode
         value: data.context.location.city.code || session.cityCode
+      - beckn_key: countryCode
+        value: data.context.location.country.code || session.countryCode
 
     mapping:
       - beckn_key: context.domain
@@ -26,6 +28,8 @@ protocol:
         value: data.context.action
       - beckn_key: context.location.city.code
         value: session.cityCode
+      - beckn_key: context.location.country.code
+        value: session.countryCode
       - beckn_key: context.ttl
         value: data.context.ttl
 

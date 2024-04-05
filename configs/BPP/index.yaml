@@ -51,6 +51,6 @@ flows:
             url: https://transitsolutions.com/mf/tnc.html
       payment_type: PRE-ORDER
     protocol:
-      $ref: ./configs/metro-flow-1/protocolMapping.yaml#/protocol
+      $ref: ./metro-flow-1/protocolMapping.yaml#/protocol
     schema:
-      $ref: ./configs/schema/TRV/index.yaml
+      $ref: ../schema/TRV/index.yaml

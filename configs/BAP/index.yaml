@@ -10,8 +10,8 @@ flows:
       virtualPaymentAddress: "adasd@okiciic"
       bankCode: "fj3jf9ij3f02"
     protocol:
-      $ref: ./configs/metro-flow-1/protocolMapping.yaml#/protocol
+      $ref: ./metro-flow-1/protocolMapping.yaml#/protocol
     calls:
-      $ref: ./configs/metro-flow-1/calls.yaml#/calls
+      $ref: ./metro-flow-1/calls.yaml#/calls
     schema:
-      $ref: ./configs/schema/TRV/index.yaml
+      $ref: ../schema/TRV/index.yaml

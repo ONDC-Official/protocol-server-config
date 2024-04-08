@@ -22440,4 +22440,5 @@ BPP:
             sync: false
         status:
           default:
-            callback: on_status
+            service_url: http://localhost:5500/status
+            sync: false

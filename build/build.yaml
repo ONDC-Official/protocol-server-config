@@ -264,7 +264,7 @@ BAP:
               value: action
             - beckn_key: message.order_id
               value: data.orderId
-        on_search_route:
+        on_search:
           mapping:
             - business_key: name
               extractionPath: message.catalog.descriptor.name
@@ -276,16 +276,6 @@ BAP:
               extractionPath: >-
                 message.catalog.providers[].fulfillments[].stops[]{locationName:
                 location.descriptor.code}
-            - business_key: error
-              extractionPath: error
-        on_search_trip:
-          mapping:
-            - business_key: name
-              extractionPath: message.catalog.descriptor.name
-            - business_key: bpp_id
-              extractionPath: context.bpp_id
-            - business_key: bpp_uri
-              extractionPath: context.bpp_uri
             - business_key: items
               extractionPath: >-
                 message.catalog.providers[]{providerId: id}.items[]{id: id,

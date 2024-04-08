@@ -169,6 +169,23 @@ flows:
           sync: false
       status:
         default:
+          on_status
+        get_all_station_codes:
+          condition:
+              operation:
+                type: AND
+                input:
+                  value:
+                  - operation:
+                      type: EQUAL
+                      title: Check search message code
+                      input:
+                        value:
+                          - operation:
+                              type: READ
+                              input:
+                                value: "req_body.context.action"
+                          - status
           service_url: http://localhost:5500/status
           sync: false
  

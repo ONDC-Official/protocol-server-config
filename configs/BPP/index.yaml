@@ -75,7 +75,7 @@ flows:
                                 value: "req_body.context.action"
                           - search
           service_url: http://localhost:5500/getallstationcode
-          sync: true
+          sync: false
       select:
         default:
           callback: "on_select"
@@ -117,6 +117,7 @@ flows:
                                 value: "req_body.context.action"
                           - init
           service_url: http://localhost:5500/getfare
+          sync: false
       confirm:
         default:
           callback: "on_confirm"
@@ -137,4 +138,6 @@ flows:
                                 value: "req_body.context.action"
                           - confirm
           service_url: http://localhost:5500/confirmticket
+          sync: false
+
  

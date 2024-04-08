@@ -22439,7 +22439,8 @@ BPP:
             service_url: http://localhost:5500/confirmticket
             sync: false
         status:
-          default: on_status
+          default:
+            callback: on_status
           get_all_station_codes:
             condition:
               operation:

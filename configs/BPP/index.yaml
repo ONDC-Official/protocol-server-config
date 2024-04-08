@@ -169,7 +169,7 @@ flows:
           sync: false
       status:
         default:
-          on_status
+          callback: on_status
         get_all_station_codes:
           condition:
               operation:

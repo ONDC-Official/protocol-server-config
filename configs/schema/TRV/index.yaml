@@ -22,3 +22,7 @@ cancel:
   $ref: ./cancel.yaml
 on_cancel:
   $ref: ./on_cancel.yaml
+status:
+  $ref: ./status.yaml
+on_status:
+  $ref: ./on_status.yaml

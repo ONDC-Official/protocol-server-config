@@ -545,7 +545,7 @@ BAP:
         - config: on_search
           endpoint: mapper/ondc
           mode: ASYNC
-        - config: select_loan
+        - config: on_select_loan
           endpoint: mapper/ondc
           mode: SYNC
         - config: on_select_approval

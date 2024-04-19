@@ -1,4 +1,7 @@
 BAP:
   $ref: ./BAP/index.yaml
 BPP:
-  $ref: ./BPP/index.yaml 
+  $ref: ./BPP/index.yaml
+attributes:
+  perosnal-loan-flow-1:
+    $ref: ./attributes/personal-loan-flow-1/index.yaml

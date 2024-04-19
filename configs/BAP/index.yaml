@@ -14,5 +14,3 @@ flows:
       $ref: ./personal-loan-flow-1/protocolMapping.yaml#/protocol
     calls:
       $ref: ./personal-loan-flow-1/calls.yaml#/calls
-    schema:
-      $ref: ../schema/TRV/index.yaml

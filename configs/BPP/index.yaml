@@ -52,18 +52,16 @@ flows:
       payment_type: PRE-ORDER
     protocol:
       $ref: ./metro-flow-1/protocolMapping.yaml#/protocol
-    schema:
-      $ref: ../schema/TRV/index.yaml
     api:
       search:
         default:
           callback: "on_search"
         get_all_station_codes:
           condition:
-              operation:
-                type: AND
-                input:
-                  value:
+            operation:
+              type: AND
+              input:
+                value:
                   - operation:
                       type: EQUAL
                       title: Check search message code
@@ -88,10 +86,10 @@ flows:
           sync: false
         getonestationcodetrips:
           condition:
-              operation:
-                type: AND
-                input:
-                  value:
+            operation:
+              type: AND
+              input:
+                value:
                   - operation:
                       type: EQUAL
                       title: Check search message code
@@ -109,10 +107,10 @@ flows:
           callback: "on_select"
         get_all_station_codes:
           condition:
-              operation:
-                type: AND
-                input:
-                  value:
+            operation:
+              type: AND
+              input:
+                value:
                   - operation:
                       type: EQUAL
                       title: Check search message code
@@ -130,10 +128,10 @@ flows:
           callback: "on_init"
         get_all_station_codes:
           condition:
-              operation:
-                type: AND
-                input:
-                  value:
+            operation:
+              type: AND
+              input:
+                value:
                   - operation:
                       type: EQUAL
                       title: Check search message code
@@ -151,10 +149,10 @@ flows:
           callback: "on_confirm"
         get_all_station_codes:
           condition:
-              operation:
-                type: AND
-                input:
-                  value:
+            operation:
+              type: AND
+              input:
+                value:
                   - operation:
                       type: EQUAL
                       title: Check search message code
@@ -172,10 +170,10 @@ flows:
           callback: on_status
         get_all_station_codes:
           condition:
-              operation:
-                type: AND
-                input:
-                  value:
+            operation:
+              type: AND
+              input:
+                value:
                   - operation:
                       type: EQUAL
                       title: Check search message code
@@ -188,4 +186,3 @@ flows:
                           - status
           service_url: http://localhost:5500/status
           sync: false
- 

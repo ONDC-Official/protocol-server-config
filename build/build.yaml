@@ -21881,7 +21881,7 @@ schema:
     required:
       - context
 attributes:
-  perosnal-loan-flow-1:
+  personal-loan-flow-1:
     search:
       context:
         location:

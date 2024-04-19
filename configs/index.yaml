@@ -5,5 +5,5 @@ BPP:
 schema:
   $ref: ./schema/TRV/index.yaml
 attributes:
-  perosnal-loan-flow-1:
+  personal-loan-flow-1:
     $ref: ./attributes/personal-loan-flow-1/index.yaml

@@ -1,9 +1,9 @@
 BAP:
   $ref: ./BAP/index.yaml
 BPP:
-  $ref: ./BPP/index.yaml
+  $ref: ./BPP/index_loan.yaml
 schema:
-  $ref: ./schema/TRV/index.yaml
+  $ref: ./schema/FIS/index.yaml
 attributes:
   personal-loan-flow-1:
     $ref: ./attributes/personal-loan-flow-1/index.yaml

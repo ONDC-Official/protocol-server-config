@@ -1,16 +1,11 @@
 flows:
-  - summary: Personal Loan [2.0.0]
-    id: personal-loan-flow-1
-    domain: ONDC:FIS12
-    shouldDispaly: true
+  - summary: InterCity(Bus) - Station Code Based Flow
+    id: intercity-flow-1
+    shouldDispaly: false
+    domain: ONDC:TRV12
     sessionData:
       version: "2.0.0"
-      collectedBy: BAP
-      paymentCollectedBy: BPP
-      bankAccountNumber: "123456789"
-      virtualPaymentAddress: "adasd@okiciic"
-      bankCode: "fj3jf9ij3f02"
     protocol:
-      $ref: ./personal-loan-flow-1/protocolMapping.yaml#/protocol
+      $ref: ./intercity-flow-1/protocolMapping.yaml#/protocol
     calls:
-      $ref: ./personal-loan-flow-1/calls.yaml#/calls
+      $ref: ./intercity-flow-1/calls.yaml#/calls

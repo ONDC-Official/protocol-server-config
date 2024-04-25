@@ -588,8 +588,8 @@ BPP:
       id: personal-loan-flow-1
       domain: ONDC:FIS12
       sessionData:
-        bpp_uri: https://mobility-staging.ondc.org/seller/
-        bpp_id: mobility-staging.ondc.org
+        bpp_uri: https://fis-staging.ondc.org/ondc-seller/
+        bpp_id: fis-staging.ondc.org/ondc-seller
         collectedBy: BPP
         loan_provider_id: PROVIDER_ID
         loan_provider:
@@ -760,6 +760,10 @@ BPP:
           sessionData:
             - beckn_key: itemId
               value: data.message.order.items[0].id
+            - beckn_key: message_id
+              value: data.context.message_id
+            - beckn_key: bap_uri
+              value: data.context.bap_uri
           mapping:
             - beckn_key: context.bap_id
               value: session.bap_id
@@ -790,6 +794,15 @@ BPP:
             - beckn_key: message.order.items
               value: data.message.order.items
         on_select:
+          sessionData:
+            - beckn_key: quote.id
+              value: data.amount_id
+            - beckn_key: quote.amount
+              value: data.final_amount
+            - beckn_key: quote.ttl
+              value: data.ttl
+            - beckn_key: quote.breakup
+              value: data.amount_breakup
           mapping:
             - beckn_key: context.bap_id
               value: session.bap_id
@@ -826,18 +839,16 @@ BPP:
               compute: buildTags(data.tags    || session.tags)
             - beckn_key: message.order.items
               value: data.loan_offers
-            - beckn_key: message.order.items
-              value: data.loan_offers
             - beckn_key: message.order.quote.id
-              value: data.amount_id
+              value: (data.amount_id || session.quote.id)
             - beckn_key: message.order.quote.price.value
-              value: data.final_amount
+              value: (data.final_amount || session.quote.amount)
             - beckn_key: message.order.quote.price.currency
               value: session.currency
             - beckn_key: message.order.quote.breakup
-              value: data.amount_breakup
+              value: (data.amount_breakup || session.quote.breakup)
             - beckn_key: message.order.quote.ttl
-              value: data.ttl
+              value: (data.ttl || session.quote.ttl)
         init:
           sessionData:
             - beckn_key: bankCode
@@ -885,6 +896,16 @@ BPP:
             - beckn_key: message.order.items
               value: data.message.order.items
         on_init:
+          sessionData:
+            - beckn_key: payment_tags
+              value: >-
+                ({ ...session.payment_tags, SETTLEMENT_TERMS: {
+                ...session.payment_tags.SETTLEMENT_TERMS,
+                ...data.SETTLEMENT_TERMS } })
+            - beckn_key: customer
+              value: data.customer
+            - beckn_key: payments
+              value: data.payments
           mapping:
             - beckn_key: context.bap_id
               value: session.bap_id
@@ -924,33 +945,27 @@ BPP:
             - beckn_key: message.order.items
               value: data.loan_offers
             - beckn_key: message.order.quote.id
-              value: data.amount_id
+              value: (data.amount_id || session.quote.id)
             - beckn_key: message.order.quote.price.value
-              value: data.final_amount
+              value: (data.final_amount || session.quote.amount)
             - beckn_key: message.order.quote.price.currency
               value: session.currency
             - beckn_key: message.order.quote.breakup
-              value: data.amount_breakup
+              value: (data.amount_breakup || session.quote.breakup)
             - beckn_key: message.order.quote.ttl
-              value: data.ttl
+              value: (data.ttl || session.quote.ttl)
             - beckn_key: message.order.fulfillments[0].customer.person.name
-              value: data.customer.name
+              value: (data.customer.name || session.customer.name )
             - beckn_key: message.order.fulfillments[0].customer.contact.phone
-              value: data.customer.phone
+              value: (data.customer.phone || session.customer.phone)
             - beckn_key: message.order.fulfillments[0].customer.contact.email
-              value: data.customer.email
+              value: (data.customer.email || session.customer.email )
             - beckn_key: message.order.fulfillments[0].state.descriptor.code
-              value: data.customer.fulfillment_state
+              value: >-
+                (data.customer.fulfillment_state  ,
+                session.customer.fulfillment_state    )
             - beckn_key: message.order.payments
-              value: data.payments
-            - beckn_key: message.order.payments[0].collected_by
-              value: data.payments[0].collected_by
-            - beckn_key: message.order.payments[0].id
-              value: data.payments[0].id
-            - beckn_key: message.order.payments[0].status
-              value: data.payments[0].status
-            - beckn_key: message.order.payments[0].type
-              value: data.payments[0].type
+              value: (data.payments     || session.payments)
             - beckn_key: message.order.payments[0].tags
               value: data.payments_tags                || (session.payment_tags)
               compute: buildTags(data.payments_tags    || session.payment_tags)
@@ -1021,25 +1036,28 @@ BPP:
             - beckn_key: message.order.items
               value: data.loan_offers
             - beckn_key: message.order.quote.id
-              value: data.amount_id
+              value: (data.amount_id || session.quote.id)
             - beckn_key: message.order.quote.price.value
-              value: data.final_amount
+              value: (data.final_amount || session.quote.amount)
             - beckn_key: message.order.quote.price.currency
               value: session.currency
             - beckn_key: message.order.quote.breakup
-              value: data.amount_breakup
+              value: (data.amount_breakup || session.quote.breakup)
             - beckn_key: message.order.quote.ttl
-              value: data.ttl
+              value: (data.ttl || session.quote.ttl)
             - beckn_key: message.order.fulfillments[0].customer.person.name
-              value: data.customer.name
+              value: (session.customer.name )
             - beckn_key: message.order.fulfillments[0].customer.contact.phone
-              value: data.customer.phone
+              value: (session.customer.phone)
             - beckn_key: message.order.fulfillments[0].customer.contact.email
-              value: data.customer.email
+              value: (session.customer.email )
             - beckn_key: message.order.fulfillments[0].state.descriptor.code
-              value: data.customer.fulfillment_state
+              value: ( session.customer.fulfillment_state    )
             - beckn_key: message.order.payments
-              value: data.payments
+              value: (data.payments     || session.payments)
+            - beckn_key: message.order.payments[0].tags
+              value: data.payments_tags                || (session.payment_tags)
+              compute: buildTags(data.payments_tags    || session.payment_tags)
             - beckn_key: message.order.cancellation_terms
               value: >-
                 data.cancellation_terms                ||
@@ -1118,25 +1136,28 @@ BPP:
             - beckn_key: message.order.items
               value: data.loan_offers
             - beckn_key: message.order.quote.id
-              value: data.amount_id
+              value: (data.amount_id || session.quote.id)
             - beckn_key: message.order.quote.price.value
-              value: data.final_amount
+              value: (data.final_amount || session.quote.amount)
             - beckn_key: message.order.quote.price.currency
               value: session.currency
             - beckn_key: message.order.quote.breakup
-              value: data.amount_breakup
+              value: (data.amount_breakup || session.quote.breakup)
             - beckn_key: message.order.quote.ttl
-              value: data.ttl
+              value: (data.ttl || session.quote.ttl)
             - beckn_key: message.order.fulfillments[0].customer.person.name
-              value: data.customer.name
+              value: (session.customer.name )
             - beckn_key: message.order.fulfillments[0].customer.contact.phone
-              value: data.customer.phone
+              value: (session.customer.phone)
             - beckn_key: message.order.fulfillments[0].customer.contact.email
-              value: data.customer.email
+              value: (session.customer.email )
             - beckn_key: message.order.fulfillments[0].state.descriptor.code
-              value: data.customer.fulfillment_state
+              value: ( session.customer.fulfillment_state    )
             - beckn_key: message.order.payments
-              value: data.payments
+              value: (data.payments     || session.payments)
+            - beckn_key: message.order.payments[0].tags
+              value: data.payments_tags                || (session.payment_tags)
+              compute: buildTags(data.payments_tags    || session.payment_tags)
             - beckn_key: message.order.cancellation_terms
               value: >-
                 data.cancellation_terms                ||
@@ -1153,6 +1174,11 @@ BPP:
               value: data.tags                || session.tags
               compute: buildTags(data.tags    || session.tags)
         status:
+          sessionData:
+            - beckn_key: context.message_id
+              value: session.message_id
+            - beckn_key: context.message_id
+              value: session.message_id
           mapping:
             - beckn_key: context.bap_id
               value: session.bap_id
@@ -1199,7 +1225,7 @@ BPP:
             - beckn_key: context.transaction_id
               value: session.currentTransactionId
             - beckn_key: context.message_id
-              value: data.context.message_id
+              value: session.message_id
             - beckn_key: context.timestamp
               value: timestamp
             - beckn_key: context.domain
@@ -1249,7 +1275,7 @@ BPP:
             - beckn_key: message.order.provider.tags
               value: data.tags                || session.tags
               compute: buildTags(data.tags    || session.tags)
-      schema: &ref_365
+      schema: &ref_366
         search:
           type: object
           properties:
@@ -19007,7 +19033,8 @@ BPP:
             service_url: http://localhost:5500/init
         confirm:
           default:
-            callback: on_confirm
+            service_url: http://localhost:5500/confirm
+            sync: false
           get_all_station_codes:
             condition:
               operation:
@@ -19025,7 +19052,217 @@ BPP:
                                   value: req_body.context.action
                             - confirm
             service_url: http://localhost:5500/confirm
-schema: *ref_365
+        update:
+          default:
+            service_url: http://localhost:5500/update
+            sync: false
+          get_all_station_codes:
+            condition:
+              operation:
+                type: AND
+                input:
+                  value:
+                    - operation:
+                        type: EQUAL
+                        title: Check search message code
+                        input:
+                          value:
+                            - operation:
+                                type: READ
+                                input:
+                                  value: req_body.context.action
+                            - update
+            service_url: http://localhost:5500/update
+        status:
+          default:
+            service_url: http://localhost:5500/status
+            sync: false
+          personal_loan:
+            condition:
+              operation:
+                type: AND
+                input:
+                  value:
+                    - operation:
+                        type: EQUAL
+                        title: Check search message code
+                        input:
+                          value:
+                            - operation:
+                                type: READ
+                                input:
+                                  value: req_body.context.action
+                            - status
+            service_url: http://localhost:5500/status
+    - summary: Default -  Flow
+      id: default-flow
+      domain: ONDC:FIS12
+      protocol:
+        search: &ref_365
+          mapping:
+            - beckn_key: context
+              value: data.context
+            - beckn_key: message
+              value: data.message
+        on_search: *ref_365
+        select: *ref_365
+        on_select: *ref_365
+        init: *ref_365
+        on_init: *ref_365
+        confirm: *ref_365
+        on_confirm: *ref_365
+        update: *ref_365
+        on_update: *ref_365
+        status: *ref_365
+        on_status: *ref_365
+      schema: *ref_366
+      api:
+        search:
+          default:
+            service_url: http://localhost:5501/search
+            sync: false
+        select:
+          default:
+            service_url: http://localhost:5501/select
+            sync: false
+        init:
+          default:
+            service_url: http://localhost:5501/init
+            sync: false
+        confirm:
+          default:
+            service_url: http://localhost:5501/confirm
+            sync: false
+        update:
+          default:
+            service_url: http://localhost:5501/update
+            sync: false
+        status:
+          default:
+            service_url: http://localhost:5501/status
+            sync: false
+  flow_selector:
+    search:
+      default:
+        config_id: default-flow
+      personal_loan:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.intent.category.descriptor.code
+                        - PERSONAL_LOAN
+        config_id: personal-loan-flow-1
+    select:
+      default:
+        config_id: default-flow
+      personal_loan:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - ITEM_ID_1_PERSONAL-LOAN
+        config_id: personal-loan-flow-1
+    init:
+      default:
+        config_id: default-flow
+      personal_loan:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - ITEM_ID_1_PERSONAL-LOAN
+        config_id: personal-loan-flow-1
+    confirm:
+      default:
+        config_id: default-flow
+      personal_loan:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - ITEM_ID_1_PERSONAL-LOAN
+        config_id: personal-loan-flow-1
+    update:
+      default:
+        config_id: default-flow
+      personal_loan:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - ITEM_ID_1_PERSONAL-LOAN
+        config_id: personal-loan-flow-1
+    status:
+      default:
+        config_id: default-flow
+      personal_loan:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - ITEM_ID_1_PERSONAL-LOAN
+        config_id: personal-loan-flow-1
+schema: *ref_366
 attributes:
   personal-loan-flow-1:
     search:

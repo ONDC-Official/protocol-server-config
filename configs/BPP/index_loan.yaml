@@ -87,101 +87,33 @@ flows:
     api:
       search:
         default:
-          service_url: http://localhost:5500/search
+          service_url: http://localhost:5502/search
           sync: false
      
       select:
         default:
-          service_url: http://localhost:5500/select
+          service_url: http://localhost:5502/select
           sync: false          
            
       init:
         default:
-          service_url: http://localhost:5500/init
+          service_url: http://localhost:5502/init
           sync: false          
-        get_all_station_codes:
-          condition:
-              operation:
-                type: AND
-                input:
-                  value:
-                  - operation:
-                      type: EQUAL
-                      title: Check search message code
-                      input:
-                        value:
-                          - operation:
-                              type: READ
-                              input:
-                                value: "req_body.context.action"
-                          - init
-          
-          service_url: http://localhost:5500/init
+
       confirm:
         default:
-          service_url: http://localhost:5500/confirm
+          service_url: http://localhost:5502/confirm
           sync: false                    
-        get_all_station_codes:
-          condition:
-              operation:
-                type: AND
-                input:
-                  value:
-                  - operation:
-                      type: EQUAL
-                      title: Check search message code
-                      input:
-                        value:
-                          - operation:
-                              type: READ
-                              input:
-                                value: "req_body.context.action"
-                          - confirm
-          service_url: http://localhost:5500/confirm
+
       update:
         default:
-          service_url: http://localhost:5500/update
+          service_url: http://localhost:5502/update
           sync: false          
-        get_all_station_codes:
-          condition:
-              operation:
-                type: AND
-                input:
-                  value:
-                  - operation:
-                      type: EQUAL
-                      title: Check search message code
-                      input:
-                        value:
-                          - operation:
-                              type: READ
-                              input:
-                                value: "req_body.context.action"
-                          - update
-          service_url: http://localhost:5500/update
-     
+
       status:
         default:
-          service_url: http://localhost:5500/status
+          service_url: http://localhost:5502/status
           sync: false          
-        personal_loan:
-          condition:
-              operation:
-                type: AND
-                input:
-                  value:
-                  - operation:
-                      type: EQUAL
-                      title: Check search message code
-                      input:
-                        value:
-                          - operation:
-                              type: READ
-                              input:
-                                value: "req_body.context.action"
-                          - status
-          service_url: http://localhost:5500/status
-
 
 
   - summary: Default -  Flow

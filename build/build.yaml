@@ -6,6 +6,8 @@ BAP:
       domain: ONDC:TRV12
       sessionData:
         version: 2.0.0
+        tax_id: GSTIN:22AAAAA0000A1Z5
+        collected_by: BAP
       protocol:
         search_bus:
           mapping:
@@ -172,6 +174,23 @@ BAP:
               value: parseInt(data.quantity)
             - beckn_key: message.order.provider.id
               value: data.providerId
+            - beckn_key: message.order.fulfillment.id
+              value: data.fulfillmentId
+            - beckn_key: message.order.fulfillment.stops[0].type
+              value: data.startStopType
+            - beckn_key: message.order.fulfillment.stops[0].id
+              value: data?.startStop
+            - beckn_key: message.order.fulfillment.stops[1].type
+              value: data.endStopType
+            - beckn_key: message.order.fulfillment.stops[1].id
+              value: data?.endStop
+            - beckn_key: message.order.provider.id
+              value: data.providerID
+            - beckn_key: message.order.fulfillment.tags[0]
+              value: data.paymentTagsSearchService || session.paymentTagsSearch
+              compute: >-
+                buildTags(data.paymentTagsSearchService ||
+                session.paymentTagsSearch)
         init:
           mapping:
             - beckn_key: context.bap_id

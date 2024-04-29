@@ -5,6 +5,8 @@ flows:
     domain: ONDC:TRV12
     sessionData:
       version: "2.0.0"
+      tax_id: "GSTIN:22AAAAA0000A1Z5"
+      collected_by: "BAP"
     protocol:
       $ref: ./intercity-flow-1/protocolMapping.yaml#/protocol
     calls:

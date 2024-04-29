@@ -122,7 +122,22 @@ BAP:
             - beckn_key: context.action
               value: action
             - beckn_key: message.intent.fulfillment.id
-              value: data.filfillmentId
+              value: data.fulfillmentId
+            - beckn_key: message.intent.fulfillment.stops[0].type
+              value: data.startStopType
+            - beckn_key: message.intent.fulfillment.stops[0].id
+              value: data?.startStop
+            - beckn_key: message.intent.fulfillment.stops[1].type
+              value: data.endStopType
+            - beckn_key: message.intent.fulfillment.stops[1].id
+              value: data?.endStop
+            - beckn_key: message.intent.provider.id
+              value: data.providerID
+            - beckn_key: message.intent.payment.tags
+              value: data.paymentTagsSearchService || session.paymentTagsSearch
+              compute: >-
+                buildTags(data.paymentTagsSearchService ||
+                session.paymentTagsSearch)
         select:
           mapping:
             - beckn_key: context.bap_id
@@ -294,10 +309,16 @@ BAP:
             - business_key: items
               extractionPath: >-
                 message.catalog.providers[]{providerId:
-                id}.fulfillments[]{fulfiimentId: id}.stops[]{stopId: id, type:
+                id}.fulfillments[]{fulfillmentId: id}.stops[]{stopId: id, type:
                 type, locationName: location.descriptor.code}
             - business_key: error
               extractionPath: error
+        on_search_service:
+          mapping:
+            - business_key: items
+              extractionPath: >-
+                message.catalog.providers[].items[]{id: id, price: price, name:
+                descriptor.name}
         on_select:
           mapping:
             - business_key: breakup
@@ -330,6 +351,8 @@ BAP:
           mode: ASYNC
         - config: search_station
           mode: SYNC
+        - config: search_service
+          mode: ASYNC
         - config: select
           mode: ASYNC
         - config: init

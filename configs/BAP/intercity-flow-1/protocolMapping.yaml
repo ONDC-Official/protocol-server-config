@@ -122,7 +122,23 @@ protocol:
         value: action
 
       - beckn_key: message.intent.fulfillment.id
-        value: data.filfillmentId
+        value: data.fulfillmentId
+
+      - beckn_key: message.intent.fulfillment.stops[0].type
+        value: data.startStopType
+      - beckn_key: message.intent.fulfillment.stops[0].id
+        value: data?.startStop
+      - beckn_key: message.intent.fulfillment.stops[1].type
+        value: data.endStopType
+      - beckn_key: message.intent.fulfillment.stops[1].id
+        value: data?.endStop
+
+      - beckn_key: message.intent.provider.id
+        value: data.providerID
+
+      - beckn_key: message.intent.payment.tags
+        value: data.paymentTagsSearchService || session.paymentTagsSearch
+        compute: buildTags(data.paymentTagsSearchService || session.paymentTagsSearch)
 
   select:
     mapping:
@@ -301,9 +317,14 @@ protocol:
       - business_key: "bpp_uri"
         extractionPath: context.bpp_uri
       - business_key: "items"
-        extractionPath: "message.catalog.providers[]{providerId: id}.fulfillments[]{fulfiimentId: id}.stops[]{stopId: id, type: type, locationName: location.descriptor.code}"
+        extractionPath: "message.catalog.providers[]{providerId: id}.fulfillments[]{fulfillmentId: id}.stops[]{stopId: id, type: type, locationName: location.descriptor.code}"
       - business_key: error
         extractionPath: error
+
+  on_search_service:
+    mapping:
+      - business_key: "items"
+        extractionPath: "message.catalog.providers[].items[]{id: id, price: price, name: descriptor.name}"
 
   on_select:
     mapping:

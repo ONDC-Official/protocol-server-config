@@ -3,6 +3,8 @@ calls:
     mode: "ASYNC"
   - config: "search_station"
     mode: "SYNC"
+  - config: "search_service"
+    mode: "ASYNC"
   - config: "select"
     mode: "ASYNC"
   - config: "init"

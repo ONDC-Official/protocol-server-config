@@ -365,6 +365,9 @@ BAP:
         - config: on_search_station
           endpoint: mapper/ondc
           mode: SYNC
+        - config: on_search_service
+          endpoint: mapper/ondc
+          mode: ASYNC
         - config: on_select
           endpoint: mapper/ondc
           mode: ASYNC

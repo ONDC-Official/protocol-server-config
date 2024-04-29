@@ -1,7 +1,7 @@
 calls:
-  - config: "search_route"
+  - config: "search_bus"
     mode: "ASYNC"
-  - config: "search_trip"
+  - config: "search_station"
     mode: "SYNC"
   - config: "select"
     mode: "ASYNC"
@@ -10,10 +10,10 @@ calls:
   - config: "confirm"
     mode: "ASYNC"
 
-  - config: "on_search_route"
+  - config: "on_search_bus"
     endpoint: "mapper/ondc"
     mode: "ASYNC"
-  - config: "on_search_trip"
+  - config: "on_search_station"
     endpoint: "mapper/ondc"
     mode: "SYNC"
   - config: "on_select"

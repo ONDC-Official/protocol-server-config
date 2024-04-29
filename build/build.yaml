@@ -7,7 +7,7 @@ BAP:
       sessionData:
         version: 2.0.0
       protocol:
-        search_route:
+        search_bus:
           mapping:
             - beckn_key: context.bap_id
               value: session.bap_id
@@ -40,7 +40,7 @@ BAP:
             - beckn_key: message.intent.payment.tags
               value: data.paymentTagsSearch
               compute: buildTags(data.paymentTagsSearch)
-        search_trip:
+        search_station:
           sessionData:
             - beckn_key: currentTransactionId
               value: newTranscationId
@@ -88,6 +88,41 @@ BAP:
             - beckn_key: message.intent.payment.tags
               value: data.paymentTags || session.paymentTagsSearch
               compute: buildTags(data.paymentTags || session.paymentTagsSearch)
+        search_service:
+          sessionData:
+            - beckn_key: currentTransactionId
+              value: newTranscationId
+            - beckn_key: transactionIds
+              value: '[...session.transactionIds, newTranscationId]'
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: messageId
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.intent.fulfillment.id
+              value: data.filfillmentId
         select:
           mapping:
             - beckn_key: context.bap_id
@@ -234,7 +269,7 @@ BAP:
             - beckn_key: message.order.payments[0].tags
               value: data.paymentTagsConfirm
               compute: buildTags(data.paymentTagsConfirm)
-        on_search_route:
+        on_search_bus:
           mapping:
             - business_key: name
               extractionPath: message.catalog.descriptor.name
@@ -248,7 +283,7 @@ BAP:
                 location.descriptor.code}
             - business_key: error
               extractionPath: error
-        on_search_trip:
+        on_search_station:
           mapping:
             - business_key: name
               extractionPath: message.catalog.descriptor.name
@@ -258,8 +293,9 @@ BAP:
               extractionPath: context.bpp_uri
             - business_key: items
               extractionPath: >-
-                message.catalog.providers[]{providerId: id}.items[]{id: id,
-                name: descriptor.name}
+                message.catalog.providers[]{providerId:
+                id}.fulfillments[]{fulfiimentId: id}.stops[]{stopId: id, type:
+                type, locationName: location.descriptor.code}
             - business_key: error
               extractionPath: error
         on_select:
@@ -290,9 +326,9 @@ BAP:
             - business_key: error
               extractionPath: error
       calls:
-        - config: search_route
+        - config: search_bus
           mode: ASYNC
-        - config: search_trip
+        - config: search_station
           mode: SYNC
         - config: select
           mode: ASYNC
@@ -300,10 +336,10 @@ BAP:
           mode: SYNC
         - config: confirm
           mode: ASYNC
-        - config: on_search_route
+        - config: on_search_bus
           endpoint: mapper/ondc
           mode: ASYNC
-        - config: on_search_trip
+        - config: on_search_station
           endpoint: mapper/ondc
           mode: SYNC
         - config: on_select

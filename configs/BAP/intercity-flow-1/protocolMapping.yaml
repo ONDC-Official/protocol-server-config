@@ -176,24 +176,24 @@ protocol:
       - beckn_key: message.order.provider.id
         value: data.providerId
 
-      - beckn_key: message.order.fulfillment.id
+      - beckn_key: message.order.fulfillments.id
         value: data.fulfillmentId
 
-      - beckn_key: message.order.fulfillment.stops[0].type
+      - beckn_key: message.order.fulfillments.stops[0].type
         value: data.startStopType
-      - beckn_key: message.order.fulfillment.stops[0].id
+      - beckn_key: message.order.fulfillments.stops[0].id
         value: data?.startStop
-      - beckn_key: message.order.fulfillment.stops[1].type
+      - beckn_key: message.order.fulfillments.stops[1].type
         value: data.endStopType
-      - beckn_key: message.order.fulfillment.stops[1].id
+      - beckn_key: message.order.fulfillments.stops[1].id
         value: data?.endStop
 
       - beckn_key: message.order.provider.id
         value: data.providerID
 
-      - beckn_key: message.order.fulfillment.tags[0]
-        value: data.paymentTagsSearchService || session.paymentTagsSearch
-        compute: buildTags(data.paymentTagsSearchService || session.paymentTagsSearch)
+      # - beckn_key: message.order.fulfillment.tags[0]
+      #   value: data.paymentTagsSearchService || session.paymentTagsSearch
+      #   compute: buildTags(data.paymentTagsSearchService || session.paymentTagsSearch)
 
   init:
     mapping:

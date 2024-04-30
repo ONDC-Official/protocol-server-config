@@ -323,9 +323,9 @@ protocol:
       - beckn_key: message.order.payments[0].params.transaction_id
         value: session.paymentID[0].id
       - beckn_key: message.order.payments[0].params.currency
-        value: data.currency
+        value: session.quoteCurrency
       - beckn_key: message.order.payments[0].params.amount
-        value: data.amount
+        value: session.quoteValue
       - beckn_key: message.order.payments[0].tags
         value: data.paymentTagsConfirm
         compute: buildTags(data.paymentTagsConfirm)

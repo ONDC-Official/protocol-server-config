@@ -304,16 +304,14 @@ BAP:
               value: session.email
             - beckn_key: message.order.billing.phone
               value: session.phone
-            - beckn_key: message.order.payments[0].id
-              value: session.paymentID[0].id
             - beckn_key: message.order.payments[0].collected_by
-              value: data.collectedByConfirm
+              value: session.collected_by
             - beckn_key: message.order.payments[0].status
               value: data.paymentStatusConfirm
             - beckn_key: message.order.payments[0].type
               value: data.paymentTypeConfirm
             - beckn_key: message.order.payments[0].params.transaction_id
-              value: data.paymentTranscationId
+              value: session.paymentID[0].id
             - beckn_key: message.order.payments[0].params.currency
               value: data.currency
             - beckn_key: message.order.payments[0].params.amount
@@ -368,6 +366,10 @@ BAP:
           sessionData:
             - business_key: paymentID
               extractionPath: 'message.order.payments[]{id: id}'
+            - business_key: quoteCurrency
+              extractionPath: message.order.quote.price.currency
+            - business_key: quoteValue
+              extractionPath: message.order.quote.price.value
           mapping:
             - business_key: paymentDetails
               extractionPath: 'message.order.payments[]{id: id, type: type, status: status}'

@@ -174,7 +174,7 @@ BAP:
               value: parseInt(data.quantity)
             - beckn_key: message.order.provider.id
               value: data.providerId
-            - beckn_key: message.order.fulfillments.id
+            - beckn_key: message.order.fulfillments[0].id
               value: data.fulfillmentId
             - beckn_key: message.order.fulfillments[0].stops[0].type
               value: data.startStopType

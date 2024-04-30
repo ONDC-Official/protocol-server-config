@@ -186,6 +186,11 @@ BAP:
               value: data?.endStop
             - beckn_key: message.order.provider.id
               value: data.providerID
+            - beckn_key: message.order.fulfillment.tags
+              value: data.paymentTagsSearchService || session.paymentTagsSearch
+              compute: >-
+                buildTags(data.paymentTagsSearchService ||
+                session.paymentTagsSearch)
         init:
           mapping:
             - beckn_key: context.bap_id

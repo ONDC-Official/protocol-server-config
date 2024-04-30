@@ -191,9 +191,9 @@ protocol:
       - beckn_key: message.order.provider.id
         value: data.providerID
 
-      # - beckn_key: message.order.fulfillment.tags[0]
-      #   value: data.paymentTagsSearchService || session.paymentTagsSearch
-      #   compute: buildTags(data.paymentTagsSearchService || session.paymentTagsSearch)
+      - beckn_key: message.order.fulfillment.tags
+        value: data.paymentTagsSearchService || session.paymentTagsSearch
+        compute: buildTags(data.paymentTagsSearchService || session.paymentTagsSearch)
 
   init:
     mapping:

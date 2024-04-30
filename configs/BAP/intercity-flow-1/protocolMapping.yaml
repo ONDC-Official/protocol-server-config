@@ -389,6 +389,6 @@ protocol:
       - business_key: "status"
         extractionPath: message.order.status
       - business_key: "QR code"
-        extractionPath: 'message.order.fulfillments[]{providerId: id}.stops[?(type === "START")]{token: authorization.token, status: authorization.status}'
+        extractionPath: "message.order.fulfillments[]{providerId: id}.stops[?(authorization)]{token: authorization.token, status: authorization.status}"
       - business_key: error
         extractionPath: error

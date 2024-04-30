@@ -179,19 +179,19 @@ protocol:
       - beckn_key: message.order.fulfillments.id
         value: data.fulfillmentId
 
-      - beckn_key: message.order.fulfillments.stops[0].type
+      - beckn_key: message.order.fulfillments[0].stops[0].type
         value: data.startStopType
-      - beckn_key: message.order.fulfillments.stops[0].id
+      - beckn_key: message.order.fulfillments[0].stops[0].id
         value: data?.startStop
-      - beckn_key: message.order.fulfillments.stops[1].type
+      - beckn_key: message.order.fulfillments[0].stops[1].type
         value: data.endStopType
-      - beckn_key: message.order.fulfillments.stops[1].id
+      - beckn_key: message.order.fulfillments[0].stops[1].id
         value: data?.endStop
 
       - beckn_key: message.order.provider.id
         value: data.providerID
 
-      - beckn_key: message.order.fulfillments.tags
+      - beckn_key: message.order.fulfillments[0].tags
         value: data.paymentTagsSearchService || session.paymentTagsSearch
         compute: buildTags(data.paymentTagsSearchService || session.paymentTagsSearch)
 

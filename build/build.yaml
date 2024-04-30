@@ -756,6 +756,10 @@ BPP:
               compute: buildTags(data.tags    || session.tags)
             - beckn_key: message.catalog.providers[0].payments[0].collected_by
               value: data.payment_collectedby || session.collectedBy
+            - beckn_key: message
+              value: data.error && data.message
+            - beckn_key: error
+              value: data.error
         select:
           sessionData:
             - beckn_key: itemId
@@ -849,6 +853,10 @@ BPP:
               value: (data.amount_breakup || session.quote.breakup)
             - beckn_key: message.order.quote.ttl
               value: (data.ttl || session.quote.ttl)
+            - beckn_key: message
+              value: data.error && data.message
+            - beckn_key: error
+              value: data.error
         init:
           sessionData:
             - beckn_key: bankCode
@@ -973,6 +981,10 @@ BPP:
               value: >-
                 data.cancellation_terms                ||
                 session.cancellation_terms
+            - beckn_key: message
+              value: data.error && data.message
+            - beckn_key: error
+              value: data.error
         confirm:
           mapping:
             - beckn_key: context.bap_id
@@ -1073,6 +1085,10 @@ BPP:
             - beckn_key: message.order.provider.tags
               value: data.tags                || session.tags
               compute: buildTags(data.tags    || session.tags)
+            - beckn_key: message
+              value: data.error && data.message
+            - beckn_key: error
+              value: data.error
         update:
           mapping:
             - beckn_key: context.bap_id
@@ -1173,6 +1189,10 @@ BPP:
             - beckn_key: message.order.provider.tags
               value: data.tags                || session.tags
               compute: buildTags(data.tags    || session.tags)
+            - beckn_key: message
+              value: data.error && data.message
+            - beckn_key: error
+              value: data.error
         status:
           sessionData:
             - beckn_key: context.message_id
@@ -1275,6 +1295,10 @@ BPP:
             - beckn_key: message.order.provider.tags
               value: data.tags                || session.tags
               compute: buildTags(data.tags    || session.tags)
+            - beckn_key: message
+              value: data.error && data.message
+            - beckn_key: error
+              value: data.error
       schema: &ref_366
         search:
           type: object

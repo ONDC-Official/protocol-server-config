@@ -87,32 +87,32 @@ flows:
     api:
       search:
         default:
-          service_url: http://localhost:5502/search
+          service_url: http://172.17.0.1:5502/search
           sync: false
      
       select:
         default:
-          service_url: http://localhost:5502/select
+          service_url: http://172.17.0.1:5502/select
           sync: false          
            
       init:
         default:
-          service_url: http://localhost:5502/init
+          service_url: http://172.17.0.1:5502/init
           sync: false          
 
       confirm:
         default:
-          service_url: http://localhost:5502/confirm
+          service_url: http://172.17.0.1:5502/confirm
           sync: false                    
 
       update:
         default:
-          service_url: http://localhost:5502/update
+          service_url: http://172.17.0.1:5502/update
           sync: false          
 
       status:
         default:
-          service_url: http://localhost:5502/status
+          service_url: http://172.17.0.1:5502/status
           sync: false          
 
 
@@ -126,32 +126,32 @@ flows:
     api:
       search:
         default:
-          service_url: http://localhost:5501/search
+          service_url: http://172.17.0.1:5501/search
           sync: false
 
       select:
         default:
-          service_url: http://localhost:5501/select
+          service_url: http://172.17.0.1:5501/select
           sync: false          
            
       init:
         default:
-          service_url: http://localhost:5501/init
+          service_url: http://172.17.0.1:5501/init
           sync: false          
 
       confirm:
         default:
-          service_url: http://localhost:5501/confirm
+          service_url: http://172.17.0.1:5501/confirm
           sync: false      
 
       update:
         default:
-          service_url: http://localhost:5501/update
+          service_url: http://172.17.0.1:5501/update
           sync: false      
 
       status:
         default:
-          service_url: http://localhost:5501/status
+          service_url: http://172.17.0.1:5501/status
           sync: false      
 
 

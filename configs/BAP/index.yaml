@@ -1,6 +1,6 @@
 flows:
-  - summary: Metro - Station Code Based Flow
-    id: metro-flow-1
+  - summary: IntraCity - Code Based Flow
+    id: intracity-flow-1
     domain: ONDC:TRV11
     shouldDispaly: true
     sessionData:
@@ -10,8 +10,8 @@ flows:
       virtualPaymentAddress: "adasd@okiciic"
       bankCode: "fj3jf9ij3f02"
     protocol:
-      $ref: ./metro-flow-1/protocolMapping.yaml#/protocol
+      $ref: ./intracity-flow-1/protocolMapping.yaml#/protocol
     calls:
-      $ref: ./metro-flow-1/calls.yaml#/calls
+      $ref: ./intracity-flow-1/calls.yaml#/calls
     schema:
       $ref: ../schema/TRV/index.yaml

@@ -1,7 +1,7 @@
 BAP:
   flows:
-    - summary: Metro - Station Code Based Flow
-      id: metro-flow-1
+    - summary: IntraCity - Code Based Flow
+      id: intracity-flow-1
       domain: ONDC:TRV11
       shouldDispaly: true
       sessionData:

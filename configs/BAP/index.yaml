@@ -15,3 +15,20 @@ flows:
       $ref: ./metro-flow-1/calls.yaml#/calls
     schema:
       $ref: ../schema/TRV/index.yaml
+
+  - summary: IntraCity - Code Based Flow
+    id: intracity-flow-1
+    domain: ONDC:TRV11
+    shouldDispaly: true
+    sessionData:
+      version: "2.0.0"
+      collectedBy: BAP
+      bankAccountNumber: "123456789"
+      virtualPaymentAddress: "adasd@okiciic"
+      bankCode: "fj3jf9ij3f02"
+    protocol:
+      $ref: ./intracity-flow-1/protocolMapping.yaml#/protocol
+    calls:
+      $ref: ./intracity-flow-1/calls.yaml#/calls
+    schema:
+      $ref: ../schema/TRV/index.yaml

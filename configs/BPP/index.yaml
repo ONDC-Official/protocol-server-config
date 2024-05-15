@@ -379,6 +379,238 @@ flows:
           service_url: http://localhost:5500/status
           sync: false
 
+  - summary: Intercity - Code Based Flow
+    id: intercity-flow-1
+    domain: ONDC:TRV12
+    sessionData:
+      bpp_uri: "http://localhost:81/ondc"
+      bpp_id: "mobility-staging.ondc.org"
+      collectedBy: BAP
+      bankAccountNumber: "xxxxxxxxxxxxxx"
+      virtualPaymentAddress: "9988199772@okicic"
+      bankCode: "XXXXXXXX"
+      provider_id: "INTERCITY_PROVIDER_ID"
+      categories:
+        - descriptor:
+            name: Seater
+            code: SEATER
+          id: C1
+        - descriptor:
+            name: Sleeper
+            code: SLEEPER
+          id: C2
+        - descriptor:
+            name: Semi Sleeper
+            code: SEMI_SLEEPER
+          id: C3
+      metro_starttime: "2023-09-14T05:30:00.000Z"
+      metro_endtime: "2023-09-14T23:30:00.000Z"
+      provider_image:
+        - url: https://operator1.com/logos/logo.ico
+      provider_name: "ABC Operator 1 Bus Services"
+      currency: INR
+      payment_tags:
+        BUYER_FINDER_FEES:
+          display: false
+          # BUYER_FINDER_FEES_TYPE: percent-annualized
+          BUYER_FINDER_FEES_PERCENTAGE: "1"
+        SETTLEMENT_TERMS:
+          display: false
+          SETTLEMENT_WINDOW: PT30D
+          SETTLEMENT_BASIS: INVOICE_RECEIPT
+          MANDATORY_ARBITRATION: "TRUE"
+          COURT_JURISDICTION: New Delhi
+          STATIC_TERMS: "https://api.example-bpp.com/booking/term"
+        SETTLEMENT_DETAILS:
+          display: false
+          SETTLEMENT_TYPE: UPI
+      tags:
+        SCHEDULED_INFO:
+          display: false
+          GTFS: https://metro-transit/gtfs-realtime
+
+      cancellation_terms:
+        - external_ref:
+            mimetype: text/html
+            url: https://transitsolutions.com/mf/tnc.html
+      payment_type: PRE-ORDER
+    protocol:
+      $ref: ./intracity-flow-1/protocolMapping.yaml#/protocol
+    schema:
+      $ref: ../schema/TRV/index.yaml
+    api:
+      search:
+        default:
+          callback: "on_search"
+        get_all_station_codes:
+          condition:
+            operation:
+              type: AND
+              input:
+                value:
+                  - operation:
+                      type: EQUAL
+                      title: Check search message code
+                      input:
+                        value:
+                          - operation:
+                              type: READ
+                              input:
+                                value: "req_body.context.action"
+                          - search
+                  - operation:
+                      type: EQUAL
+                      title: Check search message code
+                      input:
+                        value:
+                          - operation:
+                              type: READ
+                              input:
+                                value: "req_body.message.intent.fulfillment.stops.0.type"
+                          - START
+          service_url: http://localhost:5500/getallstationcode
+          sync: false
+        getonestationcodetrips:
+          condition:
+            operation:
+              type: AND
+              input:
+                value:
+                  - operation:
+                      type: EQUAL
+                      title: Check search message code
+                      input:
+                        value:
+                          - operation:
+                              type: READ
+                              input:
+                                value: "req_body.context.action"
+                          - search
+                  - operation:
+                      type: EQUAL
+                      title: Check search message code
+                      input:
+                        value:
+                          - operation:
+                              type: READ
+                              input:
+                                value: "req_body.message.intent.fulfillment.stops.0.time.label"
+                          - DATE_OF_JOURNEY
+          service_url: http://localhost:5500/getbusservice
+          sync: false
+        get_bus_service:
+          condition:
+            operation:
+              type: AND
+              input:
+                value:
+                  - operation:
+                      type: EQUAL
+                      title: Check search message code
+                      input:
+                        value:
+                          - operation:
+                              type: READ
+                              input:
+                                value: "req_body.context.action"
+                          - search
+                  - operation:
+                      type: EQUAL
+                      title: Check search message code
+                      input:
+                        value:
+                          - operation:
+                              type: READ
+                              input:
+                                value: "req_body.message.intent.provider.id"
+                          - INTERCITY_PROVIDER_ID
+          service_url: http://localhost:5500/getonestationcodetrips
+          sync: false
+      select:
+        default:
+          callback: "on_select"
+        get_all_station_codes:
+          condition:
+            operation:
+              type: AND
+              input:
+                value:
+                  - operation:
+                      type: EQUAL
+                      title: Check search message code
+                      input:
+                        value:
+                          - operation:
+                              type: READ
+                              input:
+                                value: "req_body.context.action"
+                          - select
+          service_url: http://localhost:5500/getfare
+          sync: false
+      init:
+        default:
+          callback: "on_init"
+        get_all_station_codes:
+          condition:
+            operation:
+              type: AND
+              input:
+                value:
+                  - operation:
+                      type: EQUAL
+                      title: Check search message code
+                      input:
+                        value:
+                          - operation:
+                              type: READ
+                              input:
+                                value: "req_body.context.action"
+                          - init
+          service_url: http://localhost:5500/getfare
+          sync: false
+      confirm:
+        default:
+          callback: "on_confirm"
+        get_all_station_codes:
+          condition:
+            operation:
+              type: AND
+              input:
+                value:
+                  - operation:
+                      type: EQUAL
+                      title: Check search message code
+                      input:
+                        value:
+                          - operation:
+                              type: READ
+                              input:
+                                value: "req_body.context.action"
+                          - confirm
+          service_url: http://localhost:5500/confirmticket
+          sync: false
+      status:
+        default:
+          callback: on_status
+        get_all_station_codes:
+          condition:
+            operation:
+              type: AND
+              input:
+                value:
+                  - operation:
+                      type: EQUAL
+                      title: Check search message code
+                      input:
+                        value:
+                          - operation:
+                              type: READ
+                              input:
+                                value: "req_body.context.action"
+                          - status
+          service_url: http://localhost:5500/status
+          sync: false
+
 flow_selector:
   search:
     default:
@@ -416,7 +648,44 @@ flow_selector:
                           input:
                             value: "req_body.message.intent.fulfillment.vehicle.category"
                       - BUS
+              - operation:
+                  type: EQUAL
+                  title: Check search message code
+                  input:
+                    value:
+                      - operation:
+                          type: READ
+                          input:
+                            value: "req_body.context.domain"
+                      - ONDC:TRV11
       config_id: "intracity-flow-1"
+    intercity-flow-1:
+      condition:
+        operation:
+          type: AND
+          input:
+            value:
+              - operation:
+                  type: EQUAL
+                  title: Check search message code
+                  input:
+                    value:
+                      - operation:
+                          type: READ
+                          input:
+                            value: "req_body.message.intent.fulfillment.vehicle.category"
+                      - BUS
+              - operation:
+                  type: EQUAL
+                  title: Check search message code
+                  input:
+                    value:
+                      - operation:
+                          type: READ
+                          input:
+                            value: "req_body.context.domain"
+                      - ONDC:TRV12
+      config_id: "intercity-flow-1"
 
   select:
     default:
@@ -455,6 +724,23 @@ flow_selector:
                             value: "req_body.message.order.items.0.id"
                       - ITEM_ID_1_INTERCITY_BUS
       config_id: "intracity-flow-1"
+    intercity_bus:
+      condition:
+        operation:
+          type: AND
+          input:
+            value:
+              - operation:
+                  type: EQUAL
+                  title: Check search message code
+                  input:
+                    value:
+                      - operation:
+                          type: READ
+                          input:
+                            value: "req_body.message.order.items.0.id"
+                      - INTERCITY_BUS_ITEM_ID
+      config_id: "intercity-flow-1"
 
   init:
     default:
@@ -493,6 +779,23 @@ flow_selector:
                             value: "req_body.message.order.items.0.id"
                       - ITEM_ID_1_INTERCITY_BUS
       config_id: "intracity-flow-1"
+    intercity_bus:
+      condition:
+        operation:
+          type: AND
+          input:
+            value:
+              - operation:
+                  type: EQUAL
+                  title: Check search message code
+                  input:
+                    value:
+                      - operation:
+                          type: READ
+                          input:
+                            value: "req_body.message.order.items.0.id"
+                      - INTERCITY_BUS_ITEM_ID
+      config_id: "intercity-flow-1"
 
   confirm:
     default:
@@ -531,6 +834,23 @@ flow_selector:
                             value: "req_body.message.order.items.0.id"
                       - ITEM_ID_1_INTERCITY_BUS
       config_id: "intracity-flow-1"
+    intercity_bus:
+      condition:
+        operation:
+          type: AND
+          input:
+            value:
+              - operation:
+                  type: EQUAL
+                  title: Check search message code
+                  input:
+                    value:
+                      - operation:
+                          type: READ
+                          input:
+                            value: "req_body.message.order.items.0.id"
+                      - INTERCITY_BUS_ITEM_ID
+      config_id: "intercity-flow-1"
 
   update:
     default:
@@ -569,6 +889,23 @@ flow_selector:
                             value: "req_body.message.order.items.0.id"
                       - ITEM_ID_1_INTERCITY_BUS
       config_id: "intracity-flow-1"
+    intercity_bus:
+      condition:
+        operation:
+          type: AND
+          input:
+            value:
+              - operation:
+                  type: EQUAL
+                  title: Check search message code
+                  input:
+                    value:
+                      - operation:
+                          type: READ
+                          input:
+                            value: "req_body.message.order.items.0.id"
+                      - INTERCITY_BUS_ITEM_ID
+      config_id: "intercity-flow-1"
 
   status:
     default:
@@ -607,3 +944,20 @@ flow_selector:
                             value: "req_body.message.order.items.0.id"
                       - ITEM_ID_1_INTERCITY_BUS
       config_id: "intracity-flow-1"
+    intercity_bus:
+      condition:
+        operation:
+          type: AND
+          input:
+            value:
+              - operation:
+                  type: EQUAL
+                  title: Check search message code
+                  input:
+                    value:
+                      - operation:
+                          type: READ
+                          input:
+                            value: "req_body.message.order.items.0.id"
+                      - INTERCITY_BUS_ITEM_ID
+      config_id: "intercity-flow-1"

@@ -23711,9 +23711,10 @@ BPP:
             display: false
             GTFS: https://metro-transit/gtfs-realtime
         cancellation_terms:
-          - external_ref:
-              mimetype: text/html
-              url: https://transitsolutions.com/mf/tnc.html
+          - cancel_by:
+              duration: PT60M
+            cancellation_fee:
+              percentage: '0'
         payment_type: PRE-ORDER
       protocol:
         search:
@@ -23793,18 +23794,6 @@ BPP:
               value: data.intercity_items
             - beckn_key: message.catalog.providers[0].fulfillments
               value: data.trips
-            - beckn_key: message.catalog.providers[0].time.range.start
-              value: data.metro_starttime     || session.metro_starttime
-            - beckn_key: message.catalog.providers[0].time.range.end
-              value: data.metro_endtime       || session.metro_endtime
-            - beckn_key: message.catalog.providers[0].payments[0].tags
-              value: data.payments_tags       || session.payment_tags
-              compute: buildTags(data.payments_tags || session.payment_tags)
-            - beckn_key: message.catalog.providers[0].tags
-              value: data.tags                || session.tags
-              compute: buildTags(data.tags    || session.tags)
-            - beckn_key: message.catalog.providers[0].payments[0].collected_by
-              value: data.payment_collectedby || session.collectedBy
         select:
           sessionData:
             - beckn_key: itemId
@@ -23867,28 +23856,19 @@ BPP:
             - beckn_key: context.action
               value: action
             - beckn_key: message.order.items
-              value: data.metro_items
+              value: data.intercity_items
             - beckn_key: message.order.provider.id
-              value: data.metro_id            ||session.metro_id
+              value: data.provider_id            ||session.provider_id
             - beckn_key: message.order.provider.descriptor.name
-              value: data.metro_name          || session.metro_name
+              value: data.provider_name          || session.provider_name
             - beckn_key: message.order.provider.descriptor.images
-              value: data.metro_images        ||session.metro_images
-            - beckn_key: message.order.provider.time.range.start
-              value: data.metro_starttime     || session.metro_starttime
-            - beckn_key: message.order.provider.time.range.end
-              value: data.metro_endtime       || session.metro_endtime
+              value: data.provider_image        ||session.provider_image
             - beckn_key: message.order.fulfillments
               value: data.trips
             - beckn_key: message.order.quote.price.value
               value: data.price
             - beckn_key: message.order.quote.price.currency
               value: session.currency
-            - beckn_key: message.order.cancellation_terms
-              value: data.cancellation_terms || session.cancellation_terms
-            - beckn_key: message.order.tags
-              value: data.tags || session.tags
-              compute: buildTags(data.tags    || session.tags)
             - beckn_key: message.order.quote.breakup
               value: data.breakup
         init:
@@ -23908,6 +23888,8 @@ BPP:
                 data.message.order.payments[0].collected_by === 'BAP' &&
                 data.message.order.payments[0].params.virtual_payment_address ||
                 session.virtualPaymentAddress
+            - beckn_key: customer
+              value: data.message.order.fulfillments[0].customer
           mapping:
             - beckn_key: context.bap_id
               value: session.bap_id
@@ -23966,30 +23948,19 @@ BPP:
             - beckn_key: context.action
               value: action
             - beckn_key: message.order.items
-              value: data.metro_items
+              value: data.intercity_items
             - beckn_key: message.order.provider.id
-              value: data.metro_id            ||session.metro_id
+              value: data.provider_id            ||session.provider_id
             - beckn_key: message.order.provider.descriptor.name
-              value: data.metro_name          || session.metro_name
+              value: data.provider_name          || session.provider_name
             - beckn_key: message.order.provider.descriptor.images
-              value: data.metro_images        ||session.metro_images
-            - beckn_key: message.order.provider.time.range.start
-              value: data.metro_starttime     || session.metro_starttime
-            - beckn_key: message.order.provider.time.range.end
-              value: data.metro_endtime       || session.metro_endtime
+              value: data.provider_image        ||session.provider_image
             - beckn_key: message.order.fulfillments
               value: data.trips
+            - beckn_key: message.order.fulfillments[0].customer
+              value: session.customer
             - beckn_key: message.order.cancellation_terms
-              value: data.cancellation_terms || session.cancellation_terms
-            - beckn_key: message.order.tags
-              value: data.tags || session.tags
-              compute: buildTags(data.tags    || session.tags)
-            - beckn_key: message.order.billing.name
-              value: data.billing_name
-            - beckn_key: message.order.billing.phone
-              value: data.billing_phone
-            - beckn_key: message.order.billing.email
-              value: data.billing_email
+              value: session.cancellation_terms
             - beckn_key: message.order.quote.price.value
               value: data.price
             - beckn_key: message.order.quote.price.currency

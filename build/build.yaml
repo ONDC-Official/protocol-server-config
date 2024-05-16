@@ -21662,6 +21662,370 @@ BAP:
                     logging. Not recommended to be shown to the user.
           required:
             - context
+    - summary: IntraCity - Code Based Flow
+      id: intracity-flow-1
+      domain: ONDC:TRV11
+      shouldDispaly: true
+      sessionData:
+        version: 2.0.0
+        collectedBy: BAP
+        bankAccountNumber: '123456789'
+        virtualPaymentAddress: adasd@okiciic
+        bankCode: fj3jf9ij3f02
+      protocol:
+        search_route:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: messageId
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.intent.fulfillment.vehicle.category
+              value: data.vehicleCategaory || session.vehicleCategaory
+            - beckn_key: message.intent.payment.tags
+              value: data.paymentTagsSearch
+              compute: buildTags(data.paymentTagsSearch)
+        search_trip:
+          sessionData:
+            - beckn_key: currentTransactionId
+              value: newTranscationId
+            - beckn_key: transactionIds
+              value: '[...session.transactionIds, newTranscationId]'
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: data.bpp_id
+            - beckn_key: context.bpp_uri
+              value: data.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: messageId
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.intent.fulfillment.stops[0].type
+              value: startPoint
+              check: data?.startStop
+            - beckn_key: message.intent.fulfillment.stops[0].location.descriptor.code
+              value: data?.startStop
+            - beckn_key: message.intent.fulfillment.stops[1].type
+              value: endPoint
+              check: data?.endStop
+            - beckn_key: message.intent.fulfillment.stops[1].location.descriptor.code
+              value: data?.endStop
+            - beckn_key: message.intent.fulfillment.vehicle.category
+              value: data.vehicleCategaory || session.vehicleCategaory
+            - beckn_key: message.intent.payment.tags
+              value: data.paymentTags || session.paymentTagsSearch
+              compute: buildTags(data.paymentTags || session.paymentTagsSearch)
+        select:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: messageId
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.items[0].id
+              value: data.itemId
+            - beckn_key: message.order.items[0].quantity.selected.count
+              value: parseInt(data.quantity)
+            - beckn_key: message.order.provider.id
+              value: data.providerId
+        init:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: messageId
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.items[0].id
+              value: session.itemId
+            - beckn_key: message.order.items[0].quantity.selected.count
+              value: session.quantitySelected
+            - beckn_key: message.order.provider.id
+              value: session.providerId
+            - beckn_key: message.order.billing.name
+              value: data.name
+            - beckn_key: message.order.billing.email
+              value: data.email
+            - beckn_key: message.order.billing.phone
+              value: data.phone
+            - beckn_key: message.order.payments[0].collected_by
+              value: session.collectedBy
+            - beckn_key: message.order.payments[0].status
+              value: data.paymentStatus
+            - beckn_key: message.order.payments[0].type
+              value: data.paymentType
+            - beckn_key: message.order.payments[0].params.bank_code
+              value: session.bankCode
+            - beckn_key: message.order.payments[0].params.bank_account_number
+              value: session.bankAccountNumber
+            - beckn_key: message.order.payments[0].params.virtual_payment_address
+              value: session.virtualPaymentAddress
+            - beckn_key: message.order.payments[0].tags
+              value: data.paymentTagsInit
+              compute: buildTags(data.paymentTagsInit)
+        confirm:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: messageId
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.items[0].id
+              value: session.itemId
+            - beckn_key: message.order.items[0].quantity.selected.count
+              value: session.quantitySelected
+            - beckn_key: message.order.provider.id
+              value: session.providerId
+            - beckn_key: message.order.billing.name
+              value: session.name
+            - beckn_key: message.order.billing.email
+              value: session.email
+            - beckn_key: message.order.billing.phone
+              value: session.phone
+            - beckn_key: message.order.payments[0].id
+              value: data.paymentId
+            - beckn_key: message.order.payments[0].collected_by
+              value: session.collectedBy
+            - beckn_key: message.order.payments[0].status
+              value: data.paymentStatusConfirm
+            - beckn_key: message.order.payments[0].type
+              value: data.paymentTypeConfirm
+            - beckn_key: message.order.payments[0].params.transaction_id
+              value: data.paymentTranscationId
+            - beckn_key: message.order.payments[0].params.currency
+              value: data.currency
+            - beckn_key: message.order.payments[0].params.amount
+              value: data.amount
+            - beckn_key: message.order.payments[0].tags
+              value: data.paymentTagsConfirm
+              compute: buildTags(data.paymentTagsConfirm)
+        status:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: messageId
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order_id
+              value: data.orderId
+        on_search_route:
+          mapping:
+            - business_key: name
+              extractionPath: message.catalog.descriptor.name
+            - business_key: bpp_id
+              extractionPath: context.bpp_id
+            - business_key: bpp_uri
+              extractionPath: context.bpp_uri
+            - business_key: location
+              extractionPath: >-
+                message.catalog.providers[].fulfillments[].stops[]{locationName:
+                location.descriptor.code}
+            - business_key: error
+              extractionPath: error
+        on_search_trip:
+          mapping:
+            - business_key: name
+              extractionPath: message.catalog.descriptor.name
+            - business_key: bpp_id
+              extractionPath: context.bpp_id
+            - business_key: bpp_uri
+              extractionPath: context.bpp_uri
+            - business_key: items
+              extractionPath: >-
+                message.catalog.providers[]{providerId: id}.items[]{id: id,
+                name: descriptor.name}
+            - business_key: error
+              extractionPath: error
+        on_select:
+          mapping:
+            - business_key: breakup
+              extractionPath: >-
+                message.order.quote.breakup[]{type: title, totalPrice:
+                price.value, UOP: price.currency}
+            - business_key: error
+              extractionPath: error
+        on_init:
+          sessionData:
+            - business_key: paymentID
+              extractionPath: 'message.order.payments[]{id: id}'
+            - business_key: totalPrice
+              extractionPath: message.order.quote.price
+          mapping:
+            - business_key: paymentDetails
+              extractionPath: 'message.order.payments[]{id: id, type: type, status: status}'
+            - business_key: totalPrice
+              extractionPath: message.order.quote.price
+            - business_key: error
+              extractionPath: error
+        on_confirm:
+          mapping:
+            - business_key: orderId
+              extractionPath: message.order.id
+            - business_key: status
+              extractionPath: message.order.status
+            - business_key: QR code
+              extractionPath: >-
+                message.order.fulfillments[]{providerId: id}.stops[?(type ===
+                "START")]{token: authorization.token, status:
+                authorization.status}
+            - business_key: error
+              extractionPath: error
+        on_status:
+          mapping:
+            - business_key: status
+              extractionPath: message.order.status
+            - business_key: error
+              extractionPath: error
+      calls:
+        - config: search_route
+          mode: ASYNC
+        - config: search_trip
+          mode: SYNC
+        - config: select
+          mode: ASYNC
+        - config: init
+          mode: SYNC
+        - config: confirm
+          mode: ASYNC
+        - config: status
+          mode: SYNC
+        - config: on_search_route
+          endpoint: mapper/ondc
+          mode: ASYNC
+        - config: on_search_trip
+          endpoint: mapper/ondc
+          mode: SYNC
+        - config: on_select
+          endpoint: mapper/ondc
+          mode: ASYNC
+        - config: on_init
+          endpoint: mapper/ondc
+          mode: SYNC
+        - config: on_confirm
+          endpoint: mapper/ondc
+          mode: ASYNC
+        - config: on_status
+          endpoint: mapper/ondc
+          mode: SYNC
+      schema: *ref_443
 BPP:
   flows:
     - summary: Metro - Station Code Based Flow
@@ -22481,3 +22845,1921 @@ BPP:
                             - status
             service_url: http://localhost:5500/status
             sync: false
+    - summary: IntraCity - Code Based Flow
+      id: intracity-flow-1
+      domain: ONDC:TRV11
+      sessionData:
+        bpp_uri: http://localhost:81/ondc
+        bpp_id: mobility-staging.ondc.org
+        collectedBy: BAP
+        bankAccountNumber: xxxxxxxxxxxxxx
+        virtualPaymentAddress: 9988199772@okicic
+        bankCode: XXXXXXXX
+        metro_id: '1'
+        categories:
+          - descriptor:
+              name: Ticket
+              code: TICKET
+            id: C1
+          - descriptor:
+              name: Pass
+              code: PASS
+            id: C2
+        metro_starttime: '2023-09-14T05:30:00.000Z'
+        metro_endtime: '2023-09-14T23:30:00.000Z'
+        metro_images:
+          - url: https://delhimetrorail.com/logos/logo.ico
+        metro_name: Delhi Metro Rail Limited
+        currency: INR
+        payment_tags:
+          BUYER_FINDER_FEES:
+            display: false
+            BUYER_FINDER_FEES_PERCENTAGE: '1'
+          SETTLEMENT_TERMS:
+            display: false
+            SETTLEMENT_WINDOW: PT30D
+            SETTLEMENT_BASIS: INVOICE_RECEIPT
+            MANDATORY_ARBITRATION: 'TRUE'
+            COURT_JURISDICTION: New Delhi
+            STATIC_TERMS: https://api.example-bpp.com/booking/term
+          SETTLEMENT_DETAILS:
+            display: false
+            SETTLEMENT_TYPE: UPI
+        tags:
+          SCHEDULED_INFO:
+            display: false
+            GTFS: https://metro-transit/gtfs-realtime
+        cancellation_terms:
+          - external_ref:
+              mimetype: text/html
+              url: https://transitsolutions.com/mf/tnc.html
+        payment_type: PRE-ORDER
+      protocol:
+        search:
+          sessionData:
+            - beckn_key: bap_id
+              value: data.context.bap_id
+            - beckn_key: bap_uri
+              value: data.context.bap_uri
+            - beckn_key: cityCode
+              value: data.context.location.city.code || session.cityCode
+            - beckn_key: countryCode
+              value: data.context.location.country.code || session.countryCode
+          mapping:
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.transaction_id
+              value: session.transaction_id
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.action
+              value: data.context.action
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.location.country.code
+              value: session.countryCode
+            - beckn_key: context.ttl
+              value: data.context.ttl
+            - beckn_key: message.intent.fulfillment
+              value: data.message.intent.fulfillment
+        on_search:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.catalog.descriptor.name
+              value: data.name
+            - beckn_key: message.catalog.descriptor.images
+              value: data.images
+            - beckn_key: message.catalog.providers[0].id
+              value: data.metro_id            ||  session.metro_id
+            - beckn_key: message.catalog.providers[0].descriptor.images
+              value: data.metro_images        ||  session.metro_images
+            - beckn_key: message.catalog.providers[0].descriptor.name
+              value: data.metro_name          ||  session.metro_name
+            - beckn_key: message.catalog.providers[0].categories
+              value: data.categories          ||  session.categories
+            - beckn_key: message.catalog.providers[0].items
+              value: data.metro_items
+            - beckn_key: message.catalog.providers[0].fulfillments
+              value: data.trips
+            - beckn_key: message.catalog.providers[0].time.range.start
+              value: data.metro_starttime     || session.metro_starttime
+            - beckn_key: message.catalog.providers[0].time.range.end
+              value: data.metro_endtime       || session.metro_endtime
+            - beckn_key: message.catalog.providers[0].payments[0].tags
+              value: data.payments_tags       || session.payment_tags
+              compute: buildTags(data.payments_tags || session.payment_tags)
+            - beckn_key: message.catalog.providers[0].tags
+              value: data.tags                || session.tags
+              compute: buildTags(data.tags    || session.tags)
+            - beckn_key: message.catalog.providers[0].payments[0].collected_by
+              value: data.payment_collectedby || session.collectedBy
+        select:
+          sessionData:
+            - beckn_key: itemId
+              value: data.message.order.items[0].id
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.items[0].id
+              value: data.message.order.items[0].id
+        on_select:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.items
+              value: data.metro_items
+            - beckn_key: message.order.provider.id
+              value: data.metro_id            ||session.metro_id
+            - beckn_key: message.order.provider.descriptor.name
+              value: data.metro_name          || session.metro_name
+            - beckn_key: message.order.provider.descriptor.images
+              value: data.metro_images        ||session.metro_images
+            - beckn_key: message.order.provider.time.range.start
+              value: data.metro_starttime     || session.metro_starttime
+            - beckn_key: message.order.provider.time.range.end
+              value: data.metro_endtime       || session.metro_endtime
+            - beckn_key: message.order.fulfillments
+              value: data.trips
+            - beckn_key: message.order.quote.price.value
+              value: data.price
+            - beckn_key: message.order.quote.price.currency
+              value: session.currency
+            - beckn_key: message.order.cancellation_terms
+              value: data.cancellation_terms || session.cancellation_terms
+            - beckn_key: message.order.tags
+              value: data.tags || session.tags
+              compute: buildTags(data.tags    || session.tags)
+            - beckn_key: message.order.quote.breakup
+              value: data.breakup
+        init:
+          sessionData:
+            - beckn_key: bankCode
+              value: >-
+                data.message.order.payments[0].collected_by === 'BAP' &&
+                data.message.order.payments[0].params.bank_code ||
+                session.bankCode
+            - beckn_key: bankAccountNumber
+              value: >-
+                data.message.order.payments[0].collected_by === 'BAP' &&
+                data.message.order.payments[0].params.bank_account_number ||
+                session.bankAccountNumber
+            - beckn_key: virtualPaymentAddress
+              value: >-
+                data.message.order.payments[0].collected_by === 'BAP' &&
+                data.message.order.payments[0].params.virtual_payment_address ||
+                session.virtualPaymentAddress
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.items[0].id
+              value: data.message.order.items[0].id
+        on_init:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.items
+              value: data.metro_items
+            - beckn_key: message.order.provider.id
+              value: data.metro_id            ||session.metro_id
+            - beckn_key: message.order.provider.descriptor.name
+              value: data.metro_name          || session.metro_name
+            - beckn_key: message.order.provider.descriptor.images
+              value: data.metro_images        ||session.metro_images
+            - beckn_key: message.order.provider.time.range.start
+              value: data.metro_starttime     || session.metro_starttime
+            - beckn_key: message.order.provider.time.range.end
+              value: data.metro_endtime       || session.metro_endtime
+            - beckn_key: message.order.fulfillments
+              value: data.trips
+            - beckn_key: message.order.cancellation_terms
+              value: data.cancellation_terms || session.cancellation_terms
+            - beckn_key: message.order.tags
+              value: data.tags || session.tags
+              compute: buildTags(data.tags    || session.tags)
+            - beckn_key: message.order.billing.name
+              value: data.billing_name
+            - beckn_key: message.order.billing.phone
+              value: data.billing_phone
+            - beckn_key: message.order.billing.email
+              value: data.billing_email
+            - beckn_key: message.order.quote.price.value
+              value: data.price
+            - beckn_key: message.order.quote.price.currency
+              value: session.currency
+            - beckn_key: message.order.quote.breakup
+              value: data.breakup
+            - beckn_key: message.order.payments[0].id
+              value: data.payment_id
+            - beckn_key: message.order.payments[0].status
+              value: data.payment_status
+            - beckn_key: message.order.payments[0].collected_by
+              value: data.payment_collectedby || session.collectedBy
+            - beckn_key: message.order.payments[0].type
+              value: data.payment_type || session.payment_type
+            - beckn_key: message.order.payments[0].params.bank_code
+              value: data.bankCode || session.bankCode
+            - beckn_key: message.order.payments[0].params.bank_account_number
+              value: data.bankAccountNumber || session.bankAccountNumber
+            - beckn_key: message.order.payments[0].params.virtual_payment_address
+              value: data.virtualPaymentAddress || session.virtualPaymentAddress
+            - beckn_key: message.order.payments[0].tags
+              value: data.payments_tags || session.payment_tags
+              compute: buildTags({ ...session.payment_tags,  ...data.payment_tags })
+        confirm:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.items[0].id
+              value: data.message.order.items[0].id
+        on_confirm:
+          sessionData:
+            - beckn_key: billing_name
+              value: data.billing_name
+            - beckn_key: billing_phone
+              value: data.billing_phone
+            - beckn_key: billing_email
+              value: data.billing_email
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.items
+              value: data.metro_items
+            - beckn_key: message.order.id
+              value: data.order_id
+            - beckn_key: message.order.created_at
+              value: data.order_created_at
+            - beckn_key: message.order.updated_at
+              value: data.order_updated_at
+            - beckn_key: message.order.status
+              value: data.order_status
+            - beckn_key: message.order.provider.id
+              value: data.metro_id            ||session.metro_id
+            - beckn_key: message.order.provider.descriptor.name
+              value: data.metro_name          || session.metro_name
+            - beckn_key: message.order.provider.descriptor.images
+              value: data.metro_images        ||session.metro_images
+            - beckn_key: message.order.provider.time.range.start
+              value: data.metro_starttime     || session.metro_starttime
+            - beckn_key: message.order.provider.time.range.end
+              value: data.metro_endtime       || session.metro_endtime
+            - beckn_key: message.order.fulfillments
+              value: data.trips
+            - beckn_key: message.order.billing.name
+              value: data.billing_name
+            - beckn_key: message.order.billing.phone
+              value: data.billing_phone
+            - beckn_key: message.order.billing.email
+              value: data.billing_email
+            - beckn_key: message.order.quote.price.value
+              value: data.price
+            - beckn_key: message.order.quote.price.currency
+              value: session.currency
+            - beckn_key: message.order.quote.breakup
+              value: data.breakup
+            - beckn_key: message.order.payments[0].id
+              value: data.payment_id
+            - beckn_key: message.order.payments[0].status
+              value: data.payment_status
+            - beckn_key: message.order.payments[0].collected_by
+              value: data.payment_collectedby || session.collectedBy
+            - beckn_key: message.order.payments[0].type
+              value: data.payment_type || session.payment_type
+            - beckn_key: message.order.payments[0].params.bank_code
+              value: data.bankCode || session.bankCode
+            - beckn_key: message.order.payments[0].params.currency
+              value: data.currency || session.currency
+            - beckn_key: message.order.payments[0].params.amount
+              value: data.amount
+            - beckn_key: message.order.payments[0].params.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: message.order.payments[0].params.bank_account_number
+              value: data.bankAccountNumber || session.bankAccountNumber
+            - beckn_key: message.order.payments[0].params.virtual_payment_address
+              value: data.virtualPaymentAddress || session.virtualPaymentAddress
+            - beckn_key: message.order.payments[0].tags
+              value: data.payments_tags || session.payment_tags
+              compute: buildTags({ ...session.payment_tags,  ...data.payment_tags })
+            - beckn_key: message.order.tags
+              value: data.tags || session.tags
+              compute: buildTags(data.tags    || session.tags)
+        status:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order_id
+              value: data.message.order_id
+        on_status:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.id
+              value: data.order_id
+            - beckn_key: message.order.billing.name
+              value: session.billing_name
+            - beckn_key: message.order.billing.phone
+              value: session.billing_phone
+            - beckn_key: message.order.billing.email
+              value: session.billing_email
+            - beckn_key: message.order.cancellation_terms
+              value: data.cancellation_terms || session.cancellation_terms
+            - beckn_key: message.order.fulfillments
+              value: data.trips
+            - beckn_key: message.order.payments[0].id
+              value: data.payment_id
+            - beckn_key: message.order.payments[0].status
+              value: data.payment_status
+            - beckn_key: message.order.payments[0].collected_by
+              value: data.payment_collectedby || session.collectedBy
+            - beckn_key: message.order.payments[0].type
+              value: data.payment_type || session.payment_type
+            - beckn_key: message.order.payments[0].params.bank_code
+              value: data.bankCode || session.bankCode
+            - beckn_key: message.order.payments[0].params.currency
+              value: data.currency || session.currency
+            - beckn_key: message.order.payments[0].params.amount
+              value: data.amount
+            - beckn_key: message.order.payments[0].params.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: message.order.payments[0].params.bank_account_number
+              value: data.bankAccountNumber || session.bankAccountNumber
+            - beckn_key: message.order.payments[0].params.virtual_payment_address
+              value: data.virtualPaymentAddress || session.virtualPaymentAddress
+            - beckn_key: message.order.payments[0].tags
+              value: data.payments_tags || session.payment_tags
+              compute: buildTags({ ...session.payment_tags,  ...data.payment_tags })
+            - beckn_key: message.order.tags
+              value: data.tags || session.tags
+              compute: buildTags(data.tags    || session.tags)
+            - beckn_key: message.order.updated_at
+              value: data.order_updated_at
+            - beckn_key: message.order.items
+              value: data.metro_items
+            - beckn_key: message.order.id
+              value: data.order_id
+            - beckn_key: message.order.quote.price.value
+              value: data.price
+            - beckn_key: message.order.quote.price.currency
+              value: session.currency
+            - beckn_key: message.order.quote.breakup
+              value: data.breakup
+            - beckn_key: message.order.provider.id
+              value: data.metro_id            ||session.metro_id
+            - beckn_key: message.order.provider.descriptor.name
+              value: data.metro_name          || session.metro_name
+            - beckn_key: message.order.provider.descriptor.images
+              value: data.metro_images        ||session.metro_images
+            - beckn_key: message.order.provider.time.range.start
+              value: data.metro_starttime     || session.metro_starttime
+            - beckn_key: message.order.provider.time.range.end
+              value: data.metro_endtime       || session.metro_endtime
+            - beckn_key: message.order.status
+              value: data.order_status
+        search_route:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.intent.fulfillment.vehicle.category
+              value: data.vehicleCategaory || session.vehicleCategaory
+            - beckn_key: message.intent.payment.tags
+              value: data.paymentTagsSearch
+              compute: buildTags(data.paymentTagsSearch)
+        on_search_route:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+        search_trip:
+          sessionData:
+            - beckn_key: currentTransactionId
+              value: newTranscationId
+            - beckn_key: transactionIds
+              value: '[...session.transactionIds, newTranscationId]'
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.intent.fulfillment.stops[0].type
+              value: startPoint
+              check: data?.startStop
+            - beckn_key: message.intent.fulfillment.stops[0].location.descriptor.code
+              value: data?.startStop
+            - beckn_key: message.intent.fulfillment.stops[1].type
+              value: endPoint
+              check: data?.endStop
+            - beckn_key: message.intent.fulfillment.stops[1].location.descriptor.code
+              value: data?.endStop
+            - beckn_key: message.intent.fulfillment.vehicle.category
+              value: data.vehicleCategaory || session.vehicleCategaory
+            - beckn_key: message.intent.payment.tags
+              value: data.paymentTags || session.paymentTagsSearch
+              compute: buildTags(data.paymentTags || session.paymentTagsSearch)
+        on_search_trip:
+          mapping:
+            - business_key: name
+              extractionPath: message.catalog.descriptor.name
+            - business_key: bpp_id
+              extractionPath: context.bpp_id
+            - business_key: bpp_uri
+              extractionPath: context.bpp_uri
+            - business_key: items
+              extractionPath: >-
+                message.catalog.providers[]{providerId: id}.items[]{id: id,
+                name: descriptor.name}
+      schema: *ref_443
+      api:
+        search:
+          default:
+            callback: on_search
+          get_all_station_codes:
+            condition:
+              operation:
+                type: AND
+                input:
+                  value:
+                    - operation:
+                        type: EQUAL
+                        title: Check search message code
+                        input:
+                          value:
+                            - operation:
+                                type: READ
+                                input:
+                                  value: req_body.context.action
+                            - search
+                    - operation:
+                        type: EQUAL
+                        title: Check search message code
+                        input:
+                          value:
+                            - operation:
+                                type: READ
+                                input:
+                                  value: req_body.message.intent.fulfillment.stops
+                            - undefined
+            service_url: http://localhost:5500/getallstationcode
+            sync: false
+          getonestationcodetrips:
+            condition:
+              operation:
+                type: AND
+                input:
+                  value:
+                    - operation:
+                        type: EQUAL
+                        title: Check search message code
+                        input:
+                          value:
+                            - operation:
+                                type: READ
+                                input:
+                                  value: req_body.context.action
+                            - search
+            service_url: http://localhost:5500/getonestationcodetrips
+            sync: false
+        select:
+          default:
+            callback: on_select
+          get_all_station_codes:
+            condition:
+              operation:
+                type: AND
+                input:
+                  value:
+                    - operation:
+                        type: EQUAL
+                        title: Check search message code
+                        input:
+                          value:
+                            - operation:
+                                type: READ
+                                input:
+                                  value: req_body.context.action
+                            - select
+            service_url: http://localhost:5500/getfare
+            sync: false
+        init:
+          default:
+            callback: on_init
+          get_all_station_codes:
+            condition:
+              operation:
+                type: AND
+                input:
+                  value:
+                    - operation:
+                        type: EQUAL
+                        title: Check search message code
+                        input:
+                          value:
+                            - operation:
+                                type: READ
+                                input:
+                                  value: req_body.context.action
+                            - init
+            service_url: http://localhost:5500/getfare
+            sync: false
+        confirm:
+          default:
+            callback: on_confirm
+          get_all_station_codes:
+            condition:
+              operation:
+                type: AND
+                input:
+                  value:
+                    - operation:
+                        type: EQUAL
+                        title: Check search message code
+                        input:
+                          value:
+                            - operation:
+                                type: READ
+                                input:
+                                  value: req_body.context.action
+                            - confirm
+            service_url: http://localhost:5500/confirmticket
+            sync: false
+        status:
+          default:
+            callback: on_status
+          get_all_station_codes:
+            condition:
+              operation:
+                type: AND
+                input:
+                  value:
+                    - operation:
+                        type: EQUAL
+                        title: Check search message code
+                        input:
+                          value:
+                            - operation:
+                                type: READ
+                                input:
+                                  value: req_body.context.action
+                            - status
+            service_url: http://localhost:5500/status
+            sync: false
+    - summary: Intercity - Code Based Flow
+      id: intercity-flow-1
+      domain: ONDC:TRV12
+      sessionData:
+        bpp_uri: http://localhost:81/ondc
+        bpp_id: mobility-staging.ondc.org
+        collectedBy: BAP
+        bankAccountNumber: xxxxxxxxxxxxxx
+        virtualPaymentAddress: 9988199772@okicic
+        bankCode: XXXXXXXX
+        provider_id: INTERCITY_PROVIDER_ID
+        categories:
+          - descriptor:
+              name: Seater
+              code: SEATER
+            id: C1
+          - descriptor:
+              name: Sleeper
+              code: SLEEPER
+            id: C2
+          - descriptor:
+              name: Semi Sleeper
+              code: SEMI_SLEEPER
+            id: C3
+        metro_starttime: '2023-09-14T05:30:00.000Z'
+        metro_endtime: '2023-09-14T23:30:00.000Z'
+        provider_image:
+          - url: https://operator1.com/logos/logo.ico
+        provider_name: ABC Operator 1 Bus Services
+        currency: INR
+        payment_tags:
+          BUYER_FINDER_FEES:
+            display: false
+            BUYER_FINDER_FEES_PERCENTAGE: '1'
+          SETTLEMENT_TERMS:
+            display: false
+            SETTLEMENT_WINDOW: PT30D
+            SETTLEMENT_BASIS: INVOICE_RECEIPT
+            MANDATORY_ARBITRATION: 'TRUE'
+            COURT_JURISDICTION: New Delhi
+            STATIC_TERMS: https://api.example-bpp.com/booking/term
+          SETTLEMENT_DETAILS:
+            display: false
+            SETTLEMENT_TYPE: UPI
+        tags:
+          SCHEDULED_INFO:
+            display: false
+            GTFS: https://metro-transit/gtfs-realtime
+        cancellation_terms:
+          - cancel_by:
+              duration: PT60M
+            cancellation_fee:
+              percentage: '0'
+        payment_type: PRE-ORDER
+      protocol:
+        search:
+          sessionData:
+            - beckn_key: bap_id
+              value: data.context.bap_id
+            - beckn_key: bap_uri
+              value: data.context.bap_uri
+            - beckn_key: cityCode
+              value: data.context.location.city.code || session.cityCode
+            - beckn_key: countryCode
+              value: data.context.location.country.code || session.countryCode
+          mapping:
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.transaction_id
+              value: session.transaction_id
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.action
+              value: data.context.action
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.location.country.code
+              value: session.countryCode
+            - beckn_key: context.ttl
+              value: data.context.ttl
+            - beckn_key: message.intent.fulfillment
+              value: data.message.intent.fulfillment
+        on_search:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.catalog.descriptor.name
+              value: data.name
+            - beckn_key: message.catalog.descriptor.images
+              value: data.images
+            - beckn_key: message.catalog.providers[0].id
+              value: data.provider_id            ||  session.provider_id
+            - beckn_key: message.catalog.providers[0].descriptor.images
+              value: data.provider_image        ||  session.provider_image
+            - beckn_key: message.catalog.providers[0].descriptor.name
+              value: data.provider_name          ||  session.provider_name
+            - beckn_key: message.catalog.providers[0].categories
+              value: data.categories
+            - beckn_key: message.catalog.providers[0].items
+              value: data.intercity_items
+            - beckn_key: message.catalog.providers[0].fulfillments
+              value: data.trips
+        select:
+          sessionData:
+            - beckn_key: itemId
+              value: data.message.order.items[0].id
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.items[0].id
+              value: data.message.order.items[0].id
+        on_select:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.items
+              value: data.intercity_items
+            - beckn_key: message.order.provider.id
+              value: data.provider_id            ||session.provider_id
+            - beckn_key: message.order.provider.descriptor.name
+              value: data.provider_name          || session.provider_name
+            - beckn_key: message.order.provider.descriptor.images
+              value: data.provider_image        ||session.provider_image
+            - beckn_key: message.order.fulfillments
+              value: data.trips
+            - beckn_key: message.order.quote.price.value
+              value: data.price
+            - beckn_key: message.order.quote.price.currency
+              value: session.currency
+            - beckn_key: message.order.quote.breakup
+              value: data.breakup
+        init:
+          sessionData:
+            - beckn_key: bankCode
+              value: >-
+                data.message.order.payments[0].collected_by === 'BAP' &&
+                data.message.order.payments[0].params.bank_code ||
+                session.bankCode
+            - beckn_key: bankAccountNumber
+              value: >-
+                data.message.order.payments[0].collected_by === 'BAP' &&
+                data.message.order.payments[0].params.bank_account_number ||
+                session.bankAccountNumber
+            - beckn_key: virtualPaymentAddress
+              value: >-
+                data.message.order.payments[0].collected_by === 'BAP' &&
+                data.message.order.payments[0].params.virtual_payment_address ||
+                session.virtualPaymentAddress
+            - beckn_key: customer
+              value: data.message.order.fulfillments[0].customer
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.items[0].id
+              value: data.message.order.items[0].id
+        on_init:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.items
+              value: data.intercity_items
+            - beckn_key: message.order.provider.id
+              value: data.provider_id            ||session.provider_id
+            - beckn_key: message.order.provider.descriptor.name
+              value: data.provider_name          || session.provider_name
+            - beckn_key: message.order.provider.descriptor.images
+              value: data.provider_image        ||session.provider_image
+            - beckn_key: message.order.fulfillments
+              value: data.trips
+            - beckn_key: message.order.fulfillments[0].customer
+              value: session.customer
+            - beckn_key: message.order.cancellation_terms
+              value: session.cancellation_terms
+            - beckn_key: message.order.quote.price.value
+              value: data.price
+            - beckn_key: message.order.quote.price.currency
+              value: session.currency
+            - beckn_key: message.order.quote.breakup
+              value: data.breakup
+            - beckn_key: message.order.payments[0].id
+              value: data.payment_id
+            - beckn_key: message.order.payments[0].status
+              value: data.payment_status
+            - beckn_key: message.order.payments[0].collected_by
+              value: data.payment_collectedby || session.collectedBy
+            - beckn_key: message.order.payments[0].type
+              value: data.payment_type || session.payment_type
+            - beckn_key: message.order.payments[0].params.bank_code
+              value: data.bankCode || session.bankCode
+            - beckn_key: message.order.payments[0].params.bank_account_number
+              value: data.bankAccountNumber || session.bankAccountNumber
+            - beckn_key: message.order.payments[0].params.virtual_payment_address
+              value: data.virtualPaymentAddress || session.virtualPaymentAddress
+            - beckn_key: message.order.payments[0].tags
+              value: data.payments_tags || session.payment_tags
+              compute: buildTags({ ...session.payment_tags,  ...data.payment_tags })
+        confirm:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.items[0].id
+              value: data.message.order.items[0].id
+        on_confirm:
+          sessionData:
+            - beckn_key: billing_name
+              value: data.billing_name
+            - beckn_key: billing_phone
+              value: data.billing_phone
+            - beckn_key: billing_email
+              value: data.billing_email
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.items
+              value: data.metro_items
+            - beckn_key: message.order.id
+              value: data.order_id
+            - beckn_key: message.order.created_at
+              value: data.order_created_at
+            - beckn_key: message.order.updated_at
+              value: data.order_updated_at
+            - beckn_key: message.order.status
+              value: data.order_status
+            - beckn_key: message.order.provider.id
+              value: data.metro_id            ||session.metro_id
+            - beckn_key: message.order.provider.descriptor.name
+              value: data.metro_name          || session.metro_name
+            - beckn_key: message.order.provider.descriptor.images
+              value: data.metro_images        ||session.metro_images
+            - beckn_key: message.order.provider.time.range.start
+              value: data.metro_starttime     || session.metro_starttime
+            - beckn_key: message.order.provider.time.range.end
+              value: data.metro_endtime       || session.metro_endtime
+            - beckn_key: message.order.fulfillments
+              value: data.trips
+            - beckn_key: message.order.billing.name
+              value: data.billing_name
+            - beckn_key: message.order.billing.phone
+              value: data.billing_phone
+            - beckn_key: message.order.billing.email
+              value: data.billing_email
+            - beckn_key: message.order.quote.price.value
+              value: data.price
+            - beckn_key: message.order.quote.price.currency
+              value: session.currency
+            - beckn_key: message.order.quote.breakup
+              value: data.breakup
+            - beckn_key: message.order.payments[0].id
+              value: data.payment_id
+            - beckn_key: message.order.payments[0].status
+              value: data.payment_status
+            - beckn_key: message.order.payments[0].collected_by
+              value: data.payment_collectedby || session.collectedBy
+            - beckn_key: message.order.payments[0].type
+              value: data.payment_type || session.payment_type
+            - beckn_key: message.order.payments[0].params.bank_code
+              value: data.bankCode || session.bankCode
+            - beckn_key: message.order.payments[0].params.currency
+              value: data.currency || session.currency
+            - beckn_key: message.order.payments[0].params.amount
+              value: data.amount
+            - beckn_key: message.order.payments[0].params.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: message.order.payments[0].params.bank_account_number
+              value: data.bankAccountNumber || session.bankAccountNumber
+            - beckn_key: message.order.payments[0].params.virtual_payment_address
+              value: data.virtualPaymentAddress || session.virtualPaymentAddress
+            - beckn_key: message.order.payments[0].tags
+              value: data.payments_tags || session.payment_tags
+              compute: buildTags({ ...session.payment_tags,  ...data.payment_tags })
+            - beckn_key: message.order.tags
+              value: data.tags || session.tags
+              compute: buildTags(data.tags    || session.tags)
+        status:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order_id
+              value: data.message.order_id
+        on_status:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.id
+              value: data.order_id
+            - beckn_key: message.order.billing.name
+              value: session.billing_name
+            - beckn_key: message.order.billing.phone
+              value: session.billing_phone
+            - beckn_key: message.order.billing.email
+              value: session.billing_email
+            - beckn_key: message.order.cancellation_terms
+              value: data.cancellation_terms || session.cancellation_terms
+            - beckn_key: message.order.fulfillments
+              value: data.trips
+            - beckn_key: message.order.payments[0].id
+              value: data.payment_id
+            - beckn_key: message.order.payments[0].status
+              value: data.payment_status
+            - beckn_key: message.order.payments[0].collected_by
+              value: data.payment_collectedby || session.collectedBy
+            - beckn_key: message.order.payments[0].type
+              value: data.payment_type || session.payment_type
+            - beckn_key: message.order.payments[0].params.bank_code
+              value: data.bankCode || session.bankCode
+            - beckn_key: message.order.payments[0].params.currency
+              value: data.currency || session.currency
+            - beckn_key: message.order.payments[0].params.amount
+              value: data.amount
+            - beckn_key: message.order.payments[0].params.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: message.order.payments[0].params.bank_account_number
+              value: data.bankAccountNumber || session.bankAccountNumber
+            - beckn_key: message.order.payments[0].params.virtual_payment_address
+              value: data.virtualPaymentAddress || session.virtualPaymentAddress
+            - beckn_key: message.order.payments[0].tags
+              value: data.payments_tags || session.payment_tags
+              compute: buildTags({ ...session.payment_tags,  ...data.payment_tags })
+            - beckn_key: message.order.tags
+              value: data.tags || session.tags
+              compute: buildTags(data.tags    || session.tags)
+            - beckn_key: message.order.updated_at
+              value: data.order_updated_at
+            - beckn_key: message.order.items
+              value: data.metro_items
+            - beckn_key: message.order.id
+              value: data.order_id
+            - beckn_key: message.order.quote.price.value
+              value: data.price
+            - beckn_key: message.order.quote.price.currency
+              value: session.currency
+            - beckn_key: message.order.quote.breakup
+              value: data.breakup
+            - beckn_key: message.order.provider.id
+              value: data.metro_id            ||session.metro_id
+            - beckn_key: message.order.provider.descriptor.name
+              value: data.metro_name          || session.metro_name
+            - beckn_key: message.order.provider.descriptor.images
+              value: data.metro_images        ||session.metro_images
+            - beckn_key: message.order.provider.time.range.start
+              value: data.metro_starttime     || session.metro_starttime
+            - beckn_key: message.order.provider.time.range.end
+              value: data.metro_endtime       || session.metro_endtime
+            - beckn_key: message.order.status
+              value: data.order_status
+      schema: *ref_443
+      api:
+        search:
+          default:
+            callback: on_search
+          get_all_station_codes:
+            condition:
+              operation:
+                type: AND
+                input:
+                  value:
+                    - operation:
+                        type: EQUAL
+                        title: Check search message code
+                        input:
+                          value:
+                            - operation:
+                                type: READ
+                                input:
+                                  value: req_body.context.action
+                            - search
+                    - operation:
+                        type: EQUAL
+                        title: Check search message code
+                        input:
+                          value:
+                            - operation:
+                                type: READ
+                                input:
+                                  value: >-
+                                    req_body.message.intent.fulfillment.stops.0.type
+                            - START
+                    - operation:
+                        type: EQUAL
+                        title: Check search message code
+                        input:
+                          value:
+                            - operation:
+                                type: READ
+                                input:
+                                  value: >-
+                                    req_body.message.intent.fulfillment.stops.0.time
+                            - undefined
+            service_url: http://localhost:5500/getallstationcode
+            sync: false
+          getonestationcodetrips:
+            condition:
+              operation:
+                type: AND
+                input:
+                  value:
+                    - operation:
+                        type: EQUAL
+                        title: Check search message code
+                        input:
+                          value:
+                            - operation:
+                                type: READ
+                                input:
+                                  value: req_body.context.action
+                            - search
+                    - operation:
+                        type: EQUAL
+                        title: Check search message code
+                        input:
+                          value:
+                            - operation:
+                                type: READ
+                                input:
+                                  value: >-
+                                    req_body.message.intent.fulfillment.stops.0.time.label
+                            - DATE_OF_JOURNEY
+            service_url: http://localhost:5500/getonestationcodetrips
+            sync: false
+          get_bus_service:
+            condition:
+              operation:
+                type: AND
+                input:
+                  value:
+                    - operation:
+                        type: EQUAL
+                        title: Check search message code
+                        input:
+                          value:
+                            - operation:
+                                type: READ
+                                input:
+                                  value: req_body.context.action
+                            - search
+                    - operation:
+                        type: EQUAL
+                        title: Check search message code
+                        input:
+                          value:
+                            - operation:
+                                type: READ
+                                input:
+                                  value: req_body.message.intent.provider.id
+                            - INTERCITY_PROVIDER_ID
+            service_url: http://localhost:5500/getbusservice
+            sync: false
+        select:
+          default:
+            callback: on_select
+          get_all_station_codes:
+            condition:
+              operation:
+                type: AND
+                input:
+                  value:
+                    - operation:
+                        type: EQUAL
+                        title: Check search message code
+                        input:
+                          value:
+                            - operation:
+                                type: READ
+                                input:
+                                  value: req_body.context.action
+                            - select
+            service_url: http://localhost:5500/getfare
+            sync: false
+        init:
+          default:
+            callback: on_init
+          get_all_station_codes:
+            condition:
+              operation:
+                type: AND
+                input:
+                  value:
+                    - operation:
+                        type: EQUAL
+                        title: Check search message code
+                        input:
+                          value:
+                            - operation:
+                                type: READ
+                                input:
+                                  value: req_body.context.action
+                            - init
+            service_url: http://localhost:5500/getfare
+            sync: false
+        confirm:
+          default:
+            callback: on_confirm
+          get_all_station_codes:
+            condition:
+              operation:
+                type: AND
+                input:
+                  value:
+                    - operation:
+                        type: EQUAL
+                        title: Check search message code
+                        input:
+                          value:
+                            - operation:
+                                type: READ
+                                input:
+                                  value: req_body.context.action
+                            - confirm
+            service_url: http://localhost:5500/confirmticket
+            sync: false
+        status:
+          default:
+            callback: on_status
+          get_all_station_codes:
+            condition:
+              operation:
+                type: AND
+                input:
+                  value:
+                    - operation:
+                        type: EQUAL
+                        title: Check search message code
+                        input:
+                          value:
+                            - operation:
+                                type: READ
+                                input:
+                                  value: req_body.context.action
+                            - status
+            service_url: http://localhost:5500/status
+            sync: false
+  flow_selector:
+    search:
+      default:
+        config_id: default-flow
+      metro:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: >-
+                                req_body.message.intent.fulfillment.vehicle.category
+                        - METRO
+        config_id: metro-flow-1
+      intracity_bus:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: >-
+                                req_body.message.intent.fulfillment.vehicle.category
+                        - BUS
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.context.domain
+                        - ONDC:TRV11
+        config_id: intracity-flow-1
+      intercity-flow-1:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: >-
+                                req_body.message.intent.fulfillment.vehicle.category
+                        - BUS
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.context.domain
+                        - ONDC:TRV12
+        config_id: intercity-flow-1
+    select:
+      default:
+        config_id: default-flow
+      metro:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - ITEM_ID_1_METRO
+        config_id: metro-flow-1
+      intracity_bus:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - ITEM_ID_1_INTERCITY_BUS
+        config_id: intracity-flow-1
+      intercity_bus:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - INTERCITY_BUS_ITEM_ID
+        config_id: intercity-flow-1
+    init:
+      default:
+        config_id: default-flow
+      metro:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - ITEM_ID_1_METRO
+        config_id: metro-flow-1
+      intracity_bus:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - ITEM_ID_1_INTERCITY_BUS
+        config_id: intracity-flow-1
+      intercity_bus:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - INTERCITY_BUS_ITEM_ID
+        config_id: intercity-flow-1
+    confirm:
+      default:
+        config_id: default-flow
+      metro:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - ITEM_ID_1_METRO
+        config_id: metro-flow-1
+      intracity_bus:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - ITEM_ID_1_INTERCITY_BUS
+        config_id: intracity-flow-1
+      intercity_bus:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - INTERCITY_BUS_ITEM_ID
+        config_id: intercity-flow-1
+    update:
+      default:
+        config_id: default-flow
+      metro:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - ITEM_ID_1_METRO
+        config_id: metro-flow-1
+      intracity_bus:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - ITEM_ID_1_INTERCITY_BUS
+        config_id: intracity-flow-1
+      intercity_bus:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - INTERCITY_BUS_ITEM_ID
+        config_id: intercity-flow-1
+    status:
+      default:
+        config_id: default-flow
+      metro:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - ITEM_ID_1_METRO
+        config_id: metro-flow-1
+      intracity_bus:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - ITEM_ID_1_INTERCITY_BUS
+        config_id: intracity-flow-1
+      intercity_bus:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - INTERCITY_BUS_ITEM_ID
+        config_id: intercity-flow-1

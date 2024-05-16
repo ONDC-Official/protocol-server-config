@@ -23531,7 +23531,8 @@ BPP:
       api:
         search:
           default:
-            callback: on_search
+            service_url: http://localhost:5502/search
+            sync: false
           get_all_station_codes:
             condition:
               operation:
@@ -23580,7 +23581,8 @@ BPP:
             sync: false
         select:
           default:
-            callback: on_select
+            service_url: http://localhost:5502/search
+            sync: false
           get_all_station_codes:
             condition:
               operation:
@@ -23601,7 +23603,8 @@ BPP:
             sync: false
         init:
           default:
-            callback: on_init
+            service_url: http://localhost:5502/search
+            sync: false
           get_all_station_codes:
             condition:
               operation:
@@ -23622,7 +23625,8 @@ BPP:
             sync: false
         confirm:
           default:
-            callback: on_confirm
+            service_url: http://localhost:5502/search
+            sync: false
           get_all_station_codes:
             condition:
               operation:
@@ -23643,7 +23647,8 @@ BPP:
             sync: false
         status:
           default:
-            callback: on_status
+            service_url: http://localhost:5502/search
+            sync: false
           get_all_station_codes:
             condition:
               operation:
@@ -24426,23 +24431,23 @@ BPP:
       api:
         search:
           default:
-            service_url: http://172.17.0.1:5501/search
+            service_url: http://localhost:5501/search
             sync: false
         select:
           default:
-            service_url: http://172.17.0.1:5501/select
+            service_url: http://localhost:5501/select
             sync: false
         init:
           default:
-            service_url: http://172.17.0.1:5501/init
+            service_url: http://localhost:5501/init
             sync: false
         confirm:
           default:
-            service_url: http://172.17.0.1:5501/confirm
+            service_url: http://localhost:5501/confirm
             sync: false
         update:
           default:
-            service_url: http://172.17.0.1:5501/update
+            service_url: http://localhost:5501/update
             sync: false
   flow_selector:
     search:

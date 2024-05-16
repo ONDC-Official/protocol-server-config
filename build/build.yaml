@@ -22741,7 +22741,7 @@ BPP:
                                 input:
                                   value: req_body.message.intent.fulfillment.stops
                             - undefined
-            service_url: http://localhost:5500/getallstationcode
+            service_url: http://localhost:5502/getallstationcode
             sync: false
           getonestationcodetrips:
             condition:
@@ -22759,7 +22759,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - search
-            service_url: http://localhost:5500/getonestationcodetrips
+            service_url: http://localhost:5502/getonestationcodetrips
             sync: false
         select:
           default:
@@ -22780,7 +22780,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - select
-            service_url: http://localhost:5500/getfare
+            service_url: http://localhost:5502/getfare
             sync: false
         init:
           default:
@@ -22801,7 +22801,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - init
-            service_url: http://localhost:5500/getfare
+            service_url: http://localhost:5502/getfare
             sync: false
         confirm:
           default:
@@ -22822,7 +22822,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - confirm
-            service_url: http://localhost:5500/confirmticket
+            service_url: http://localhost:5502/confirmticket
             sync: false
         status:
           default:
@@ -22843,7 +22843,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - status
-            service_url: http://localhost:5500/status
+            service_url: http://localhost:5502/status
             sync: false
     - summary: IntraCity - Code Based Flow
       id: intracity-flow-1
@@ -23558,7 +23558,7 @@ BPP:
                                 input:
                                   value: req_body.message.intent.fulfillment.stops
                             - undefined
-            service_url: http://localhost:5500/getallstationcode
+            service_url: http://localhost:5502/getallstationcode
             sync: false
           getonestationcodetrips:
             condition:
@@ -23576,7 +23576,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - search
-            service_url: http://localhost:5500/getonestationcodetrips
+            service_url: http://localhost:5502/getonestationcodetrips
             sync: false
         select:
           default:
@@ -23597,7 +23597,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - select
-            service_url: http://localhost:5500/getfare
+            service_url: http://localhost:5502/getfare
             sync: false
         init:
           default:
@@ -23618,7 +23618,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - init
-            service_url: http://localhost:5500/getfare
+            service_url: http://localhost:5502/getfare
             sync: false
         confirm:
           default:
@@ -23639,7 +23639,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - confirm
-            service_url: http://localhost:5500/confirmticket
+            service_url: http://localhost:5502/confirmticket
             sync: false
         status:
           default:
@@ -23660,7 +23660,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - status
-            service_url: http://localhost:5500/status
+            service_url: http://localhost:5502/status
             sync: false
     - summary: Intercity - Code Based Flow
       id: intercity-flow-1
@@ -24050,33 +24050,19 @@ BPP:
             - beckn_key: context.action
               value: action
             - beckn_key: message.order.items
-              value: data.metro_items
+              value: data.intercity_items
             - beckn_key: message.order.id
               value: data.order_id
-            - beckn_key: message.order.created_at
-              value: data.order_created_at
-            - beckn_key: message.order.updated_at
-              value: data.order_updated_at
             - beckn_key: message.order.status
               value: data.order_status
             - beckn_key: message.order.provider.id
-              value: data.metro_id            ||session.metro_id
+              value: data.provider_id            ||session.provider_id
             - beckn_key: message.order.provider.descriptor.name
-              value: data.metro_name          || session.metro_name
+              value: data.provider_name          || session.provider_name
             - beckn_key: message.order.provider.descriptor.images
-              value: data.metro_images        ||session.metro_images
-            - beckn_key: message.order.provider.time.range.start
-              value: data.metro_starttime     || session.metro_starttime
-            - beckn_key: message.order.provider.time.range.end
-              value: data.metro_endtime       || session.metro_endtime
+              value: data.provider_image        ||session.provider_image
             - beckn_key: message.order.fulfillments
               value: data.trips
-            - beckn_key: message.order.billing.name
-              value: data.billing_name
-            - beckn_key: message.order.billing.phone
-              value: data.billing_phone
-            - beckn_key: message.order.billing.email
-              value: data.billing_email
             - beckn_key: message.order.quote.price.value
               value: data.price
             - beckn_key: message.order.quote.price.currency
@@ -24272,7 +24258,7 @@ BPP:
                                   value: >-
                                     req_body.message.intent.fulfillment.stops.0.time
                             - undefined
-            service_url: http://localhost:5500/getallstationcode
+            service_url: http://localhost:5502/getallstationcode
             sync: false
           getonestationcodetrips:
             condition:
@@ -24301,7 +24287,7 @@ BPP:
                                   value: >-
                                     req_body.message.intent.fulfillment.stops.0.time.label
                             - DATE_OF_JOURNEY
-            service_url: http://localhost:5500/getonestationcodetrips
+            service_url: http://localhost:5502/getonestationcodetrips
             sync: false
           get_bus_service:
             condition:
@@ -24329,7 +24315,7 @@ BPP:
                                 input:
                                   value: req_body.message.intent.provider.id
                             - INTERCITY_PROVIDER_ID
-            service_url: http://localhost:5500/getbusservice
+            service_url: http://localhost:5502/getbusservice
             sync: false
         select:
           default:
@@ -24350,7 +24336,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - select
-            service_url: http://localhost:5500/getfare
+            service_url: http://localhost:5502/getfare
             sync: false
         init:
           default:
@@ -24371,7 +24357,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - init
-            service_url: http://localhost:5500/getfare
+            service_url: http://localhost:5502/getfare
             sync: false
         confirm:
           default:
@@ -24392,7 +24378,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - confirm
-            service_url: http://localhost:5500/confirmticket
+            service_url: http://localhost:5502/confirmticket
             sync: false
         status:
           default:
@@ -24413,7 +24399,50 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - status
-            service_url: http://localhost:5500/status
+            service_url: http://localhost:5502/status
+            sync: false
+    - summary: Default -  Flow
+      id: default-flow
+      domain: ONDC:TRV11
+      protocol:
+        search: &ref_444
+          mapping:
+            - beckn_key: context
+              value: data.context
+            - beckn_key: message
+              value: data.message
+        on_search: *ref_444
+        select: *ref_444
+        on_select: *ref_444
+        init: *ref_444
+        on_init: *ref_444
+        confirm: *ref_444
+        on_confirm: *ref_444
+        update: *ref_444
+        on_update: *ref_444
+        status: *ref_444
+        on_status: *ref_444
+      schema: *ref_443
+      api:
+        search:
+          default:
+            service_url: http://172.17.0.1:5501/search
+            sync: false
+        select:
+          default:
+            service_url: http://172.17.0.1:5501/select
+            sync: false
+        init:
+          default:
+            service_url: http://172.17.0.1:5501/init
+            sync: false
+        confirm:
+          default:
+            service_url: http://172.17.0.1:5501/confirm
+            sync: false
+        update:
+          default:
+            service_url: http://172.17.0.1:5501/update
             sync: false
   flow_selector:
     search:

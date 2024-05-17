@@ -74,6 +74,8 @@ protocol:
         check: data?.startStop
       - beckn_key: message.intent.fulfillment.stops[0].location.descriptor.code
         value: data?.startStop
+      - beckn_key: message.intent.fulfillment.stops[0].time
+        value: session.time
       - beckn_key: message.intent.fulfillment.stops[1].type
         value: endPoint
         check: data?.endStop

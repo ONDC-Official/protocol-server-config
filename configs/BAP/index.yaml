@@ -45,6 +45,9 @@ flows:
       phone: "+91-9988776655"
       age: "30"
       gender": "MALE"
+      time:
+        label: "DATE_OF_JOURNEY"
+        timestamp: "2023-09-06T00:00:00.000Z"
     protocol:
       $ref: ./intercity-flow-1/protocolMapping.yaml#/protocol
     calls:

@@ -22038,6 +22038,9 @@ BAP:
         phone: +91-9988776655
         age: '30'
         gender": MALE
+        time:
+          label: DATE_OF_JOURNEY
+          timestamp: '2023-09-06T00:00:00.000Z'
       protocol:
         search_bus:
           mapping:
@@ -22110,6 +22113,8 @@ BAP:
               check: data?.startStop
             - beckn_key: message.intent.fulfillment.stops[0].location.descriptor.code
               value: data?.startStop
+            - beckn_key: message.intent.fulfillment.stops[0].time
+              value: session.time
             - beckn_key: message.intent.fulfillment.stops[1].type
               value: endPoint
               check: data?.endStop

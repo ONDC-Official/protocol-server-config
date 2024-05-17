@@ -134,7 +134,7 @@ protocol:
         value: data?.endStop
 
       - beckn_key: message.intent.provider.id
-        value: data.providerID
+        value: data.providerId
 
       - beckn_key: message.intent.payment.tags
         value: data.paymentTagsSearchService || session.paymentTagsSearch
@@ -173,8 +173,6 @@ protocol:
         value: data.itemId
       - beckn_key: message.order.items[0].quantity.selected.count
         value: parseInt(data.quantity)
-      - beckn_key: message.order.provider.id
-        value: data.providerId
 
       - beckn_key: message.order.fulfillments[0].id
         value: data.fulfillmentId
@@ -189,7 +187,7 @@ protocol:
         value: data?.endStop
 
       - beckn_key: message.order.provider.id
-        value: data.providerID
+        value: data.providerId
 
       - beckn_key: message.order.fulfillments[0].tags
         value: data.paymentTagsSearchService || session.paymentTagsSearch
@@ -259,7 +257,7 @@ protocol:
         value: session.tax_id
 
       - beckn_key: message.order.provider.id
-        value: data.providerID
+        value: data.providerId
 
       - beckn_key: message.order.payments[0].collected_by
         value: session.collected_by

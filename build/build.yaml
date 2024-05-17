@@ -22164,7 +22164,7 @@ BAP:
             - beckn_key: message.intent.fulfillment.stops[1].id
               value: data?.endStop
             - beckn_key: message.intent.provider.id
-              value: data.providerID
+              value: data.providerId
             - beckn_key: message.intent.payment.tags
               value: data.paymentTagsSearchService || session.paymentTagsSearch
               compute: >-
@@ -22202,8 +22202,6 @@ BAP:
               value: data.itemId
             - beckn_key: message.order.items[0].quantity.selected.count
               value: parseInt(data.quantity)
-            - beckn_key: message.order.provider.id
-              value: data.providerId
             - beckn_key: message.order.fulfillments[0].id
               value: data.fulfillmentId
             - beckn_key: message.order.fulfillments[0].stops[0].type
@@ -22215,7 +22213,7 @@ BAP:
             - beckn_key: message.order.fulfillments[0].stops[1].id
               value: data?.endStop
             - beckn_key: message.order.provider.id
-              value: data.providerID
+              value: data.providerId
             - beckn_key: message.order.fulfillments[0].tags
               value: data.paymentTagsSearchService || session.paymentTagsSearch
               compute: >-
@@ -22280,7 +22278,7 @@ BAP:
             - beckn_key: message.order.billing.tax_id
               value: session.tax_id
             - beckn_key: message.order.provider.id
-              value: data.providerID
+              value: data.providerId
             - beckn_key: message.order.payments[0].collected_by
               value: session.collected_by
             - beckn_key: message.order.payments[0].status

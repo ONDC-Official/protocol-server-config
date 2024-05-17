@@ -388,7 +388,7 @@ flows:
     id: intercity-flow-1
     domain: ONDC:TRV12
     sessionData:
-      bpp_uri: "http://localhost:81/ondc"
+      bpp_uri: "http://localhost:5500/ondc"
       bpp_id: "mobility-staging.ondc.org"
       collectedBy: BAP
       bankAccountNumber: "xxxxxxxxxxxxxx"

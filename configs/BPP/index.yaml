@@ -622,6 +622,46 @@ flows:
           service_url: http://localhost:5500/status
           sync: false
 
+
+  - summary: Default -  Flow
+    id: default-flow
+    domain: ONDC:FIS12
+    protocol:
+      $ref: ./default/protocolMapping.yaml#/protocol
+    schema:
+      $ref: ../schema/TRV/index.yaml
+    api:
+      search:
+        default:
+          service_url: http://localhost:5501/search
+          sync: false
+
+      select:
+        default:
+          service_url: http://localhost:5501/select
+          sync: false          
+           
+      init:
+        default:
+          service_url: http://localhost:5501/init
+          sync: false          
+
+      confirm:
+        default:
+          service_url: http://localhost:5501/confirm
+          sync: false      
+
+      update:
+        default:
+          service_url: http://localhost:5501/update
+          sync: false      
+
+      status:
+        default:
+          service_url: http://localhost:5501/status
+          sync: false      
+
+
 flow_selector:
   search:
     default:

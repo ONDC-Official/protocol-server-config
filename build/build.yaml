@@ -24415,6 +24415,53 @@ BPP:
                             - status
             service_url: http://localhost:5500/status
             sync: false
+    - summary: Default -  Flow
+      id: default-flow
+      domain: ONDC:FIS12
+      protocol:
+        search: &ref_444
+          mapping:
+            - beckn_key: context
+              value: data.context
+            - beckn_key: message
+              value: data.message
+        on_search: *ref_444
+        select: *ref_444
+        on_select: *ref_444
+        init: *ref_444
+        on_init: *ref_444
+        confirm: *ref_444
+        on_confirm: *ref_444
+        update: *ref_444
+        on_update: *ref_444
+        status: *ref_444
+        on_status: *ref_444
+      schema: *ref_443
+      api:
+        search:
+          default:
+            service_url: http://localhost:5501/search
+            sync: false
+        select:
+          default:
+            service_url: http://localhost:5501/select
+            sync: false
+        init:
+          default:
+            service_url: http://localhost:5501/init
+            sync: false
+        confirm:
+          default:
+            service_url: http://localhost:5501/confirm
+            sync: false
+        update:
+          default:
+            service_url: http://localhost:5501/update
+            sync: false
+        status:
+          default:
+            service_url: http://localhost:5501/status
+            sync: false
   flow_selector:
     search:
       default:

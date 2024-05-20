@@ -484,6 +484,16 @@ flows:
                               input:
                                 value: "req_body.message.intent.fulfillment.stops.0.time"
                           - undefined
+                  - operation:
+                      type: EQUAL
+                      title: Check search message code
+                      input:
+                        value:
+                          - operation:
+                              type: READ
+                              input:
+                                value: "req_body.message.intent.fulfillment.id"
+                          - undefined
           service_url: http://localhost:5502/getallstationcode
           sync: false
         getonestationcodetrips:

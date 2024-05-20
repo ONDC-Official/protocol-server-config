@@ -22170,6 +22170,8 @@ BAP:
               value: data?.endStop
             - beckn_key: message.intent.provider.id
               value: data.providerId
+            - beckn_key: message.intent.fulfillment.vehicle.category
+              value: data.vehicleCategaory || session.vehicleCategaory
             - beckn_key: message.intent.payment.tags
               value: data.paymentTagsSearchService || session.paymentTagsSearch
               compute: >-

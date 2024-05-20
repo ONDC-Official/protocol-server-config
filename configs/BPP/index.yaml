@@ -3,7 +3,7 @@ flows:
     id: metro-flow-1
     domain: ONDC:TRV11
     sessionData:
-      bpp_uri: "http://localhost:81/ondc"
+      bpp_uri: "http://localhost:5500/ondc"
       bpp_id: "mobility-staging.ondc.org"
       collectedBy: BAP
       bankAccountNumber: "xxxxxxxxxxxxxx"
@@ -193,7 +193,7 @@ flows:
     id: intracity-flow-1
     domain: ONDC:TRV11
     sessionData:
-      bpp_uri: "http://localhost:81/ondc"
+      bpp_uri: "http://localhost:5500/ondc"
       bpp_id: "mobility-staging.ondc.org"
       collectedBy: BAP
       bankAccountNumber: "xxxxxxxxxxxxxx"

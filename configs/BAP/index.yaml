@@ -52,3 +52,5 @@ flows:
       $ref: ./intercity-flow-1/protocolMapping.yaml#/protocol
     calls:
       $ref: ./intercity-flow-1/calls.yaml#/calls
+    schema:
+      $ref: ../schema/TRV/index.yaml

@@ -22450,6 +22450,7 @@ BAP:
         - config: on_confirm
           endpoint: mapper/ondc
           mode: ASYNC
+      schema: *ref_443
 BPP:
   flows:
     - summary: Metro - Station Code Based Flow

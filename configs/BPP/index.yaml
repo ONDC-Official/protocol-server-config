@@ -84,7 +84,7 @@ flows:
                               input:
                                 value: "req_body.message.intent.fulfillment.stops"
                           - undefined
-          service_url: http://localhost:5500/getallstationcode
+          service_url: http://localhost:5502/getallstationcode
           sync: false
         getonestationcodetrips:
           condition:
@@ -102,7 +102,7 @@ flows:
                               input:
                                 value: "req_body.context.action"
                           - search
-          service_url: http://localhost:5500/getonestationcodetrips
+          service_url: http://localhost:5502/getonestationcodetrips
           sync: false
       select:
         default:
@@ -123,7 +123,7 @@ flows:
                               input:
                                 value: "req_body.context.action"
                           - select
-          service_url: http://localhost:5500/getfare
+          service_url: http://localhost:5502/getfare
           sync: false
       init:
         default:
@@ -144,7 +144,7 @@ flows:
                               input:
                                 value: "req_body.context.action"
                           - init
-          service_url: http://localhost:5500/getfare
+          service_url: http://localhost:5502/getfare
           sync: false
       confirm:
         default:
@@ -165,7 +165,7 @@ flows:
                               input:
                                 value: "req_body.context.action"
                           - confirm
-          service_url: http://localhost:5500/confirmticket
+          service_url: http://localhost:5502/confirmticket
           sync: false
       status:
         default:
@@ -186,7 +186,7 @@ flows:
                               input:
                                 value: "req_body.context.action"
                           - status
-          service_url: http://localhost:5500/status
+          service_url: http://localhost:5502/status
           sync: false
 
   - summary: IntraCity - Code Based Flow
@@ -274,7 +274,7 @@ flows:
                               input:
                                 value: "req_body.message.intent.fulfillment.stops"
                           - undefined
-          service_url: http://localhost:5500/getallstationcode
+          service_url: http://localhost:5502/getallstationcode
           sync: false
         getonestationcodetrips:
           condition:
@@ -292,7 +292,7 @@ flows:
                               input:
                                 value: "req_body.context.action"
                           - search
-          service_url: http://localhost:5500/getonestationcodetrips
+          service_url: http://localhost:5502/getonestationcodetrips
           sync: false
       select:
         default:
@@ -313,7 +313,7 @@ flows:
                               input:
                                 value: "req_body.context.action"
                           - select
-          service_url: http://localhost:5500/getfare
+          service_url: http://localhost:5502/getfare
           sync: false
       init:
         default:
@@ -334,7 +334,7 @@ flows:
                               input:
                                 value: "req_body.context.action"
                           - init
-          service_url: http://localhost:5500/getfare
+          service_url: http://localhost:5502/getfare
           sync: false
       confirm:
         default:
@@ -355,7 +355,7 @@ flows:
                               input:
                                 value: "req_body.context.action"
                           - confirm
-          service_url: http://localhost:5500/confirmticket
+          service_url: http://localhost:5502/confirmticket
           sync: false
       status:
         default:
@@ -376,7 +376,7 @@ flows:
                               input:
                                 value: "req_body.context.action"
                           - status
-          service_url: http://localhost:5500/status
+          service_url: http://localhost:5502/status
           sync: false
 
   - summary: Intercity - Code Based Flow
@@ -479,7 +479,7 @@ flows:
                               input:
                                 value: "req_body.message.intent.fulfillment.stops.0.time"
                           - undefined
-          service_url: http://localhost:5500/getallstationcode
+          service_url: http://localhost:5502/getallstationcode
           sync: false
         getonestationcodetrips:
           condition:
@@ -507,7 +507,7 @@ flows:
                               input:
                                 value: "req_body.message.intent.fulfillment.stops.0.time.label"
                           - DATE_OF_JOURNEY
-          service_url: http://localhost:5500/getonestationcodetrips
+          service_url: http://localhost:5502/getonestationcodetrips
           sync: false
         get_bus_service:
           condition:
@@ -535,7 +535,7 @@ flows:
                               input:
                                 value: "req_body.message.intent.provider.id"
                           - INTERCITY_PROVIDER_ID
-          service_url: http://localhost:5500/getbusservice
+          service_url: http://localhost:5502/getbusservice
           sync: false
       select:
         default:
@@ -556,7 +556,7 @@ flows:
                               input:
                                 value: "req_body.context.action"
                           - select
-          service_url: http://localhost:5500/getfare
+          service_url: http://localhost:5502/getfare
           sync: false
       init:
         default:
@@ -577,7 +577,7 @@ flows:
                               input:
                                 value: "req_body.context.action"
                           - init
-          service_url: http://localhost:5500/getfare
+          service_url: http://localhost:5502/getfare
           sync: false
       confirm:
         default:
@@ -598,7 +598,7 @@ flows:
                               input:
                                 value: "req_body.context.action"
                           - confirm
-          service_url: http://localhost:5500/confirmticket
+          service_url: http://localhost:5502/confirmticket
           sync: false
       status:
         default:
@@ -619,7 +619,7 @@ flows:
                               input:
                                 value: "req_body.context.action"
                           - status
-          service_url: http://localhost:5500/status
+          service_url: http://localhost:5502/status
           sync: false
 
 

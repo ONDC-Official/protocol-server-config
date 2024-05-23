@@ -24844,7 +24844,7 @@ BPP:
     - summary: Default -  Flow
       id: default-flow
       domain: ONDC:TRV11
-      protocol:
+      protocol: &ref_445
         search: &ref_444
           mapping:
             - beckn_key: context
@@ -24883,6 +24883,36 @@ BPP:
         update:
           default:
             service_url: http://localhost:5501/update
+            sync: false
+    - summary: Default -  Flow
+      id: default-flow
+      domain: ONDC:FIS12
+      protocol: *ref_445
+      schema: *ref_443
+      api:
+        search:
+          default:
+            service_url: http://localhost:5501/search
+            sync: false
+        select:
+          default:
+            service_url: http://localhost:5501/select
+            sync: false
+        init:
+          default:
+            service_url: http://localhost:5501/init
+            sync: false
+        confirm:
+          default:
+            service_url: http://localhost:5501/confirm
+            sync: false
+        update:
+          default:
+            service_url: http://localhost:5501/update
+            sync: false
+        status:
+          default:
+            service_url: http://localhost:5501/status
             sync: false
   flow_selector:
     search:

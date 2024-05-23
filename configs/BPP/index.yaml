@@ -3,7 +3,7 @@ flows:
     id: metro-flow-1
     domain: ONDC:TRV11
     sessionData:
-      bpp_uri: "http://localhost:81/ondc"
+      bpp_uri: "http://localhost:5500/ondc"
       bpp_id: "mobility-staging.ondc.org"
       collectedBy: BAP
       bankAccountNumber: "xxxxxxxxxxxxxx"
@@ -193,7 +193,7 @@ flows:
     id: intracity-flow-1
     domain: ONDC:TRV11
     sessionData:
-      bpp_uri: "http://localhost:81/ondc"
+      bpp_uri: "http://localhost:5500/ondc"
       bpp_id: "mobility-staging.ondc.org"
       collectedBy: BAP
       bankAccountNumber: "xxxxxxxxxxxxxx"
@@ -247,7 +247,8 @@ flows:
     api:
       search:
         default:
-          callback: "on_search"
+          service_url: http://localhost:5502/search
+          sync: false
         get_all_station_codes:
           condition:
             operation:
@@ -296,7 +297,8 @@ flows:
           sync: false
       select:
         default:
-          callback: "on_select"
+          service_url: http://localhost:5502/search
+          sync: false
         get_all_station_codes:
           condition:
             operation:
@@ -317,7 +319,8 @@ flows:
           sync: false
       init:
         default:
-          callback: "on_init"
+          service_url: http://localhost:5502/search
+          sync: false
         get_all_station_codes:
           condition:
             operation:
@@ -338,7 +341,8 @@ flows:
           sync: false
       confirm:
         default:
-          callback: "on_confirm"
+          service_url: http://localhost:5502/search
+          sync: false
         get_all_station_codes:
           condition:
             operation:
@@ -359,7 +363,8 @@ flows:
           sync: false
       status:
         default:
-          callback: on_status
+          service_url: http://localhost:5502/search
+          sync: false
         get_all_station_codes:
           condition:
             operation:
@@ -383,7 +388,7 @@ flows:
     id: intercity-flow-1
     domain: ONDC:TRV12
     sessionData:
-      bpp_uri: "http://localhost:81/ondc"
+      bpp_uri: "http://localhost:5500/ondc"
       bpp_id: "mobility-staging.ondc.org"
       collectedBy: BAP
       bankAccountNumber: "xxxxxxxxxxxxxx"
@@ -478,6 +483,16 @@ flows:
                               type: READ
                               input:
                                 value: "req_body.message.intent.fulfillment.stops.0.time"
+                          - undefined
+                  - operation:
+                      type: EQUAL
+                      title: Check search message code
+                      input:
+                        value:
+                          - operation:
+                              type: READ
+                              input:
+                                value: "req_body.message.intent.fulfillment.id"
                           - undefined
           service_url: http://localhost:5502/getallstationcode
           sync: false
@@ -622,6 +637,38 @@ flows:
           service_url: http://localhost:5502/status
           sync: false
 
+  - summary: Default -  Flow
+    id: default-flow
+    domain: ONDC:TRV11
+    protocol:
+      $ref: ./default/protocolMapping.yaml#/protocol
+    schema:
+      $ref: ../schema/TRV/index.yaml
+    api:
+      search:
+        default:
+          service_url: http://localhost:5501/search
+          sync: false
+
+      select:
+        default:
+          service_url: http://localhost:5501/select
+          sync: false
+
+      init:
+        default:
+          service_url: http://localhost:5501/init
+          sync: false
+
+      confirm:
+        default:
+          service_url: http://localhost:5501/confirm
+          sync: false
+
+      update:
+        default:
+          service_url: http://localhost:5501/update
+          sync: false
 
   - summary: Default -  Flow
     id: default-flow
@@ -639,28 +686,27 @@ flows:
       select:
         default:
           service_url: http://localhost:5501/select
-          sync: false          
-           
+          sync: false
+
       init:
         default:
           service_url: http://localhost:5501/init
-          sync: false          
+          sync: false
 
       confirm:
         default:
           service_url: http://localhost:5501/confirm
-          sync: false      
+          sync: false
 
       update:
         default:
           service_url: http://localhost:5501/update
-          sync: false      
+          sync: false
 
       status:
         default:
           service_url: http://localhost:5501/status
-          sync: false      
-
+          sync: false
 
 flow_selector:
   search:

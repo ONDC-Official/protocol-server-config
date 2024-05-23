@@ -32,3 +32,25 @@ flows:
       $ref: ./intracity-flow-1/calls.yaml#/calls
     schema:
       $ref: ../schema/TRV/index.yaml
+
+  - summary: InterCity(Bus) - Station Code Based Flow
+    id: intercity-flow-1
+    shouldDispaly: false
+    domain: ONDC:TRV12
+    sessionData:
+      version: "2.0.0"
+      tax_id: "GSTIN:22AAAAA0000A1Z5"
+      collected_by: "BAP"
+      name: Joe Adams
+      phone: "+91-9988776655"
+      age: "30"
+      gender": "MALE"
+      time:
+        label: "DATE_OF_JOURNEY"
+        timestamp: "2023-09-06T00:00:00.000Z"
+    protocol:
+      $ref: ./intercity-flow-1/protocolMapping.yaml#/protocol
+    calls:
+      $ref: ./intercity-flow-1/calls.yaml#/calls
+    schema:
+      $ref: ../schema/TRV/index.yaml

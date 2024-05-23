@@ -2,23 +2,18 @@ protocol:
   search:
     $ref: "./common.yaml"
 
-
   on_search:
     $ref: "./common.yaml"
-
 
   select:
     $ref: "./common.yaml"
 
-  
   on_select:
     $ref: "./common.yaml"
-
 
   init:
     $ref: "./common.yaml"
 
- 
   on_init:
     $ref: "./common.yaml"
 
@@ -28,10 +23,8 @@ protocol:
   on_confirm:
     $ref: "./common.yaml"
 
-
   update:
     $ref: "./common.yaml"
-
 
   on_update:
     $ref: "./common.yaml"
@@ -41,5 +34,3 @@ protocol:
 
   on_status:
     $ref: "./common.yaml"
-
-        

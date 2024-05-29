@@ -52,8 +52,6 @@ flows:
       payment_type: PRE-ORDER
     protocol:
       $ref: ./metro-flow-1/protocolMapping.yaml#/protocol
-    schema:
-      $ref: ../schema/TRV/index.yaml
     api:
       search:
         default:
@@ -242,8 +240,6 @@ flows:
       payment_type: PRE-ORDER
     protocol:
       $ref: ./intracity-flow-1/protocolMapping.yaml#/protocol
-    schema:
-      $ref: ../schema/TRV/index.yaml
     api:
       search:
         default:
@@ -442,8 +438,6 @@ flows:
       payment_type: PRE-ORDER
     protocol:
       $ref: ./intercity-flow-1/protocolMapping.yaml#/protocol
-    schema:
-      $ref: ../schema/TRV/index.yaml
     api:
       search:
         default:
@@ -642,8 +636,6 @@ flows:
     domain: ONDC:TRV11
     protocol:
       $ref: ./default/protocolMapping.yaml#/protocol
-    schema:
-      $ref: ../schema/TRV/index.yaml
     api:
       search:
         default:
@@ -675,8 +667,6 @@ flows:
     domain: ONDC:FIS12
     protocol:
       $ref: ./default/protocolMapping.yaml#/protocol
-    schema:
-      $ref: ../schema/TRV/index.yaml
     api:
       search:
         default:

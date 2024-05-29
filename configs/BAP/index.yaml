@@ -13,8 +13,6 @@ flows:
       $ref: ./metro-flow-1/protocolMapping.yaml#/protocol
     calls:
       $ref: ./metro-flow-1/calls.yaml#/calls
-    schema:
-      $ref: ../schema/TRV/index.yaml
 
   - summary: IntraCity - Code Based Flow
     id: intracity-flow-1
@@ -30,8 +28,6 @@ flows:
       $ref: ./intracity-flow-1/protocolMapping.yaml#/protocol
     calls:
       $ref: ./intracity-flow-1/calls.yaml#/calls
-    schema:
-      $ref: ../schema/TRV/index.yaml
 
   - summary: InterCity(Bus) - Station Code Based Flow
     id: intercity-flow-1
@@ -52,5 +48,3 @@ flows:
       $ref: ./intercity-flow-1/protocolMapping.yaml#/protocol
     calls:
       $ref: ./intercity-flow-1/calls.yaml#/calls
-    schema:
-      $ref: ../schema/TRV/index.yaml

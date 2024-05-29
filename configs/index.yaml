@@ -1,4 +1,9 @@
 BAP:
   $ref: ./BAP/index.yaml
 BPP:
-  $ref: ./BPP/index.yaml 
+  $ref: ./BPP/index.yaml
+schema:
+  $ref: ./schema/TRV/index.yaml
+attributes:
+  intracity-flow-1:
+    $ref: ./attributes/intracity-flow-1/index.yaml

@@ -160,7 +160,6 @@ protocol:
         value: session.loan_provider_id
       - beckn_key: message.order.provider.descriptor
         value: session.loan_provider
-
       - beckn_key: message.order.provider.tags
         value: data.tags                || session.tags
         compute: buildTags(data.tags    || session.tags)

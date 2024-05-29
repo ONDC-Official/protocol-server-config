@@ -125,11 +125,12 @@ flows:
       loan_provider_id: PROVIDER_ID
       loan_provider:
         images:
-          - url: https://www.icicibank.com/content/dam/icicibank/india/assets/images/header/logo.png
-            size: sm
-        name: ICICI Bank
-        short_desc: ICICI Bank Ltd
-        long_desc: ICICI Bank Ltd, India.
+          - url: https://www.abcinsurance.com/content/dam/abcinsurance/india/assets/images/header/logo.png
+            size_type: sm
+        name: ABC Insurance Ltd
+        short_desc: ABC Insurance Ltd
+        long_desc: ABC Insurance Ltd
+
       loan_type:
         code: PERSONAL_LOAN
         name: Personal Loan
@@ -154,13 +155,10 @@ flows:
       metro_id: "1"
       categories:
         - descriptor:
-            name: Ticket
-            code: TICKET
+            name: Marine Insurance
+            code: MARINE_INSURANCE
           id: C1
-        - descriptor:
-            name: Pass
-            code: PASS
-          id: C2
+
       metro_starttime: "2023-09-14T05:30:00.000Z"
       metro_endtime: "2023-09-14T23:30:00.000Z"
       metro_images:

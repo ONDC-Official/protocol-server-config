@@ -582,6 +582,575 @@ BAP:
           endpoint: mapper/ondc
           mode: SYNC
           unsolicitedEndpoint: mapper/unsolicited
+    - summary: Marine Insurance
+      id: marine-insurance-flow-1
+      domain: ONDC:FIS13
+      shouldDispaly: true
+      sessionData:
+        version: 2.0.0
+        collectedBy: BAP
+        paymentCollectedBy: BPP
+        bankAccountNumber: '123456789'
+        virtualPaymentAddress: adasd@okiciic
+        bankCode: fj3jf9ij3f02
+      protocol:
+        search:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: messageId
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.intent.category.descriptor.code
+              value: data.insuranceCategaory
+            - beckn_key: message.intent.payment.collected_by
+              value: session.paymentCollectedBy
+            - beckn_key: message.intent.payment.tags
+              value: data.paymentTagsSearch
+              compute: buildTags(data.paymentTagsSearch)
+        select_loan:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: messageId
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.provider.id
+              value: session.providerId
+            - beckn_key: message.order.items[0].id
+              value: session.itemId
+            - beckn_key: message.order.items[0].xinput.form.id
+              value: session.formId
+            - beckn_key: message.order.items[0].xinput.form_response.status
+              value: successStatus
+            - beckn_key: message.order.items[0].xinput.form_response.submission_id
+              value: data.personalInfoSubmissionId
+        select_approval:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: messageId
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.provider.id
+              value: session.providerId
+            - beckn_key: message.order.items[0].id
+              value: session.itemId
+            - beckn_key: message.order.items[0].xinput.form.id
+              value: session.formId
+            - beckn_key: message.order.items[0].xinput.form_response.status
+              value: data.consentStatus
+            - beckn_key: message.order.items[0].xinput.form_response.submission_id
+              value: session.personalInfoSubmissionId
+        select_after_amount_adjust:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: messageId
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.provider.id
+              value: session.providerId
+            - beckn_key: message.order.items[0].id
+              value: session.itemId
+            - beckn_key: message.order.items[0].xinput.form.id
+              value: data.formIdAmountAdjustForm
+            - beckn_key: message.order.items[0].xinput.form_response.status
+              value: successStatus
+            - beckn_key: message.order.items[0].xinput.form_response.submission_id
+              value: data.adjustAmountSubmissionId
+        init_kyc:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: messageId
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.provider.id
+              value: session.providerId
+            - beckn_key: message.order.items[0].id
+              value: session.itemId
+            - beckn_key: message.order.items[0].xinput.form.id
+              value: data.kycFormId
+            - beckn_key: message.order.items[0].xinput.form_response.status
+              value: successStatus
+            - beckn_key: message.order.items[0].xinput.form_response.submission_id
+              value: data.kycSubmissionId
+            - beckn_key: message.order.payments[0].collected_by
+              value: session.collectedBy
+            - beckn_key: message.order.payments[0].status
+              value: data.paymentStatus
+            - beckn_key: message.order.payments[0].type
+              value: data.paymentType
+            - beckn_key: message.order.payments[0].params.bank_code
+              value: session.bankCode
+            - beckn_key: message.order.payments[0].params.bank_account_number
+              value: session.bankAccountNumber
+            - beckn_key: message.order.payments[0].params.virtual_payment_address
+              value: session.virtualPaymentAddress
+            - beckn_key: message.order.payments[0].tags
+              value: data.paymentTagsInit
+              compute: buildTags(data.paymentTagsInit)
+        init_personal_loan:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: messageId
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.provider.id
+              value: session.providerId
+            - beckn_key: message.order.items[0].id
+              value: session.itemId
+            - beckn_key: message.order.items[0].xinput.form.id
+              value: data.accointDetailsFormId
+            - beckn_key: message.order.items[0].xinput.form_response.status
+              value: successStatus
+            - beckn_key: message.order.items[0].xinput.form_response.submission_id
+              value: data.accointDetailsFormSubmissionId
+            - beckn_key: message.order.payments[0].id
+              value: session.paymentID[0].id
+            - beckn_key: message.order.payments[0].collected_by
+              value: session.collectedBy
+            - beckn_key: message.order.payments[0].status
+              value: data.paymentStatus
+            - beckn_key: message.order.payments[0].type
+              value: data.paymentType
+            - beckn_key: message.order.payments[0].params.bank_code
+              value: session.bankCode
+            - beckn_key: message.order.payments[0].params.bank_account_number
+              value: session.bankAccountNumber
+            - beckn_key: message.order.payments[0].params.virtual_payment_address
+              value: session.virtualPaymentAddress
+            - beckn_key: message.order.payments[0].tags
+              value: data.paymentTagsInit
+              compute: buildTags(data.paymentTagsInit)
+        init_with_account_details:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: messageId
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.provider.id
+              value: session.providerId
+            - beckn_key: message.order.items[0].id
+              value: session.itemId
+            - beckn_key: message.order.items[0].xinput.form.id
+              value: data.eMandateDetailsFormId
+            - beckn_key: message.order.items[0].xinput.form_response.status
+              value: successStatus
+            - beckn_key: message.order.items[0].xinput.form_response.submission_id
+              value: data.eMandateDetailsSubmissionId
+            - beckn_key: message.order.payments[0].id
+              value: session.paymentID[0].id
+            - beckn_key: message.order.payments[0].collected_by
+              value: session.collectedBy
+            - beckn_key: message.order.payments[0].status
+              value: data.paymentStatus
+            - beckn_key: message.order.payments[0].type
+              value: data.paymentType
+            - beckn_key: message.order.payments[0].params.bank_code
+              value: session.bankCode
+            - beckn_key: message.order.payments[0].params.bank_account_number
+              value: session.bankAccountNumber
+            - beckn_key: message.order.payments[0].params.virtual_payment_address
+              value: session.virtualPaymentAddress
+            - beckn_key: message.order.payments[0].tags
+              value: session.paymentTagsInit
+              compute: buildTags(session.paymentTagsInit)
+        confirm:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: messageId
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.provider.id
+              value: session.providerId
+            - beckn_key: message.order.items[0].id
+              value: session.itemId
+            - beckn_key: message.order.items[0].xinput.form.id
+              value: data.loanAgreementFormId
+            - beckn_key: message.order.items[0].xinput.form_response.status
+              value: successStatus
+            - beckn_key: message.order.items[0].xinput.form_response.submission_id
+              value: data.loanAgreementSubmissionId
+            - beckn_key: message.order.payments[0].id
+              value: session.paymentID[0].id
+            - beckn_key: message.order.payments[0].collected_by
+              value: session.collectedBy
+            - beckn_key: message.order.payments[0].status
+              value: data.paymentStatus
+            - beckn_key: message.order.payments[0].type
+              value: data.paymentType
+            - beckn_key: message.order.payments[0].params.bank_code
+              value: session.bankCode
+            - beckn_key: message.order.payments[0].params.bank_account_number
+              value: session.bankAccountNumber
+            - beckn_key: message.order.payments[0].params.virtual_payment_address
+              value: session.virtualPaymentAddress
+            - beckn_key: message.order.payments[0].tags
+              value: session.paymentTagsInit
+              compute: buildTags(session.paymentTagsInit)
+        status:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: messageId
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.ref_id
+              value: session.currentTransactionId
+        update:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: messageId
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.update_target
+              value: fulfillmentText
+            - beckn_key: message.order.id
+              value: data.orderId
+            - beckn_key: message.order.fulfillments[0].state.descriptor.code
+              value: data.fulfillmentStatus
+        on_search:
+          sessionData:
+            - business_key: formId
+              extractionPath: >-
+                message.catalog.providers[].items[]{ id : xinput.form.id,
+                itemId: id}
+            - business_key: providerId
+              extractionPath: 'message.catalog.providers[]{id: id}'
+          mapping:
+            - business_key: bpp_id
+              extractionPath: context.bpp_id
+            - business_key: bpp_uri
+              extractionPath: context.bpp_uri
+            - business_key: formData
+              extractionPath: >-
+                message.catalog.providers[]{providerId: id}.items[]{formUrl :
+                xinput.form.url, id : xinput.form.id, itemId: id}
+            - business_key: error
+              extractionPath: error
+        on_select_loan:
+          mapping:
+            - business_key: error
+              extractionPath: error
+        on_select_approval:
+          mapping:
+            - business_key: providerId
+              extractionPath: message.order.provider.id
+            - business_key: formData
+              extractionPath: >-
+                message.order.items[]{formUrl : xinput.form.url, id :
+                xinput.form.id, itemId: id}
+            - business_key: error
+              extractionPath: error
+        on_select_after_amount_adjust:
+          mapping:
+            - business_key: formData
+              extractionPath: >-
+                message.order.items[]{formUrl : xinput.form.url, id :
+                xinput.form.id, itemId: id}
+            - business_key: error
+              extractionPath: error
+        on_init_kyc:
+          sessionData:
+            - business_key: paymentID
+              extractionPath: 'message.order.payments[]{id: id}'
+          mapping:
+            - business_key: formData
+              extractionPath: >-
+                message.order.items[]{formUrl : xinput.form.url, id :
+                xinput.form.id, itemId: id}
+            - business_key: error
+              extractionPath: error
+        on_init_personal_loan:
+          mapping:
+            - business_key: formData
+              extractionPath: >-
+                message.order.items[]{formUrl : xinput.form.url, id :
+                xinput.form.id, itemId: id}
+            - business_key: error
+              extractionPath: error
+        on_init_with_account_details:
+          mapping:
+            - business_key: formData
+              extractionPath: >-
+                message.order.items[]{formUrl : xinput.form.url, id :
+                xinput.form.id, itemId: id}
+            - business_key: error
+              extractionPath: error
+        on_confirm:
+          mapping:
+            - business_key: orderId
+              extractionPath: message.order.id
+            - business_key: error
+              extractionPath: error
+        on_status:
+          mapping:
+            - business_key: error
+              extractionPath: error
+        on_update:
+          mapping:
+            - business_key: error
+              extractionPath: error
+      calls:
+        - config: search
+          mode: ASYNC
+          callback:
+            config: on_search
+            endpoint: mapper/ondc
+            mode: ASYNC
+          unsolicitedEndpoint: mapper/unsolicited
+        - config: select_1
+          mode: SYNC
+        - config: select_2
+          mode: ASYNC
+        - config: init
+          mode: ASYNC
+        - config: confirm
+          mode: SYNC
+        - config: status
+          mode: SYNC
+        - config: update
+          mode: SYNC
+        - config: on_search
+          endpoint: mapper/ondc
+          mode: ASYNC
+          unsolicitedEndpoint: mapper/unsolicited
+        - config: on_select_1
+          endpoint: mapper/ondc
+          mode: SYNC
+          unsolicitedEndpoint: mapper/unsolicited
+        - config: on_select_2
+          endpoint: mapper/ondc
+          mode: ASYNC
+          unsolicitedEndpoint: mapper/unsolicited
+        - config: on_init
+          endpoint: mapper/ondc
+          mode: ASYNC
+          unsolicitedEndpoint: mapper/unsolicited
+        - config: on_confirm
+          endpoint: mapper/ondc
+          mode: SYNC
+          unsolicitedEndpoint: mapper/unsolicited
+        - config: on_status
+          endpoint: mapper/ondc
+          mode: SYNC
+          unsolicitedEndpoint: mapper/unsolicited
+        - config: on_update
+          endpoint: mapper/ondc
+          mode: SYNC
+          unsolicitedEndpoint: mapper/unsolicited
 BPP:
   flows:
     - summary: Personal loan -  Flow
@@ -1299,7 +1868,7 @@ BPP:
               value: data.error && data.message
             - beckn_key: error
               value: data.error
-      schema: &ref_366
+      schema: &ref_365
         search:
           type: object
           properties:
@@ -19050,28 +19619,310 @@ BPP:
           default:
             service_url: http://172.17.0.1:5502/status
             sync: false
+    - summary: Marine Insurance -  Flow
+      id: marine-insurance-flow-1
+      domain: ONDC:FIS13
+      sessionData:
+        bpp_uri: https://fis-staging.ondc.org/ondc-seller/
+        bpp_id: fis-staging.ondc.org/ondc-seller
+        collectedBy: BPP
+        loan_provider_id: PROVIDER_ID
+        loan_provider:
+          images:
+            - url: >-
+                https://www.abcinsurance.com/content/dam/abcinsurance/india/assets/images/header/logo.png
+              size_type: sm
+          name: ABC Insurance Ltd
+          short_desc: ABC Insurance Ltd
+          long_desc: ABC Insurance Ltd
+        loan_type:
+          code: PERSONAL_LOAN
+          name: Personal Loan
+        quote_ttl: PT15D
+        cancellation_terms:
+          - fulfillment_state:
+              descriptor:
+                code: SANCTIONED
+            cancellation_fee:
+              percentage: 3%
+          - external_ref:
+              mimetype: text/html
+              url: https://bpp.credit.becknprotocol.org/tnc.html
+          - fulfillment_state:
+              descriptor:
+                code: DISBURSED
+            cancellation_fee:
+              percentage: 5%
+        bankAccountNumber: xxxxxxxxxxxxxx
+        virtualPaymentAddress: 9988199772@okicic
+        bankCode: XXXXXXXX
+        metro_id: '1'
+        categories:
+          - descriptor:
+              name: Marine Insurance
+              code: MARINE_INSURANCE
+            id: C1
+        metro_starttime: '2023-09-14T05:30:00.000Z'
+        metro_endtime: '2023-09-14T23:30:00.000Z'
+        metro_images:
+          - url: https://delhimetrorail.com/logos/logo.ico
+        metro_name: Delhi Metro Rail Limited
+        currency: INR
+        payment_tags:
+          BUYER_FINDER_FEES:
+            display: false
+            BUYER_FINDER_FEES_TYPE: percent-annualized
+            BUYER_FINDER_FEES_PERCENTAGE: '1'
+          SETTLEMENT_TERMS:
+            display: false
+            SETTLEMENT_WINDOW: PT30D
+            SETTLEMENT_BASIS: INVOICE_RECEIPT
+            MANDATORY_ARBITRATION: 'TRUE'
+            COURT_JURISDICTION: New Delhi
+            STATIC_TERMS: >-
+              https://bpp.credit.becknprotocol.org/personal-banking/loans/personal-loan
+        tags:
+          CONTACT_INFO:
+            display: false
+            GRO_NAME: ICICI
+            GRO_EMAIL: lifeline@iciciprulife.com
+            GRO_CONTACT_NUMBER: 1860 266 7766
+            GRO_DESIGNATION: Nodal Grievance Redressal Officer
+            GRO_ADDRESS: >-
+              One Indiabulls centre, Tower 1, 18th Floor Jupiter mill compound
+              841, Senapati Bapat Marg, Elphinstone Road, Mumbai 400013
+            CUSTOMER_SUPPORT_LINK: >-
+              https://buy.iciciprulife.com/buy/GrievanceRedStep.htm?execution=e1s1
+            CUSTOMER_SUPPORT_CONTACT_NUMBER: 1800 1080
+            CUSTOMER_SUPPORT_EMAIL: customer.care@icicibank.com
+          LSP_INFO:
+            LSP_NAME: ICICI_LSP
+            LSP_EMAIL: lsp@iciciprulife.com
+            LSP_CONTACT_NUMBER: 1860 266 7766
+            LSP_ADDRESS: >-
+              One Indiabulls centre, Tower 1, 18th Floor Jupiter mill compound
+              841, Senapati Bapat Marg, Elphinstone Road, Mumbai 400013
+        payment_type: PRE-ORDER
+      protocol:
+        search:
+          sessionData:
+            - beckn_key: bap_id
+              value: data.context.bap_id
+            - beckn_key: bap_uri
+              value: data.context.bap_uri
+            - beckn_key: cityCode
+              value: data.context.location.city.code || session.cityCode
+            - beckn_key: countryCode
+              value: data.context.location.country.code || session.countryCode
+          mapping:
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.transaction_id
+              value: session.transaction_id
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.action
+              value: data.context.action
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.location.country.code
+              value: session.countryCode
+            - beckn_key: context.ttl
+              value: data.context.ttl
+            - beckn_key: message.intent.category.descriptor.code
+              value: data.message.intent.category.descriptor.code
+        on_search:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.catalog.descriptor.name
+              value: session.loan_provider.name
+            - beckn_key: message.catalog.providers[0].id
+              value: session.loan_provider_id
+            - beckn_key: message.catalog.providers[0].descriptor
+              value: session.loan_provider
+            - beckn_key: message.catalog.providers[0].categories
+              value: session.categories
+            - beckn_key: message.catalog.providers[0].items
+              value: data.loan_offers
+            - beckn_key: message.catalog.providers[0].payments[0].tags
+              value: data.payments_tags       || session.payment_tags
+              compute: buildTags(data.payments_tags || session.payment_tags)
+            - beckn_key: message.catalog.providers[0].tags
+              value: data.tags                || session.tags
+              compute: buildTags(data.tags    || session.tags)
+            - beckn_key: message.catalog.providers[0].payments[0].collected_by
+              value: data.payment_collectedby || session.collectedBy
+            - beckn_key: message
+              value: data.error && data.message
+            - beckn_key: error
+              value: data.error
+        select:
+          sessionData:
+            - beckn_key: itemId
+              value: data.message.order.items[0].id
+            - beckn_key: message_id
+              value: data.context.message_id
+            - beckn_key: bap_uri
+              value: data.context.bap_uri
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.items
+              value: data.message.order.items
+        on_select:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.bpp_id
+              value: session.bpp_id
+            - beckn_key: context.bpp_uri
+              value: session.bpp_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: data.context.message_id
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.order.provider.id
+              value: session.loan_provider_id
+            - beckn_key: message.order.provider.descriptor
+              value: session.loan_provider
+            - beckn_key: message.order.provider.tags
+              value: data.tags                || session.tags
+              compute: buildTags(data.tags    || session.tags)
+            - beckn_key: message.order.items
+              value: data.loan_offers
+            - beckn_key: message.order.quote.id
+              value: (data.amount_id || session.quote.id)
+            - beckn_key: message.order.quote.price.value
+              value: (data.final_amount || session.quote.amount)
+            - beckn_key: message.order.quote.price.currency
+              value: session.currency
+            - beckn_key: message.order.quote.breakup
+              value: (data.amount_breakup || session.quote.breakup)
+            - beckn_key: message.order.quote.ttl
+              value: (data.ttl || session.quote.ttl)
+            - beckn_key: message
+              value: data.error && data.message
+            - beckn_key: error
+              value: data.error
+      schema: *ref_365
+      api:
+        search:
+          default:
+            service_url: http://172.17.0.1:5502/search
+            sync: false
+        select:
+          default:
+            service_url: http://172.17.0.1:5502/select
+            sync: false
+        init:
+          default:
+            service_url: http://172.17.0.1:5502/init
+            sync: false
+        confirm:
+          default:
+            service_url: http://172.17.0.1:5502/confirm
+            sync: false
+        update:
+          default:
+            service_url: http://172.17.0.1:5502/update
+            sync: false
+        status:
+          default:
+            service_url: http://172.17.0.1:5502/status
+            sync: false
     - summary: Default -  Flow
       id: default-flow
       domain: ONDC:FIS12
       protocol:
-        search: &ref_365
+        search: &ref_366
           mapping:
             - beckn_key: context
               value: data.context
             - beckn_key: message
               value: data.message
-        on_search: *ref_365
-        select: *ref_365
-        on_select: *ref_365
-        init: *ref_365
-        on_init: *ref_365
-        confirm: *ref_365
-        on_confirm: *ref_365
-        update: *ref_365
-        on_update: *ref_365
-        status: *ref_365
-        on_status: *ref_365
-      schema: *ref_366
+        on_search: *ref_366
+        select: *ref_366
+        on_select: *ref_366
+        init: *ref_366
+        on_init: *ref_366
+        confirm: *ref_366
+        on_confirm: *ref_366
+        update: *ref_366
+        on_update: *ref_366
+        status: *ref_366
+        on_status: *ref_366
+      schema: *ref_365
       api:
         search:
           default:
@@ -19118,6 +19969,23 @@ BPP:
                               value: req_body.message.intent.category.descriptor.code
                         - PERSONAL_LOAN
         config_id: personal-loan-flow-1
+      marine-insurance:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.intent.category.descriptor.code
+                        - MARINE_INSURANCE
+        config_id: marine-insurance-flow-1
     select:
       default:
         config_id: default-flow
@@ -19138,6 +20006,23 @@ BPP:
                               value: req_body.message.order.items.0.id
                         - ITEM_ID_1_PERSONAL-LOAN
         config_id: personal-loan-flow-1
+      marine-insurance:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - ITEM_ID_1_MARINE_INSURANCE
+        config_id: marine-insurance-flow-1
     init:
       default:
         config_id: default-flow
@@ -19158,6 +20043,23 @@ BPP:
                               value: req_body.message.order.items.0.id
                         - ITEM_ID_1_PERSONAL-LOAN
         config_id: personal-loan-flow-1
+      marine-insurance:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - ITEM_ID_1_MARINE_INSURANCE
+        config_id: marine-insurance-flow-1
     confirm:
       default:
         config_id: default-flow
@@ -19178,6 +20080,23 @@ BPP:
                               value: req_body.message.order.items.0.id
                         - ITEM_ID_1_PERSONAL-LOAN
         config_id: personal-loan-flow-1
+      marine-insurance:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - ITEM_ID_1_MARINE_INSURANCE
+        config_id: marine-insurance-flow-1
     update:
       default:
         config_id: default-flow
@@ -19198,6 +20117,23 @@ BPP:
                               value: req_body.message.order.items.0.id
                         - ITEM_ID_1_PERSONAL-LOAN
         config_id: personal-loan-flow-1
+      marine-insurance:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - ITEM_ID_1_MARINE_INSURANCE
+        config_id: marine-insurance-flow-1
     status:
       default:
         config_id: default-flow
@@ -19218,7 +20154,24 @@ BPP:
                               value: req_body.message.order.items.0.id
                         - ITEM_ID_1_PERSONAL-LOAN
         config_id: personal-loan-flow-1
-schema: *ref_366
+      marine-insurance:
+        condition:
+          operation:
+            type: AND
+            input:
+              value:
+                - operation:
+                    type: EQUAL
+                    title: Check search message code
+                    input:
+                      value:
+                        - operation:
+                            type: READ
+                            input:
+                              value: req_body.message.order.items.0.id
+                        - ITEM_ID_1_MARINE_INSURANCE
+        config_id: marine-insurance-flow-1
+schema: *ref_365
 attributes:
   personal-loan-flow-1:
     search:

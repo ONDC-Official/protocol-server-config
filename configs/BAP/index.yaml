@@ -14,3 +14,18 @@ flows:
       $ref: ./personal-loan-flow-1/protocolMapping.yaml#/protocol
     calls:
       $ref: ./personal-loan-flow-1/calls.yaml#/calls
+  - summary: Marine Insurance
+    id: marine-insurance-flow-1
+    domain: ONDC:FIS13
+    shouldDispaly: true
+    sessionData:
+      version: "2.0.0"
+      collectedBy: BAP
+      paymentCollectedBy: BPP
+      bankAccountNumber: "123456789"
+      virtualPaymentAddress: "adasd@okiciic"
+      bankCode: "fj3jf9ij3f02"
+    protocol:
+      $ref: ./marine-insurance-flow-1/protocolMapping.yaml#/protocol
+    calls:
+      $ref: ./marine-insurance-flow-1/calls.yaml#/calls

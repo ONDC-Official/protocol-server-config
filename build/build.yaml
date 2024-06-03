@@ -596,7 +596,7 @@ BPP:
           images:
             - url: >-
                 https://www.icicibank.com/content/dam/icicibank/india/assets/images/header/logo.png
-              size: sm
+              size_type: sm
           name: ICICI Bank
           short_desc: ICICI Bank Ltd
           long_desc: ICICI Bank Ltd, India.
@@ -650,6 +650,7 @@ BPP:
             COURT_JURISDICTION: New Delhi
             STATIC_TERMS: >-
               https://bpp.credit.becknprotocol.org/personal-banking/loans/personal-loan
+            OFFLINE_CONTRACT: 'TRUE'
         tags:
           CONTACT_INFO:
             display: false

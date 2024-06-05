@@ -19029,27 +19029,27 @@ BPP:
       api:
         search:
           default:
-            service_url: http://172.17.0.1:5502/search
+            service_url: /search
             sync: false
         select:
           default:
-            service_url: http://172.17.0.1:5502/select
+            service_url: /select
             sync: false
         init:
           default:
-            service_url: http://172.17.0.1:5502/init
+            service_url: /init
             sync: false
         confirm:
           default:
-            service_url: http://172.17.0.1:5502/confirm
+            service_url: /confirm
             sync: false
         update:
           default:
-            service_url: http://172.17.0.1:5502/update
+            service_url: /update
             sync: false
         status:
           default:
-            service_url: http://172.17.0.1:5502/status
+            service_url: /status
             sync: false
     - summary: Default -  Flow
       id: default-flow
@@ -25067,3 +25067,4 @@ attributes:
                 particular order
               owner: BPP
               type: object
+version: 1.0.0

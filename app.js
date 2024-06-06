@@ -15,8 +15,29 @@ async function baseYMLFile(file) {
   }
 }
 
+const validateItem = (key, value, schema) => {};
+
+const validateConfigSchema = (config) => {
+  // console.log("config: ", config);
+  const schemaPath = "./configSchema/index.yaml";
+
+  baseYMLFile(schemaPath)
+    .then((schema) => {
+      // console.log("schaema: ", schema);
+
+      for (const [key, value] of Object.entries(config)) {
+        validateItem(key, value, schema);
+      }
+    })
+    .catch((e) => {
+      throw new Error("Error fetch config scheam: " + e);
+    });
+};
+
 baseYMLFile(indexYamlPath)
   .then((res) => {
+    validateConfigSchema(res);
+
     const jsonDump = JSON.stringify(res);
     fs.writeFileSync(uiPath, jsonDump, "utf8");
 

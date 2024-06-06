@@ -1,0 +1,177 @@
+- key: BAP
+  type: Object
+  required: true
+  properties:
+    - key: flows
+      type: array
+      required: true
+      properties:
+        - key: summary
+          type: string
+          required: true
+        - key: id
+          type: string
+          required: true
+        - key: domain
+          type: string
+          required: true
+        - key: sessionData
+          type: Object
+          required: true
+        - key: protocol
+          type: Object
+          required: true
+          properties:
+            - key:
+                type: string
+              type: Object
+              required: true
+              properties:
+                - key: sessionData
+                  type: Array
+                  required: false
+                  properties:
+                    - key: business_key, beckn_key
+                      type: string
+                      required: true
+                    - key: value, extractionPath
+                      type: string
+                      required: true
+                - key: mapping
+                  type: Array
+                  required: true
+                  properties:
+                    - key: business_key, beckn_key
+                      type: string
+                      required: true
+                    - key: value, extractionPath
+                      type: string
+                      required: true
+        - key: calls
+          type: Array
+          required: true
+          properties:
+            - key: config
+              type: string
+              required: true
+            - key: mode
+              type: string
+              required: true
+            - key: callback
+              type: Object
+              required: true
+              properties:
+                - key: config
+                  type: string
+                  required: true
+                - key: endpoint
+                  type: string
+                  required: true
+                - key: unsolicitedEndpoint
+                  type: string
+                  required: true
+
+- key: BPP
+  type: Object
+  require: true
+  properties:
+    - key: flows
+      type: Array
+      required: true
+      properties:
+        - key: summary
+          type: string
+          required: true
+        - key: id
+          type: string
+          required: true
+        - key: domain
+          type: string
+          required: true
+        - key: sessionData
+          type: Object
+          required: true
+        - key: protocol
+          type: Object
+          required: true
+          properties:
+            - key:
+                type: string
+              type: Object
+              required: true
+              properties:
+                - key: sessionData
+                  type: Array
+                  required: false
+                  properties:
+                    - key: business_key, beckn_key
+                      type: string
+                      required: true
+                    - key: value, extractionPath
+                      type: string
+                      required: true
+                - key: mapping
+                  type: Array
+                  required: true
+                  properties:
+                    - key: business_key, beckn_key
+                      type: string
+                      required: true
+                    - key: value, extractionPath
+                      type: string
+                      required: true
+        - key: api
+          type: Object
+          required: true
+          properties:
+            - key:
+                type: string
+            - type: Object
+              required: true
+              properties:
+                - key:
+                    type: string
+                  type: Object
+                  required: true
+                  properties:
+                    - key: service_url
+                      type: string
+                      required: true
+                    - key: sync
+                      type: boolean
+                      required: true
+    - key: flow_selector
+      enum:
+        - search
+        - select
+        - inint
+        - confirm
+        - update
+        - status
+      required: true
+      type: object
+      properties:
+        - key:
+            type: string
+          requried: true
+          type: object
+          properties:
+            - key: config_id
+              type: string
+              required: true
+            # - key: condition
+            #   type: Object
+            #   required: false
+            #   properties:
+            #     - key: opertaion
+            #       required: true
+            #       type: Object
+            #       properties:
+            #         - key:
+            #             type: string
+            #           requried: false
+            #         -
+
+- key: version
+  type: string
+  require: true

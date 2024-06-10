@@ -1234,11 +1234,11 @@ BAP:
             mode: ASYNC
             unsolicitedEndpoint: mapper/unsolicited
         - config: search_1
-          mode: SYNC
+          mode: ASYNC
           callback:
             config: on_search_1
             endpoint: mapper/ondc
-            mode: SYNC
+            mode: ASYNC
             unsolicitedEndpoint: mapper/unsolicited
         - config: search_2
           mode: ASYNC

@@ -15,7 +15,33 @@ async function baseYMLFile(file) {
   }
 }
 
-const validateItem = (key, value, schema) => {};
+const validateItem = (key, value, schema) => {
+  // console.log("schema", schema);
+  let isValid = false;
+
+  schema.forEach((item) => {
+    // console.log("value", value);
+    // console.log("kye::::::::", item.key, key, typeof value, item.type);
+
+    if (
+      (item.key === key || item.key.type === typeof key) &&
+      (typeof value === item.type || value instanceof Array)
+    ) {
+      if (item?.properties) {
+        for (const [_key, _value] of Object.entries(value)) {
+          // console.log("_", _key, _value);
+          validateItem(_key, _value, item?.properties);
+        }
+      }
+      isValid = true;
+      return;
+    }
+  });
+
+  if (!isValid) {
+    console.log(`${key} is not a valid conifg`);
+  }
+};
 
 const validateConfigSchema = (config) => {
   // console.log("config: ", config);
@@ -26,7 +52,7 @@ const validateConfigSchema = (config) => {
       // console.log("schaema: ", schema);
 
       for (const [key, value] of Object.entries(config)) {
-        validateItem(key, value, schema);
+        validateItem(key, value, schema, value);
       }
     })
     .catch((e) => {

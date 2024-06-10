@@ -1,5 +1,5 @@
 - key: BAP
-  type: Object
+  type: object
   required: true
   properties:
     - key: flows
@@ -16,15 +16,15 @@
           type: string
           required: true
         - key: sessionData
-          type: Object
+          type: object
           required: true
         - key: protocol
-          type: Object
+          type: object
           required: true
           properties:
             - key:
                 type: string
-              type: Object
+              type: object
               required: true
               properties:
                 - key: sessionData
@@ -58,7 +58,7 @@
               type: string
               required: true
             - key: callback
-              type: Object
+              type: object
               required: true
               properties:
                 - key: config
@@ -72,8 +72,8 @@
                   required: true
 
 - key: BPP
-  type: Object
-  require: true
+  type: object
+  required: true
   properties:
     - key: flows
       type: Array
@@ -89,15 +89,15 @@
           type: string
           required: true
         - key: sessionData
-          type: Object
+          type: object
           required: true
         - key: protocol
-          type: Object
+          type: object
           required: true
           properties:
             - key:
                 type: string
-              type: Object
+              type: object
               required: true
               properties:
                 - key: sessionData
@@ -121,17 +121,17 @@
                       type: string
                       required: true
         - key: api
-          type: Object
+          type: object
           required: true
           properties:
             - key:
                 type: string
-            - type: Object
+            - type: object
               required: true
               properties:
                 - key:
                     type: string
-                  type: Object
+                  type: object
                   required: true
                   properties:
                     - key: service_url
@@ -160,12 +160,12 @@
               type: string
               required: true
             # - key: condition
-            #   type: Object
+            #   type: object
             #   required: false
             #   properties:
             #     - key: opertaion
             #       required: true
-            #       type: Object
+            #       type: object
             #       properties:
             #         - key:
             #             type: string
@@ -174,4 +174,4 @@
 
 - key: version
   type: string
-  require: true
+  required: true

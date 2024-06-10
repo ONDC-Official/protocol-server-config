@@ -645,6 +645,90 @@ BAP:
             - beckn_key: message.intent.payment.tags
               value: session.paymentTagsSearch
               compute: buildTags(session.paymentTagsSearch)
+        search_1:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: messageId
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.intent.category.descriptor.code
+              value: session.loanCategaory
+            - beckn_key: message.intent.provider.id
+              value: data.providerId
+            - beckn_key: message.intent.provider.items[0].id
+              value: session.itemId
+            - beckn_key: message.intent.provider.items[0].xinput.form.id
+              value: session.formId
+            - beckn_key: message.intent.provider.items[0].xinput.form_response.status
+              value: successStatus
+            - beckn_key: >-
+                message.intent.provider.items[0].xinput.form_response.submission_id
+              value: data.personalInfoSubmissionId
+            - beckn_key: message.intent.payment.collected_by
+              value: session.paymentCollectedBy
+            - beckn_key: message.intent.payment.tags
+              value: session.paymentTagsSearch
+              compute: buildTags(session.paymentTagsSearch)
+        search_2:
+          mapping:
+            - beckn_key: context.bap_id
+              value: session.bap_id
+            - beckn_key: context.bap_uri
+              value: session.bap_uri
+            - beckn_key: context.location.country.code
+              value: session.country
+            - beckn_key: context.location.city.code
+              value: session.cityCode
+            - beckn_key: context.transaction_id
+              value: session.currentTransactionId
+            - beckn_key: context.message_id
+              value: messageId
+            - beckn_key: context.timestamp
+              value: timestamp
+            - beckn_key: context.domain
+              value: session.domain
+            - beckn_key: context.version
+              value: session.version
+            - beckn_key: context.ttl
+              value: session.ttl
+            - beckn_key: context.action
+              value: action
+            - beckn_key: message.intent.category.descriptor.code
+              value: session.loanCategaory
+            - beckn_key: message.intent.provider.id
+              value: data.providerId
+            - beckn_key: message.intent.provider.items[0].id
+              value: session.itemId
+            - beckn_key: message.intent.provider.items[0].xinput.form.id
+              value: session.formId
+            - beckn_key: message.intent.provider.items[0].xinput.form_response.status
+              value: APPROVED
+            - beckn_key: >-
+                message.intent.provider.items[0].xinput.form_response.submission_id
+              value: data.personalInfoSubmissionId
+            - beckn_key: message.intent.payment.collected_by
+              value: session.paymentCollectedBy
+            - beckn_key: message.intent.payment.tags
+              value: session.paymentTagsSearch
+              compute: buildTags(session.paymentTagsSearch)
         select_loan:
           mapping:
             - beckn_key: context.bap_id
@@ -1060,6 +1144,20 @@ BAP:
                 xinput.form.url, id : xinput.form.id, itemId: id}
             - business_key: error
               extractionPath: error
+        on_search_1:
+          mapping:
+            - business_key: error
+              extractionPath: error
+        on_search_2:
+          mapping:
+            - business_key: providerId
+              extractionPath: message.order.provider.id
+            - business_key: formData
+              extractionPath: >-
+                message.order.items[]{formUrl : xinput.form.url, id :
+                xinput.form.id, itemId: id}
+            - business_key: error
+              extractionPath: error
         on_select_loan:
           mapping:
             - business_key: error
@@ -1131,17 +1229,17 @@ BAP:
             endpoint: mapper/ondc
             mode: ASYNC
             unsolicitedEndpoint: mapper/unsolicited
-        - config: select_loan
+        - config: search_1
           mode: SYNC
           callback:
-            config: on_select_loan
+            config: on_search_1
             endpoint: mapper/ondc
             mode: SYNC
             unsolicitedEndpoint: mapper/unsolicited
-        - config: select_approval
+        - config: search_2
           mode: ASYNC
           callback:
-            config: on_select_approval
+            config: on_search_2
             endpoint: mapper/ondc
             mode: ASYNC
             unsolicitedEndpoint: mapper/unsolicited

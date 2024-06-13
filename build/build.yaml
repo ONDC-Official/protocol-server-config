@@ -1185,7 +1185,7 @@ BAP:
                 xinput.form.id, itemId: id}
             - business_key: error
               extractionPath: error
-        on_select_2:
+        on_select_1:
           mapping:
             - business_key: providerId
               extractionPath: message.order.provider.id

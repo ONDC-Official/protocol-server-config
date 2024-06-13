@@ -161,9 +161,9 @@ protocol:
       - beckn_key: message.order.provider.id
         value: session.providerId
       - beckn_key: message.order.items[0].id
-        value: session.selectItemID
+        value: data.selectItemID
       - beckn_key: message.order.items[0].parent_item_id
-        value: session.parentItemId
+        value: data.parentItemId
 
   select_1:
     mapping:

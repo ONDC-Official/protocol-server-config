@@ -584,10 +584,8 @@ protocol:
 
   on_search_2:
     mapping:
-      - business_key: providerId
-        extractionPath: "message.order.provider.id"
-      - business_key: formData
-        extractionPath: "message.order.items[]{formUrl : xinput.form.url, id : xinput.form.id, itemId: id}"
+      - business_key: itemDetails
+        extractionPath: "message.catalog.providers[].items[?(parent_item_id)]{itemID: id, parentItemId: parent_item_id}"
       - business_key: error
         extractionPath: error
 

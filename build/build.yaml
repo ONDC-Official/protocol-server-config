@@ -1171,12 +1171,10 @@ BAP:
               extractionPath: error
         on_search_2:
           mapping:
-            - business_key: providerId
-              extractionPath: message.order.provider.id
-            - business_key: formData
+            - business_key: itemDetails
               extractionPath: >-
-                message.order.items[]{formUrl : xinput.form.url, id :
-                xinput.form.id, itemId: id}
+                message.catalog.providers[].items[?(parent_item_id)]{itemID: id,
+                parentItemId: parent_item_id}
             - business_key: error
               extractionPath: error
         on_select:

@@ -592,7 +592,7 @@ protocol:
   on_select:
     mapping:
       - business_key: formData
-        extractionPath: "message.order.items[]{formUrl : xinput.form.url, id : xinput.form.id, itemId: id}"
+        extractionPath: "message.order.items[]{mimeType: xinput.form.mime_type, formUrl : xinput.form.url, id : xinput.form.id, itemId: id}"
       - business_key: error
         extractionPath: error
 
@@ -601,14 +601,14 @@ protocol:
       - business_key: providerId
         extractionPath: "message.order.provider.id"
       - business_key: formData
-        extractionPath: "message.order.items[]{formUrl : xinput.form.url, id : xinput.form.id, itemId: id}"
+        extractionPath: "message.order.items[]{mimeType: xinput.form.mime_type, formUrl : xinput.form.url, id : xinput.form.id, itemId: id}"
       - business_key: error
         extractionPath: error
 
   on_init:
     mapping:
       - business_key: formData
-        extractionPath: "message.order.items[]{formUrl : xinput.form.url, id : xinput.form.id, itemId: id}"
+        extractionPath: "message.order.items[]{mimeType: xinput.form.mime_type, formUrl : xinput.form.url, id : xinput.form.id, itemId: id}"
       - business_key: error
         extractionPath: error
 
@@ -618,21 +618,21 @@ protocol:
         extractionPath: "message.order.payments[]{id: id}"
     mapping:
       - business_key: formData
-        extractionPath: "message.order.items[]{formUrl : xinput.form.url, id : xinput.form.id, itemId: id}"
+        extractionPath: "message.order.items[]{mimeType: xinput.form.mime_type, formUrl : xinput.form.url, id : xinput.form.id, itemId: id}"
       - business_key: error
         extractionPath: error
 
   on_init_2:
     mapping:
       - business_key: formData
-        extractionPath: "message.order.items[]{formUrl : xinput.form.url, id : xinput.form.id, itemId: id}"
+        extractionPath: "message.order.items[]{mimeType: xinput.form.mime_type, formUrl : xinput.form.url, id : xinput.form.id, itemId: id}"
       - business_key: error
         extractionPath: error
 
   on_init_3:
     mapping:
       - business_key: formData
-        extractionPath: "message.order.items[]{formUrl : xinput.form.url, id : xinput.form.id, itemId: id}"
+        extractionPath: "message.order.items[]{mimeType: xinput.form.mime_type, formUrl : xinput.form.url, id : xinput.form.id, itemId: id}"
       - business_key: error
         extractionPath: error
 

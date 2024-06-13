@@ -1181,8 +1181,8 @@ BAP:
           mapping:
             - business_key: formData
               extractionPath: >-
-                message.order.items[]{formUrl : xinput.form.url, id :
-                xinput.form.id, itemId: id}
+                message.order.items[]{mimeType: xinput.form.mime_type, formUrl :
+                xinput.form.url, id : xinput.form.id, itemId: id}
             - business_key: error
               extractionPath: error
         on_select_1:
@@ -1191,16 +1191,16 @@ BAP:
               extractionPath: message.order.provider.id
             - business_key: formData
               extractionPath: >-
-                message.order.items[]{formUrl : xinput.form.url, id :
-                xinput.form.id, itemId: id}
+                message.order.items[]{mimeType: xinput.form.mime_type, formUrl :
+                xinput.form.url, id : xinput.form.id, itemId: id}
             - business_key: error
               extractionPath: error
         on_init:
           mapping:
             - business_key: formData
               extractionPath: >-
-                message.order.items[]{formUrl : xinput.form.url, id :
-                xinput.form.id, itemId: id}
+                message.order.items[]{mimeType: xinput.form.mime_type, formUrl :
+                xinput.form.url, id : xinput.form.id, itemId: id}
             - business_key: error
               extractionPath: error
         on_init_1:
@@ -1210,24 +1210,24 @@ BAP:
           mapping:
             - business_key: formData
               extractionPath: >-
-                message.order.items[]{formUrl : xinput.form.url, id :
-                xinput.form.id, itemId: id}
+                message.order.items[]{mimeType: xinput.form.mime_type, formUrl :
+                xinput.form.url, id : xinput.form.id, itemId: id}
             - business_key: error
               extractionPath: error
         on_init_2:
           mapping:
             - business_key: formData
               extractionPath: >-
-                message.order.items[]{formUrl : xinput.form.url, id :
-                xinput.form.id, itemId: id}
+                message.order.items[]{mimeType: xinput.form.mime_type, formUrl :
+                xinput.form.url, id : xinput.form.id, itemId: id}
             - business_key: error
               extractionPath: error
         on_init_3:
           mapping:
             - business_key: formData
               extractionPath: >-
-                message.order.items[]{formUrl : xinput.form.url, id :
-                xinput.form.id, itemId: id}
+                message.order.items[]{mimeType: xinput.form.mime_type, formUrl :
+                xinput.form.url, id : xinput.form.id, itemId: id}
             - business_key: error
               extractionPath: error
         on_confirm:

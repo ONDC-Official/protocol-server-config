@@ -591,6 +591,8 @@ protocol:
 
   on_select:
     mapping:
+      - business_key: formData
+        extractionPath: "message.order.items[]{formUrl : xinput.form.url, id : xinput.form.id, itemId: id}"
       - business_key: error
         extractionPath: error
 

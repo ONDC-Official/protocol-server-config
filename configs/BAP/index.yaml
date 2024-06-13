@@ -21,7 +21,7 @@ flows:
     shouldDispaly: true
     sessionData:
       loanCategaory: INVOICE_BASED_LOAN
-      version: "2.0.0"
+      version: "2.1.0"
       collectedBy: BAP
       paymentCollectedBy: BPP
       bankAccountNumber: "123456789"

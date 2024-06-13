@@ -131,9 +131,41 @@ protocol:
 
   select:
     mapping:
-      - beckn_key:
+      - beckn_key: context.bap_id
+        value: session.bap_id
+      - beckn_key: context.bap_uri
+        value: session.bap_uri
+      - beckn_key: context.bpp_id
+        value: session.bpp_id
+      - beckn_key: context.bpp_uri
+        value: session.bpp_uri
+      - beckn_key: context.location.country.code
+        value: session.country
+      - beckn_key: context.location.city.code
+        value: session.cityCode
+      - beckn_key: context.transaction_id
+        value: session.currentTransactionId
+      - beckn_key: context.message_id
+        value: messageId
+      - beckn_key: context.timestamp
+        value: timestamp
+      - beckn_key: context.domain
+        value: session.domain
+      - beckn_key: context.version
+        value: session.version
+      - beckn_key: context.ttl
+        value: session.ttl
+      - beckn_key: context.action
+        value: action
 
-  select_loan:
+      - beckn_key: message.order.provider.id
+        value: session.providerId
+      - beckn_key: message.order.items[0].id
+        value: session.itemId
+      - beckn_key: message.order.items[0].parent_item_id
+        value: session.parentItemId
+
+  select_1:
     mapping:
       - beckn_key: context.bap_id
         value: session.bap_id
@@ -166,94 +198,16 @@ protocol:
         value: session.providerId
       - beckn_key: message.order.items[0].id
         value: session.itemId
+      - beckn_key: message.order.items[0].parent_item_id
+        value: session.parentItemId
       - beckn_key: message.order.items[0].xinput.form.id
-        value: session.formId
+        value: session.formIdAmountAdjustForm
       - beckn_key: message.order.items[0].xinput.form_response.status
-        value: successStatus
-      - beckn_key: message.order.items[0].xinput.form_response.submission_id
-        value: data.personalInfoSubmissionId
-
-  select_approval:
-    mapping:
-      - beckn_key: context.bap_id
-        value: session.bap_id
-      - beckn_key: context.bap_uri
-        value: session.bap_uri
-      - beckn_key: context.bpp_id
-        value: session.bpp_id
-      - beckn_key: context.bpp_uri
-        value: session.bpp_uri
-      - beckn_key: context.location.country.code
-        value: session.country
-      - beckn_key: context.location.city.code
-        value: session.cityCode
-      - beckn_key: context.transaction_id
-        value: session.currentTransactionId
-      - beckn_key: context.message_id
-        value: messageId
-      - beckn_key: context.timestamp
-        value: timestamp
-      - beckn_key: context.domain
-        value: session.domain
-      - beckn_key: context.version
-        value: session.version
-      - beckn_key: context.ttl
-        value: session.ttl
-      - beckn_key: context.action
-        value: action
-
-      - beckn_key: message.order.provider.id
-        value: session.providerId
-      - beckn_key: message.order.items[0].id
-        value: session.itemId
-      - beckn_key: message.order.items[0].xinput.form.id
-        value: session.formId
-      - beckn_key: message.order.items[0].xinput.form_response.status
-        value: data.consentStatus
-      - beckn_key: message.order.items[0].xinput.form_response.submission_id
-        value: session.personalInfoSubmissionId
-
-  select_after_amount_adjust:
-    mapping:
-      - beckn_key: context.bap_id
-        value: session.bap_id
-      - beckn_key: context.bap_uri
-        value: session.bap_uri
-      - beckn_key: context.bpp_id
-        value: session.bpp_id
-      - beckn_key: context.bpp_uri
-        value: session.bpp_uri
-      - beckn_key: context.location.country.code
-        value: session.country
-      - beckn_key: context.location.city.code
-        value: session.cityCode
-      - beckn_key: context.transaction_id
-        value: session.currentTransactionId
-      - beckn_key: context.message_id
-        value: messageId
-      - beckn_key: context.timestamp
-        value: timestamp
-      - beckn_key: context.domain
-        value: session.domain
-      - beckn_key: context.version
-        value: session.version
-      - beckn_key: context.ttl
-        value: session.ttl
-      - beckn_key: context.action
-        value: action
-
-      - beckn_key: message.order.provider.id
-        value: session.providerId
-      - beckn_key: message.order.items[0].id
-        value: session.itemId
-      - beckn_key: message.order.items[0].xinput.form.id
-        value: data.formIdAmountAdjustForm
-      - beckn_key: message.order.items[0].xinput.form_response.status
-        value: successStatus
+        value: "SUCCESS"
       - beckn_key: message.order.items[0].xinput.form_response.submission_id
         value: data.adjustAmountSubmissionId
 
-  init_kyc:
+  init:
     mapping:
       - beckn_key: context.bap_id
         value: session.bap_id
@@ -286,17 +240,17 @@ protocol:
         value: session.providerId
       - beckn_key: message.order.items[0].id
         value: session.itemId
+      - beckn_key: message.order.items[0].parent_item_id
+        value: session.parentItemId
       - beckn_key: message.order.items[0].xinput.form.id
-        value: data.kycFormId
+        value: session.customerInfoFormId
       - beckn_key: message.order.items[0].xinput.form_response.status
-        value: successStatus
+        value: "SUCCESS"
       - beckn_key: message.order.items[0].xinput.form_response.submission_id
-        value: data.kycSubmissionId
+        value: data.customerInfoSubmissionId
 
       - beckn_key: message.order.payments[0].collected_by
         value: session.collectedBy
-      - beckn_key: message.order.payments[0].status
-        value: data.paymentStatus
       - beckn_key: message.order.payments[0].type
         value: data.paymentType
       - beckn_key: message.order.payments[0].params.bank_code
@@ -309,7 +263,7 @@ protocol:
         value: data.paymentTagsInit
         compute: buildTags(data.paymentTagsInit)
 
-  init_personal_loan:
+  init_1:
     mapping:
       - beckn_key: context.bap_id
         value: session.bap_id
@@ -342,10 +296,68 @@ protocol:
         value: session.providerId
       - beckn_key: message.order.items[0].id
         value: session.itemId
+      - beckn_key: message.order.items[0].parent_item_id
+        value: session.parentItemId
       - beckn_key: message.order.items[0].xinput.form.id
-        value: data.accointDetailsFormId
+        value: session.kycFormId
       - beckn_key: message.order.items[0].xinput.form_response.status
-        value: successStatus
+        value: "SUCCESS"
+      - beckn_key: message.order.items[0].xinput.form_response.submission_id
+        value: data.kycSubmissionId
+
+      - beckn_key: message.order.payments[0].collected_by
+        value: session.collectedBy
+      - beckn_key: message.order.payments[0].type
+        value: data.paymentType
+      - beckn_key: message.order.payments[0].params.bank_code
+        value: session.bankCode
+      - beckn_key: message.order.payments[0].params.bank_account_number
+        value: session.bankAccountNumber
+      - beckn_key: message.order.payments[0].params.virtual_payment_address
+        value: session.virtualPaymentAddress
+      - beckn_key: message.order.payments[0].tags
+        value: data.paymentTagsInit
+        compute: buildTags(data.paymentTagsInit)
+
+  init_2:
+    mapping:
+      - beckn_key: context.bap_id
+        value: session.bap_id
+      - beckn_key: context.bap_uri
+        value: session.bap_uri
+      - beckn_key: context.bpp_id
+        value: session.bpp_id
+      - beckn_key: context.bpp_uri
+        value: session.bpp_uri
+      - beckn_key: context.location.country.code
+        value: session.country
+      - beckn_key: context.location.city.code
+        value: session.cityCode
+      - beckn_key: context.transaction_id
+        value: session.currentTransactionId
+      - beckn_key: context.message_id
+        value: messageId
+      - beckn_key: context.timestamp
+        value: timestamp
+      - beckn_key: context.domain
+        value: session.domain
+      - beckn_key: context.version
+        value: session.version
+      - beckn_key: context.ttl
+        value: session.ttl
+      - beckn_key: context.action
+        value: action
+
+      - beckn_key: message.order.provider.id
+        value: session.providerId
+      - beckn_key: message.order.items[0].id
+        value: session.itemId
+      - beckn_key: message.order.items[0].parent_item_id
+        value: session.parentItemId
+      - beckn_key: message.order.items[0].xinput.form.id
+        value: session.accointDetailsFormId
+      - beckn_key: message.order.items[0].xinput.form_response.status
+        value: "SUCCESS"
       - beckn_key: message.order.items[0].xinput.form_response.submission_id
         value: data.accointDetailsFormSubmissionId
 
@@ -353,8 +365,6 @@ protocol:
         value: session.paymentID[0].id
       - beckn_key: message.order.payments[0].collected_by
         value: session.collectedBy
-      - beckn_key: message.order.payments[0].status
-        value: data.paymentStatus
       - beckn_key: message.order.payments[0].type
         value: data.paymentType
       - beckn_key: message.order.payments[0].params.bank_code
@@ -367,7 +377,7 @@ protocol:
         value: data.paymentTagsInit
         compute: buildTags(data.paymentTagsInit)
 
-  init_with_account_details:
+  init_3:
     mapping:
       - beckn_key: context.bap_id
         value: session.bap_id
@@ -400,10 +410,12 @@ protocol:
         value: session.providerId
       - beckn_key: message.order.items[0].id
         value: session.itemId
+      - beckn_key: message.order.items[0].parent_item_id
+        value: session.parentItemId
       - beckn_key: message.order.items[0].xinput.form.id
-        value: data.eMandateDetailsFormId
+        value: session.eMandateDetailsFormId
       - beckn_key: message.order.items[0].xinput.form_response.status
-        value: successStatus
+        value: "SUCCESS"
       - beckn_key: message.order.items[0].xinput.form_response.submission_id
         value: data.eMandateDetailsSubmissionId
 
@@ -411,8 +423,6 @@ protocol:
         value: session.paymentID[0].id
       - beckn_key: message.order.payments[0].collected_by
         value: session.collectedBy
-      - beckn_key: message.order.payments[0].status
-        value: data.paymentStatus
       - beckn_key: message.order.payments[0].type
         value: data.paymentType
       - beckn_key: message.order.payments[0].params.bank_code
@@ -422,8 +432,8 @@ protocol:
       - beckn_key: message.order.payments[0].params.virtual_payment_address
         value: session.virtualPaymentAddress
       - beckn_key: message.order.payments[0].tags
-        value: session.paymentTagsInit
-        compute: buildTags(session.paymentTagsInit)
+        value: data.paymentTagsInit
+        compute: buildTags(data.paymentTagsInit)
 
   confirm:
     mapping:
@@ -458,10 +468,12 @@ protocol:
         value: session.providerId
       - beckn_key: message.order.items[0].id
         value: session.itemId
+      - beckn_key: message.order.items[0].parent_item_id
+        value: session.parentItemId
       - beckn_key: message.order.items[0].xinput.form.id
         value: data.loanAgreementFormId
       - beckn_key: message.order.items[0].xinput.form_response.status
-        value: successStatus
+        value: "SUCCESS"
       - beckn_key: message.order.items[0].xinput.form_response.submission_id
         value: data.loanAgreementSubmissionId
 
@@ -469,8 +481,6 @@ protocol:
         value: session.paymentID[0].id
       - beckn_key: message.order.payments[0].collected_by
         value: session.collectedBy
-      - beckn_key: message.order.payments[0].status
-        value: data.paymentStatus
       - beckn_key: message.order.payments[0].type
         value: data.paymentType
       - beckn_key: message.order.payments[0].params.bank_code
@@ -480,8 +490,8 @@ protocol:
       - beckn_key: message.order.payments[0].params.virtual_payment_address
         value: session.virtualPaymentAddress
       - beckn_key: message.order.payments[0].tags
-        value: session.paymentTagsInit
-        compute: buildTags(session.paymentTagsInit)
+        value: data.paymentTagsInit
+        compute: buildTags(data.paymentTagsInit)
 
   status:
     mapping:
@@ -581,12 +591,12 @@ protocol:
       - business_key: error
         extractionPath: error
 
-  on_select_loan:
+  on_select:
     mapping:
       - business_key: error
         extractionPath: error
 
-  on_select_approval:
+  on_select_2:
     mapping:
       - business_key: providerId
         extractionPath: "message.order.provider.id"
@@ -595,14 +605,14 @@ protocol:
       - business_key: error
         extractionPath: error
 
-  on_select_after_amount_adjust:
+  on_init:
     mapping:
       - business_key: formData
         extractionPath: "message.order.items[]{formUrl : xinput.form.url, id : xinput.form.id, itemId: id}"
       - business_key: error
         extractionPath: error
 
-  on_init_kyc:
+  on_init_1:
     sessionData:
       - business_key: paymentID
         extractionPath: "message.order.payments[]{id: id}"
@@ -612,14 +622,14 @@ protocol:
       - business_key: error
         extractionPath: error
 
-  on_init_personal_loan:
+  on_init_2:
     mapping:
       - business_key: formData
         extractionPath: "message.order.items[]{formUrl : xinput.form.url, id : xinput.form.id, itemId: id}"
       - business_key: error
         extractionPath: error
 
-  on_init_with_account_details:
+  on_init_3:
     mapping:
       - business_key: formData
         extractionPath: "message.order.items[]{formUrl : xinput.form.url, id : xinput.form.id, itemId: id}"

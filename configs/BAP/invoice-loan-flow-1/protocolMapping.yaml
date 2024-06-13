@@ -161,7 +161,7 @@ protocol:
       - beckn_key: message.order.provider.id
         value: session.providerId
       - beckn_key: message.order.items[0].id
-        value: session.itemId
+        value: session.selectItemID
       - beckn_key: message.order.items[0].parent_item_id
         value: session.parentItemId
 
@@ -197,7 +197,7 @@ protocol:
       - beckn_key: message.order.provider.id
         value: session.providerId
       - beckn_key: message.order.items[0].id
-        value: session.itemId
+        value: session.selectItemID
       - beckn_key: message.order.items[0].parent_item_id
         value: session.parentItemId
       - beckn_key: message.order.items[0].xinput.form.id
@@ -239,7 +239,7 @@ protocol:
       - beckn_key: message.order.provider.id
         value: session.providerId
       - beckn_key: message.order.items[0].id
-        value: session.itemId
+        value: session.selectItemID
       - beckn_key: message.order.items[0].parent_item_id
         value: session.parentItemId
       - beckn_key: message.order.items[0].xinput.form.id
@@ -295,7 +295,7 @@ protocol:
       - beckn_key: message.order.provider.id
         value: session.providerId
       - beckn_key: message.order.items[0].id
-        value: session.itemId
+        value: session.selectItemID
       - beckn_key: message.order.items[0].parent_item_id
         value: session.parentItemId
       - beckn_key: message.order.items[0].xinput.form.id
@@ -351,7 +351,7 @@ protocol:
       - beckn_key: message.order.provider.id
         value: session.providerId
       - beckn_key: message.order.items[0].id
-        value: session.itemId
+        value: session.selectItemID
       - beckn_key: message.order.items[0].parent_item_id
         value: session.parentItemId
       - beckn_key: message.order.items[0].xinput.form.id
@@ -409,7 +409,7 @@ protocol:
       - beckn_key: message.order.provider.id
         value: session.providerId
       - beckn_key: message.order.items[0].id
-        value: session.itemId
+        value: session.selectItemID
       - beckn_key: message.order.items[0].parent_item_id
         value: session.parentItemId
       - beckn_key: message.order.items[0].xinput.form.id
@@ -467,7 +467,7 @@ protocol:
       - beckn_key: message.order.provider.id
         value: session.providerId
       - beckn_key: message.order.items[0].id
-        value: session.itemId
+        value: session.selectItemID
       - beckn_key: message.order.items[0].parent_item_id
         value: session.parentItemId
       - beckn_key: message.order.items[0].xinput.form.id

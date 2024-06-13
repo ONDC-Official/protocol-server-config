@@ -768,7 +768,7 @@ BAP:
             - beckn_key: message.order.provider.id
               value: session.providerId
             - beckn_key: message.order.items[0].id
-              value: session.itemId
+              value: session.selectItemID
             - beckn_key: message.order.items[0].parent_item_id
               value: session.parentItemId
         select_1:
@@ -802,7 +802,7 @@ BAP:
             - beckn_key: message.order.provider.id
               value: session.providerId
             - beckn_key: message.order.items[0].id
-              value: session.itemId
+              value: session.selectItemID
             - beckn_key: message.order.items[0].parent_item_id
               value: session.parentItemId
             - beckn_key: message.order.items[0].xinput.form.id
@@ -842,7 +842,7 @@ BAP:
             - beckn_key: message.order.provider.id
               value: session.providerId
             - beckn_key: message.order.items[0].id
-              value: session.itemId
+              value: session.selectItemID
             - beckn_key: message.order.items[0].parent_item_id
               value: session.parentItemId
             - beckn_key: message.order.items[0].xinput.form.id
@@ -895,7 +895,7 @@ BAP:
             - beckn_key: message.order.provider.id
               value: session.providerId
             - beckn_key: message.order.items[0].id
-              value: session.itemId
+              value: session.selectItemID
             - beckn_key: message.order.items[0].parent_item_id
               value: session.parentItemId
             - beckn_key: message.order.items[0].xinput.form.id
@@ -948,7 +948,7 @@ BAP:
             - beckn_key: message.order.provider.id
               value: session.providerId
             - beckn_key: message.order.items[0].id
-              value: session.itemId
+              value: session.selectItemID
             - beckn_key: message.order.items[0].parent_item_id
               value: session.parentItemId
             - beckn_key: message.order.items[0].xinput.form.id
@@ -1003,7 +1003,7 @@ BAP:
             - beckn_key: message.order.provider.id
               value: session.providerId
             - beckn_key: message.order.items[0].id
-              value: session.itemId
+              value: session.selectItemID
             - beckn_key: message.order.items[0].parent_item_id
               value: session.parentItemId
             - beckn_key: message.order.items[0].xinput.form.id
@@ -1058,7 +1058,7 @@ BAP:
             - beckn_key: message.order.provider.id
               value: session.providerId
             - beckn_key: message.order.items[0].id
-              value: session.itemId
+              value: session.selectItemID
             - beckn_key: message.order.items[0].parent_item_id
               value: session.parentItemId
             - beckn_key: message.order.items[0].xinput.form.id

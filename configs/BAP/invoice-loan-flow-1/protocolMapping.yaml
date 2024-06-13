@@ -203,7 +203,7 @@ protocol:
       - beckn_key: message.order.items[0].xinput.form.id
         value: session.formIdAmountAdjustForm
       - beckn_key: message.order.items[0].xinput.form_response.status
-        value: "SUCCESS"
+        value: "'SUCCESS'"
       - beckn_key: message.order.items[0].xinput.form_response.submission_id
         value: data.adjustAmountSubmissionId
 
@@ -245,7 +245,7 @@ protocol:
       - beckn_key: message.order.items[0].xinput.form.id
         value: session.customerInfoFormId
       - beckn_key: message.order.items[0].xinput.form_response.status
-        value: "SUCCESS"
+        value: "'SUCCESS'"
       - beckn_key: message.order.items[0].xinput.form_response.submission_id
         value: data.customerInfoSubmissionId
 
@@ -301,7 +301,7 @@ protocol:
       - beckn_key: message.order.items[0].xinput.form.id
         value: session.kycFormId
       - beckn_key: message.order.items[0].xinput.form_response.status
-        value: "SUCCESS"
+        value: "'SUCCESS'"
       - beckn_key: message.order.items[0].xinput.form_response.submission_id
         value: data.kycSubmissionId
 
@@ -357,7 +357,7 @@ protocol:
       - beckn_key: message.order.items[0].xinput.form.id
         value: session.accointDetailsFormId
       - beckn_key: message.order.items[0].xinput.form_response.status
-        value: "SUCCESS"
+        value: "'SUCCESS'"
       - beckn_key: message.order.items[0].xinput.form_response.submission_id
         value: data.accointDetailsFormSubmissionId
 
@@ -415,7 +415,7 @@ protocol:
       - beckn_key: message.order.items[0].xinput.form.id
         value: session.eMandateDetailsFormId
       - beckn_key: message.order.items[0].xinput.form_response.status
-        value: "SUCCESS"
+        value: "'SUCCESS'"
       - beckn_key: message.order.items[0].xinput.form_response.submission_id
         value: data.eMandateDetailsSubmissionId
 
@@ -473,7 +473,7 @@ protocol:
       - beckn_key: message.order.items[0].xinput.form.id
         value: data.loanAgreementFormId
       - beckn_key: message.order.items[0].xinput.form_response.status
-        value: "SUCCESS"
+        value: "'SUCCESS'"
       - beckn_key: message.order.items[0].xinput.form_response.submission_id
         value: data.loanAgreementSubmissionId
 

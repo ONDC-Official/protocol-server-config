@@ -808,7 +808,7 @@ BAP:
             - beckn_key: message.order.items[0].xinput.form.id
               value: session.formIdAmountAdjustForm
             - beckn_key: message.order.items[0].xinput.form_response.status
-              value: SUCCESS
+              value: '''SUCCESS'''
             - beckn_key: message.order.items[0].xinput.form_response.submission_id
               value: data.adjustAmountSubmissionId
         init:
@@ -848,7 +848,7 @@ BAP:
             - beckn_key: message.order.items[0].xinput.form.id
               value: session.customerInfoFormId
             - beckn_key: message.order.items[0].xinput.form_response.status
-              value: SUCCESS
+              value: '''SUCCESS'''
             - beckn_key: message.order.items[0].xinput.form_response.submission_id
               value: data.customerInfoSubmissionId
             - beckn_key: message.order.payments[0].collected_by
@@ -901,7 +901,7 @@ BAP:
             - beckn_key: message.order.items[0].xinput.form.id
               value: session.kycFormId
             - beckn_key: message.order.items[0].xinput.form_response.status
-              value: SUCCESS
+              value: '''SUCCESS'''
             - beckn_key: message.order.items[0].xinput.form_response.submission_id
               value: data.kycSubmissionId
             - beckn_key: message.order.payments[0].collected_by
@@ -954,7 +954,7 @@ BAP:
             - beckn_key: message.order.items[0].xinput.form.id
               value: session.accointDetailsFormId
             - beckn_key: message.order.items[0].xinput.form_response.status
-              value: SUCCESS
+              value: '''SUCCESS'''
             - beckn_key: message.order.items[0].xinput.form_response.submission_id
               value: data.accointDetailsFormSubmissionId
             - beckn_key: message.order.payments[0].id
@@ -1009,7 +1009,7 @@ BAP:
             - beckn_key: message.order.items[0].xinput.form.id
               value: session.eMandateDetailsFormId
             - beckn_key: message.order.items[0].xinput.form_response.status
-              value: SUCCESS
+              value: '''SUCCESS'''
             - beckn_key: message.order.items[0].xinput.form_response.submission_id
               value: data.eMandateDetailsSubmissionId
             - beckn_key: message.order.payments[0].id
@@ -1064,7 +1064,7 @@ BAP:
             - beckn_key: message.order.items[0].xinput.form.id
               value: data.loanAgreementFormId
             - beckn_key: message.order.items[0].xinput.form_response.status
-              value: SUCCESS
+              value: '''SUCCESS'''
             - beckn_key: message.order.items[0].xinput.form_response.submission_id
               value: data.loanAgreementSubmissionId
             - beckn_key: message.order.payments[0].id

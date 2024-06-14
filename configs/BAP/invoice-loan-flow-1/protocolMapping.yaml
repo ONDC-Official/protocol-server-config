@@ -307,6 +307,8 @@ protocol:
       - beckn_key: message.order.items[0].xinput.form_response.submission_id
         value: data.kycSubmissionId
 
+      - beckn_key: message.order.payments[0].id
+        value: session.paymentID[0].id
       - beckn_key: message.order.payments[0].collected_by
         value: session.collectedBy
       - beckn_key: message.order.payments[0].status
@@ -616,6 +618,9 @@ protocol:
         extractionPath: error
 
   on_init:
+    sessionData:
+      - business_key: paymentID
+        extractionPath: "message.order.payments[]{id: id}"
     mapping:
       - business_key: formData
         extractionPath: "message.order.items[]{mimeType: xinput.form.mime_type, formUrl : xinput.form.url, id : xinput.form.id, itemId: id}"
@@ -623,9 +628,6 @@ protocol:
         extractionPath: error
 
   on_init_1:
-    sessionData:
-      - business_key: paymentID
-        extractionPath: "message.order.payments[]{id: id}"
     mapping:
       - business_key: formData
         extractionPath: "message.order.items[]{mimeType: xinput.form.mime_type, formUrl : xinput.form.url, id : xinput.form.id, itemId: id}"

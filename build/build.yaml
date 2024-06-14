@@ -1246,6 +1246,11 @@ BAP:
               extractionPath: error
         on_status:
           mapping:
+            - business_key: formData
+              extractionPath: >-
+                message.order.items[]{id: xinput.form.id, status:
+                xinput.form_response.status, submissionId: 
+                xinput.form_response.submission_id}
             - business_key: error
               extractionPath: error
         on_update:

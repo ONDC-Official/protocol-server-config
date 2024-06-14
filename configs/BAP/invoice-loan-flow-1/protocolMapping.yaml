@@ -251,6 +251,8 @@ protocol:
 
       - beckn_key: message.order.payments[0].collected_by
         value: session.collectedBy
+      - beckn_key: message.order.payments[0].status
+        value: data.paymentStatus
       - beckn_key: message.order.payments[0].type
         value: data.paymentType
       - beckn_key: message.order.payments[0].params.bank_code
@@ -307,6 +309,8 @@ protocol:
 
       - beckn_key: message.order.payments[0].collected_by
         value: session.collectedBy
+      - beckn_key: message.order.payments[0].status
+        value: data.paymentStatusInit1
       - beckn_key: message.order.payments[0].type
         value: data.paymentType
       - beckn_key: message.order.payments[0].params.bank_code
@@ -363,6 +367,8 @@ protocol:
 
       - beckn_key: message.order.payments[0].id
         value: session.paymentID[0].id
+      - beckn_key: message.order.payments[0].status
+        value: data.paymentStatusInit1
       - beckn_key: message.order.payments[0].collected_by
         value: session.collectedBy
       - beckn_key: message.order.payments[0].type
@@ -421,6 +427,8 @@ protocol:
 
       - beckn_key: message.order.payments[0].id
         value: session.paymentID[0].id
+      - beckn_key: message.order.payments[0].status
+        value: data.paymentStatusInit1
       - beckn_key: message.order.payments[0].collected_by
         value: session.collectedBy
       - beckn_key: message.order.payments[0].type

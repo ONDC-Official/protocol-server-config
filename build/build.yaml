@@ -1079,8 +1079,10 @@ BAP:
               value: session.paymentID[0].id
             - beckn_key: message.order.payments[0].collected_by
               value: session.collectedBy
+            - beckn_key: message.order.payments[0].status
+              value: data.paymentStatusConfirm
             - beckn_key: message.order.payments[0].type
-              value: data.paymentType
+              value: data.paymentTypeConfirm
             - beckn_key: message.order.payments[0].params.bank_code
               value: session.bankCode
             - beckn_key: message.order.payments[0].params.bank_account_number

@@ -1243,6 +1243,9 @@ BAP:
             - business_key: error
               extractionPath: error
         on_confirm:
+          sessionData:
+            - business_key: orderId
+              extractionPath: message.order.id
           mapping:
             - business_key: orderId
               extractionPath: message.order.id

@@ -221,7 +221,7 @@ properties:
                           value: &ref_1
                             description: Describes a numerical value in decimal form
                             type: string
-                            pattern: '[+-]?([0-9]*[.])?[0-9]+'
+                            pattern: "[+-]?([0-9]*[.])?[0-9]+"
                           estimated_value: *ref_1
                           computed_value: *ref_1
                           range:
@@ -960,6 +960,11 @@ properties:
                             - ON-FULFILLMENT
                             - POST-FULFILLMENT
                             - ON-ORDER
+                            - PRE_ORDER
+                            - PRE_FULFILLMENT
+                            - ON_FULFILLMENT
+                            - POST_FULFILLMENT
+                            - ON_ORDER
                         status:
                           type: string
                           enum:

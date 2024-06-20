@@ -1352,8 +1352,6 @@ BAP:
     - summary: Missed-EMI Payment
       id: invoice-loan-missed-emi-flow-1
       shouldDispaly: false
-      sessionData:
-        additionalFlowStartPoint: update
       protocol:
         update:
           mapping:

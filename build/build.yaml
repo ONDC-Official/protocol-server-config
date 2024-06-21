@@ -19096,6 +19096,7 @@ BPP:
                                     enum:
                                       - PAID
                                       - NOT-PAID
+                                      - DELAYED
                                   time: *ref_335
                                   tags:
                                     type: array

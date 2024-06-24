@@ -24,6 +24,7 @@ protocol:
       # - beckn_key: context.action
       #   value: action
       - beckn_key: context
+        value: session
         compute: buildContext(session, action)
 
       - beckn_key: message.intent.category.descriptor.code

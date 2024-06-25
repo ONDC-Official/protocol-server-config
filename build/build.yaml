@@ -679,7 +679,7 @@ BAP:
             - beckn_key: message.order.payments[0].id
               value: session.paymentID[0].id
             - beckn_key: message.order.payments[0].status
-              value: data.paymentStatusInit1
+              value: session.paymentStatusInit1 || session.paymentStatus
             - beckn_key: message.order.payments[0].collected_by
               value: session.collectedBy
             - beckn_key: message.order.payments[0].type

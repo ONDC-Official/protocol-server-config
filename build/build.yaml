@@ -637,7 +637,7 @@ BAP:
             - beckn_key: message.intent.payment.tags
               value: session.paymentTagsSearch
               compute: buildTags(session.paymentTagsSearch)
-        select_new:
+        select:
           mapping:
             - beckn_key: context
               value: session
@@ -654,71 +654,6 @@ BAP:
               value: session.selectFormStatus
             - beckn_key: message.order.items[0].xinput.form_response.submission_id
               value: data.adjustAmountSubmissionId
-        select:
-          mapping:
-            - beckn_key: context
-              value: session
-              compute: buildContext(session, action)
-            - beckn_key: message.order.provider.id
-              value: session.providerId
-            - beckn_key: message.order.items[0].id
-              value: data.selectItemID
-            - beckn_key: message.order.items[0].parent_item_id
-              value: data.parentItemId
-        select_1:
-          mapping:
-            - beckn_key: context
-              value: session
-              compute: buildContext(session, action)
-            - beckn_key: message.order.provider.id
-              value: session.providerId
-            - beckn_key: message.order.items[0].id
-              value: session.selectItemID
-            - beckn_key: message.order.items[0].parent_item_id
-              value: session.parentItemId
-            - beckn_key: message.order.items[0].xinput.form.id
-              value: session.formIdAmountAdjustForm
-            - beckn_key: message.order.items[0].xinput.form_response.status
-              value: '''SUCCESS'''
-            - beckn_key: message.order.items[0].xinput.form_response.submission_id
-              value: data.adjustAmountSubmissionId
-        init_new:
-          mapping:
-            - beckn_key: context
-              value: session
-              compute: buildContext(session, action)
-            - beckn_key: message.order.provider.id
-              value: session.providerId
-            - beckn_key: message.order.items[0].id
-              value: session.selectItemID
-            - beckn_key: message.order.items[0].parent_item_id
-              value: session.parentItemId
-            - beckn_key: message.order.items[0].xinput.form.id
-              value: session.eMandateDetailsFormId
-            - beckn_key: message.order.items[0].xinput.form_response.status
-              value: session.initFormStatus
-            - beckn_key: message.order.items[0].xinput.form_response.submission_id
-              value: >-
-                session.eMandateDetailsSubmissionId ||
-                session.accointDetailsFormSubmissionId ||
-                session.kycSubmissionId || session.customerInfoSubmissionId
-            - beckn_key: message.order.payments[0].id
-              value: session.paymentID[0].id
-            - beckn_key: message.order.payments[0].status
-              value: data.paymentStatusInit1
-            - beckn_key: message.order.payments[0].collected_by
-              value: session.collectedBy
-            - beckn_key: message.order.payments[0].type
-              value: data.paymentType
-            - beckn_key: message.order.payments[0].params.bank_code
-              value: session.bankCode
-            - beckn_key: message.order.payments[0].params.bank_account_number
-              value: session.bankAccountNumber
-            - beckn_key: message.order.payments[0].params.virtual_payment_address
-              value: session.virtualPaymentAddress
-            - beckn_key: message.order.payments[0].tags
-              value: data.paymentTagsInit
-              compute: buildTags(data.paymentTagsInit)
         init:
           mapping:
             - beckn_key: context
@@ -731,111 +666,16 @@ BAP:
             - beckn_key: message.order.items[0].parent_item_id
               value: session.parentItemId
             - beckn_key: message.order.items[0].xinput.form.id
-              value: session.customerInfoFormId
+              value: >-
+                session.eMandateDetailsFormId || session.accointDetailsFormId ||
+                session.kycFormId || session.customerInfoFormId
             - beckn_key: message.order.items[0].xinput.form_response.status
-              value: '''SUCCESS'''
+              value: session.initFormStatus
             - beckn_key: message.order.items[0].xinput.form_response.submission_id
-              value: data.customerInfoSubmissionId
-            - beckn_key: message.order.payments[0].collected_by
-              value: session.collectedBy
-            - beckn_key: message.order.payments[0].status
-              value: data.paymentStatus
-            - beckn_key: message.order.payments[0].type
-              value: data.paymentType
-            - beckn_key: message.order.payments[0].params.bank_code
-              value: session.bankCode
-            - beckn_key: message.order.payments[0].params.bank_account_number
-              value: session.bankAccountNumber
-            - beckn_key: message.order.payments[0].params.virtual_payment_address
-              value: session.virtualPaymentAddress
-            - beckn_key: message.order.payments[0].tags
-              value: data.paymentTagsInit
-              compute: buildTags(data.paymentTagsInit)
-        init_1:
-          mapping:
-            - beckn_key: context
-              value: session
-              compute: buildContext(session, action)
-            - beckn_key: message.order.provider.id
-              value: session.providerId
-            - beckn_key: message.order.items[0].id
-              value: session.selectItemID
-            - beckn_key: message.order.items[0].parent_item_id
-              value: session.parentItemId
-            - beckn_key: message.order.items[0].xinput.form.id
-              value: session.kycFormId
-            - beckn_key: message.order.items[0].xinput.form_response.status
-              value: '''SUCCESS'''
-            - beckn_key: message.order.items[0].xinput.form_response.submission_id
-              value: data.kycSubmissionId
-            - beckn_key: message.order.payments[0].id
-              value: session.paymentID[0].id
-            - beckn_key: message.order.payments[0].collected_by
-              value: session.collectedBy
-            - beckn_key: message.order.payments[0].status
-              value: data.paymentStatusInit1
-            - beckn_key: message.order.payments[0].type
-              value: data.paymentType
-            - beckn_key: message.order.payments[0].params.bank_code
-              value: session.bankCode
-            - beckn_key: message.order.payments[0].params.bank_account_number
-              value: session.bankAccountNumber
-            - beckn_key: message.order.payments[0].params.virtual_payment_address
-              value: session.virtualPaymentAddress
-            - beckn_key: message.order.payments[0].tags
-              value: data.paymentTagsInit
-              compute: buildTags(data.paymentTagsInit)
-        init_2:
-          mapping:
-            - beckn_key: context
-              value: session
-              compute: buildContext(session, action)
-            - beckn_key: message.order.provider.id
-              value: session.providerId
-            - beckn_key: message.order.items[0].id
-              value: session.selectItemID
-            - beckn_key: message.order.items[0].parent_item_id
-              value: session.parentItemId
-            - beckn_key: message.order.items[0].xinput.form.id
-              value: session.accointDetailsFormId
-            - beckn_key: message.order.items[0].xinput.form_response.status
-              value: '''SUCCESS'''
-            - beckn_key: message.order.items[0].xinput.form_response.submission_id
-              value: data.accointDetailsFormSubmissionId
-            - beckn_key: message.order.payments[0].id
-              value: session.paymentID[0].id
-            - beckn_key: message.order.payments[0].status
-              value: data.paymentStatusInit1
-            - beckn_key: message.order.payments[0].collected_by
-              value: session.collectedBy
-            - beckn_key: message.order.payments[0].type
-              value: data.paymentType
-            - beckn_key: message.order.payments[0].params.bank_code
-              value: session.bankCode
-            - beckn_key: message.order.payments[0].params.bank_account_number
-              value: session.bankAccountNumber
-            - beckn_key: message.order.payments[0].params.virtual_payment_address
-              value: session.virtualPaymentAddress
-            - beckn_key: message.order.payments[0].tags
-              value: data.paymentTagsInit
-              compute: buildTags(data.paymentTagsInit)
-        init_3:
-          mapping:
-            - beckn_key: context
-              value: session
-              compute: buildContext(session, action)
-            - beckn_key: message.order.provider.id
-              value: session.providerId
-            - beckn_key: message.order.items[0].id
-              value: session.selectItemID
-            - beckn_key: message.order.items[0].parent_item_id
-              value: session.parentItemId
-            - beckn_key: message.order.items[0].xinput.form.id
-              value: session.eMandateDetailsFormId
-            - beckn_key: message.order.items[0].xinput.form_response.status
-              value: '''SUCCESS'''
-            - beckn_key: message.order.items[0].xinput.form_response.submission_id
-              value: data.eMandateDetailsSubmissionId
+              value: >-
+                session.eMandateDetailsSubmissionId ||
+                session.accointDetailsFormSubmissionId ||
+                session.kycSubmissionId || session.customerInfoSubmissionId
             - beckn_key: message.order.payments[0].id
               value: session.paymentID[0].id
             - beckn_key: message.order.payments[0].status
@@ -928,27 +768,7 @@ BAP:
                 parentItemId: parent_item_id}
             - business_key: error
               extractionPath: error
-        on_search_1:
-          mapping:
-            - business_key: error
-              extractionPath: error
-        on_search_2:
-          mapping:
-            - business_key: itemDetails
-              extractionPath: >-
-                message.catalog.providers[].items[?(parent_item_id)]{itemID: id,
-                parentItemId: parent_item_id}
-            - business_key: error
-              extractionPath: error
         on_select:
-          mapping:
-            - business_key: formData
-              extractionPath: >-
-                message.order.items[]{mimeType: xinput.form.mime_type, formUrl :
-                xinput.form.url, id : xinput.form.id, itemId: id}
-            - business_key: error
-              extractionPath: error
-        on_select_1:
           mapping:
             - business_key: providerId
               extractionPath: message.order.provider.id
@@ -962,30 +782,6 @@ BAP:
           sessionData:
             - business_key: paymentID
               extractionPath: 'message.order.payments[]{id: id}'
-          mapping:
-            - business_key: formData
-              extractionPath: >-
-                message.order.items[]{mimeType: xinput.form.mime_type, formUrl :
-                xinput.form.url, id : xinput.form.id, itemId: id}
-            - business_key: error
-              extractionPath: error
-        on_init_1:
-          mapping:
-            - business_key: formData
-              extractionPath: >-
-                message.order.items[]{mimeType: xinput.form.mime_type, formUrl :
-                xinput.form.url, id : xinput.form.id, itemId: id}
-            - business_key: error
-              extractionPath: error
-        on_init_2:
-          mapping:
-            - business_key: formData
-              extractionPath: >-
-                message.order.items[]{mimeType: xinput.form.mime_type, formUrl :
-                xinput.form.url, id : xinput.form.id, itemId: id}
-            - business_key: error
-              extractionPath: error
-        on_init_3:
           mapping:
             - business_key: formData
               extractionPath: >-

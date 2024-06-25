@@ -826,7 +826,7 @@ BAP:
             mode: SYNC
             unsolicitedEndpoint: mapper/unsolicited
         - config: init
-          mode: ASYNC
+          mode: SYNC
           callback:
             config: on_init
             endpoint: mapper/ondc

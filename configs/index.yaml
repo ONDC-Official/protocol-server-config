@@ -7,4 +7,6 @@ schema:
 attributes:
   personal-loan-flow-1:
     $ref: ./attributes/personal-loan-flow-1/index.yaml
+  invoice-loan-flow-1:
+    $ref: ./attributes/invoice-loan-flow-1/index.yaml
 version: "1.0.0"

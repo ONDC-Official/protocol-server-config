@@ -895,10 +895,10 @@ BAP:
             - business_key: error
               extractionPath: error
       calls:
-        - config: updated
+        - config: update
           mode: ASYNC
           callback:
-            config: on_updated
+            config: on_update
             endpoint: mapper/ondc
             unsolicitedEndpoint: mapper/unsolicited
 BPP:

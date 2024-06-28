@@ -476,6 +476,8 @@ protocol:
     mapping:
       - business_key: formData
         extractionPath: "message.order.items[]{id: xinput.form.id, status: xinput.form_response.status, submissionId:  xinput.form_response.submission_id}"
+      - business_key: status
+        extractionPath: "message.order.fulfillments[].{state: state.descriptor.code}"
       - business_key: error
         extractionPath: error
 

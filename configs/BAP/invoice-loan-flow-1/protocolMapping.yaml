@@ -150,11 +150,11 @@ protocol:
         value: data.prePaymentLabel
 
   on_search:
-    sessionData:
-      - business_key: "formId"
-        extractionPath: "message.catalog.providers[].items[]{ id : xinput.form.id, itemId: id}"
-      - business_key: "providerId"
-        extractionPath: "message.catalog.providers[]{id: id}"
+    # sessionData:
+    #   - business_key: "formId"
+    #     extractionPath: "message.catalog.providers[].items[]{ id : xinput.form.id, itemId: id}"
+    #   - business_key: "providerId"
+    #     extractionPath: "message.catalog.providers[]{id: id}"
     mapping:
       - business_key: "bpp_id"
         extractionPath: context.bpp_id

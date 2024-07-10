@@ -683,7 +683,7 @@ BAP:
             - beckn_key: message.order.payments[0].collected_by
               value: session.collectedBy
             - beckn_key: message.order.payments[0].type
-              value: data.paymentType
+              value: session.paymentType
             - beckn_key: message.order.payments[0].params.bank_code
               value: session.bankCode
             - beckn_key: message.order.payments[0].params.bank_account_number
@@ -691,8 +691,8 @@ BAP:
             - beckn_key: message.order.payments[0].params.virtual_payment_address
               value: session.virtualPaymentAddress
             - beckn_key: message.order.payments[0].tags
-              value: data.paymentTagsInit
-              compute: buildTags(data.paymentTagsInit)
+              value: session.paymentTagsInit
+              compute: buildTags(session.paymentTagsInit)
         confirm:
           mapping:
             - beckn_key: context
@@ -705,19 +705,19 @@ BAP:
             - beckn_key: message.order.items[0].parent_item_id
               value: session.parentItemId
             - beckn_key: message.order.items[0].xinput.form.id
-              value: data.loanAgreementFormId
+              value: session.loanAgreementFormId
             - beckn_key: message.order.items[0].xinput.form_response.status
               value: '''SUCCESS'''
             - beckn_key: message.order.items[0].xinput.form_response.submission_id
-              value: data.loanAgreementSubmissionId
+              value: session.loanAgreementSubmissionId
             - beckn_key: message.order.payments[0].id
               value: session.paymentID[0].id
             - beckn_key: message.order.payments[0].collected_by
               value: session.collectedBy
             - beckn_key: message.order.payments[0].status
-              value: data.paymentStatusConfirm
+              value: session.paymentStatusConfirm
             - beckn_key: message.order.payments[0].type
-              value: data.paymentTypeConfirm
+              value: session.paymentTypeConfirm
             - beckn_key: message.order.payments[0].params.bank_code
               value: session.bankCode
             - beckn_key: message.order.payments[0].params.bank_account_number
@@ -725,8 +725,8 @@ BAP:
             - beckn_key: message.order.payments[0].params.virtual_payment_address
               value: session.virtualPaymentAddress
             - beckn_key: message.order.payments[0].tags
-              value: data.paymentTagsInit
-              compute: buildTags(data.paymentTagsInit)
+              value: session.paymentTagsInit
+              compute: buildTags(session.paymentTagsInit)
         status:
           mapping:
             - beckn_key: context

@@ -1,3 +1,9 @@
+unsolicited:
+  - config: "on_status"
+    endpoint: "mapper/unsolicited"
+  - config: "on_update"
+    endpoint: "mapper/unsolicited"
+
 calls:
   - config: "search"
     mode: "ASYNC"
@@ -5,20 +11,6 @@ calls:
       config: "on_search"
       endpoint: "mapper/ondc"
       unsolicitedEndpoint: "mapper/unsolicited"
-  # - config: "search_1"
-  #   mode: "ASYNC"
-  #   callback:
-  #     config: "on_search_1"
-  #     endpoint: "mapper/ondc"
-  #     mode: "ASYNC"
-  #     unsolicitedEndpoint: "mapper/unsolicited"
-  # - config: "search_2"
-  #   mode: "ASYNC"
-  #   callback:
-  #     config: "on_search_2"
-  #     endpoint: "mapper/ondc"
-  #     mode: "ASYNC"
-  #     unsolicitedEndpoint: "mapper/unsolicited"
   - config: "select"
     mode: "ASYNC"
     callback:
@@ -26,40 +18,12 @@ calls:
       endpoint: "mapper/ondc"
       mode: "SYNC"
       unsolicitedEndpoint: "mapper/unsolicited"
-  # - config: "select_1"
-  #   mode: "ASYNC"
-  #   callback:
-  #     config: "on_select_1"
-  #     endpoint: "mapper/ondc"
-  #     mode: "ASYNC"
-  #     unsolicitedEndpoint: "mapper/unsolicited"
   - config: "init"
     mode: "SYNC"
     callback:
       config: "on_init"
       endpoint: "mapper/ondc"
       unsolicitedEndpoint: "mapper/unsolicited"
-  # - config: "init_2"
-  #   mode: "SYNC"
-  #   callback:
-  #     config: "on_init_2"
-  #     endpoint: "mapper/ondc"
-  #     mode: "SYNC"
-  #     unsolicitedEndpoint: "mapper/unsolicited"
-  # - config: "init_3"
-  #   mode: "SYNC"
-  #   callback:
-  #     config: "on_init_3"
-  #     endpoint: "mapper/ondc"
-  #     mode: "SYNC"
-  #     unsolicitedEndpoint: "mapper/unsolicited"
-  # - config: "init_1"
-  #   mode: "SYNC"
-  #   callback:
-  #     config: "on_init_1"
-  #     endpoint: "mapper/ondc"
-  #     mode: "SYNC"
-  #     unsolicitedEndpoint: "mapper/unsolicited"
   - config: "confirm"
     mode: "ASYNC"
     callback:

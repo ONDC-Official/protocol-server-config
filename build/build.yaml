@@ -622,7 +622,7 @@ BAP:
             - beckn_key: message.intent.category.descriptor.code
               value: session.loanCategaory
             - beckn_key: message.intent.provider.id
-              value: data.providerId
+              value: session.providerId
             - beckn_key: message.intent.provider.items[0].id
               value: session.itemId
             - beckn_key: message.intent.provider.items[0].xinput.form.id
@@ -631,7 +631,7 @@ BAP:
               value: session.search2FormStatus || session.search1FormStatus
             - beckn_key: >-
                 message.intent.provider.items[0].xinput.form_response.submission_id
-              value: data.personalInfoSubmissionId
+              value: session.personalInfoSubmissionId
             - beckn_key: message.intent.payment.collected_by
               value: session.paymentCollectedBy
             - beckn_key: message.intent.payment.tags
@@ -745,6 +745,13 @@ BAP:
               value: data.orderId
             - beckn_key: message.order.fulfillments[0].state.descriptor.code
               value: data.fulfillmentStatus
+            - beckn_key: message.order.payments[0].params.amount
+              value: data.prePaymentAmount
+            - beckn_key: message.order.payments[0].params.currency
+              value: '''INR'''
+              check: data.prePaymentAmount
+            - beckn_key: message.order.payments[0].time.label
+              value: data.prePaymentLabel
         on_search:
           sessionData:
             - business_key: formId

@@ -115,8 +115,8 @@ protocol:
       - beckn_key: message.order.payments[0].params.virtual_payment_address
         value: session.virtualPaymentAddress
       - beckn_key: message.order.payments[0].tags
-        value: session.paymentTagsInit
-        compute: buildTags(session.paymentTagsInit)
+        value: session.paymentTagsConfirm
+        compute: buildTags(session.paymentTagsConfirm)
 
   status:
     mapping:

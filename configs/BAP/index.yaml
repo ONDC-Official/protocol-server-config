@@ -55,3 +55,11 @@ flows:
       $ref: ./invoice-loan-per-part-payment-flow-1/protocolMapping.yaml#/protocol
     calls:
       $ref: ./invoice-loan-per-part-payment-flow-1/calls.yaml#/calls
+
+  - summary: Loan Foreclosure
+    id: invoice-loan-foreclosure-flow-1
+    shouldDispaly: false
+    protocol:
+      $ref: ./invoice-loan-foreclosure-flow-1/protocolMapping.yaml#/protocol
+    calls:
+      $ref: ./invoice-loan-foreclosure-flow-1/calls.yaml#/calls

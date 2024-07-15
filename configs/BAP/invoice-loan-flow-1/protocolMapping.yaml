@@ -141,14 +141,6 @@ protocol:
       - beckn_key: message.order.fulfillments[0].state.descriptor.code
         value: data.fulfillmentStatus
 
-      - beckn_key: message.order.payments[0].params.amount
-        value: data.prePaymentAmount
-      - beckn_key: message.order.payments[0].params.currency
-        value: "'INR'"
-        check: data.prePaymentAmount
-      - beckn_key: message.order.payments[0].time.label
-        value: data.prePaymentLabel
-
   on_search:
     # sessionData:
     #   - business_key: "formId"

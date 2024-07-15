@@ -10,7 +10,12 @@ protocol:
       - beckn_key: message.order.id
         value: data.orderId
       - beckn_key: message.order.payments[0].time.label
-        value: '"MISSED_EMI_PAYMENT"'
+        value: '"PRE_PART_PAYMENT"'
+
+      - beckn_key: message.order.payments[0].params.amount
+        value: data.prePaymentAmount
+      - beckn_key: message.order.payments[0].params.currency
+        value: "'INR'"
 
   on_update:
     mapping:

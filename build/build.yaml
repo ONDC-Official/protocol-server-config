@@ -745,13 +745,6 @@ BAP:
               value: data.orderId
             - beckn_key: message.order.fulfillments[0].state.descriptor.code
               value: data.fulfillmentStatus
-            - beckn_key: message.order.payments[0].params.amount
-              value: data.prePaymentAmount
-            - beckn_key: message.order.payments[0].params.currency
-              value: '''INR'''
-              check: data.prePaymentAmount
-            - beckn_key: message.order.payments[0].time.label
-              value: data.prePaymentLabel
         on_search:
           mapping:
             - business_key: bpp_id
@@ -915,7 +908,11 @@ BAP:
             - beckn_key: message.order.id
               value: data.orderId
             - beckn_key: message.order.payments[0].time.label
-              value: '"MISSED_EMI_PAYMENT"'
+              value: '"PRE_PART_PAYMENT"'
+            - beckn_key: message.order.payments[0].params.amount
+              value: data.prePaymentAmount
+            - beckn_key: message.order.payments[0].params.currency
+              value: '''INR'''
         on_update:
           mapping:
             - business_key: error

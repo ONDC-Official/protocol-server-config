@@ -47,3 +47,11 @@ flows:
       $ref: ./invoice-loan-missed-emi-flow-1/protocolMapping.yaml#/protocol
     calls:
       $ref: ./invoice-loan-missed-emi-flow-1/calls.yaml#/calls
+
+  - summary: Pre-Part Payment
+    id: invoice-loan-per-part-payment-flow-1
+    shouldDispaly: false
+    protocol:
+      $ref: ./invoice-loan-per-part-payment-flow-1/protocolMapping.yaml#/protocol
+    calls:
+      $ref: ./invoice-loan-per-part-payment-flow-1/calls.yaml#/calls

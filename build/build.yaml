@@ -1299,7 +1299,7 @@ BPP:
               value: data.error && data.message
             - beckn_key: error
               value: data.error
-      schema: &ref_366
+      schema: &ref_365
         search:
           type: object
           properties:
@@ -19050,57 +19050,10 @@ BPP:
           default:
             service_url: http://172.17.0.1:5502/status
             sync: false
-    - summary: Default -  Flow
-      id: default-flow
-      domain: ONDC:FIS12
-      protocol:
-        search: &ref_365
-          mapping:
-            - beckn_key: context
-              value: data.context
-            - beckn_key: message
-              value: data.message
-        on_search: *ref_365
-        select: *ref_365
-        on_select: *ref_365
-        init: *ref_365
-        on_init: *ref_365
-        confirm: *ref_365
-        on_confirm: *ref_365
-        update: *ref_365
-        on_update: *ref_365
-        status: *ref_365
-        on_status: *ref_365
-      schema: *ref_366
-      api:
-        search:
-          default:
-            service_url: http://172.17.0.1:5501/search
-            sync: false
-        select:
-          default:
-            service_url: http://172.17.0.1:5501/select
-            sync: false
-        init:
-          default:
-            service_url: http://172.17.0.1:5501/init
-            sync: false
-        confirm:
-          default:
-            service_url: http://172.17.0.1:5501/confirm
-            sync: false
-        update:
-          default:
-            service_url: http://172.17.0.1:5501/update
-            sync: false
-        status:
-          default:
-            service_url: http://172.17.0.1:5501/status
-            sync: false
   flow_selector:
     search:
       default:
-        config_id: default-flow
+        config_id: personal-loan-flow-1
       personal_loan:
         condition:
           operation:
@@ -19120,7 +19073,7 @@ BPP:
         config_id: personal-loan-flow-1
     select:
       default:
-        config_id: default-flow
+        config_id: personal-loan-flow-1
       personal_loan:
         condition:
           operation:
@@ -19140,7 +19093,7 @@ BPP:
         config_id: personal-loan-flow-1
     init:
       default:
-        config_id: default-flow
+        config_id: personal-loan-flow-1
       personal_loan:
         condition:
           operation:
@@ -19158,67 +19111,7 @@ BPP:
                               value: req_body.message.order.items.0.id
                         - ITEM_ID_1_PERSONAL-LOAN
         config_id: personal-loan-flow-1
-    confirm:
-      default:
-        config_id: default-flow
-      personal_loan:
-        condition:
-          operation:
-            type: AND
-            input:
-              value:
-                - operation:
-                    type: EQUAL
-                    title: Check search message code
-                    input:
-                      value:
-                        - operation:
-                            type: READ
-                            input:
-                              value: req_body.message.order.items.0.id
-                        - ITEM_ID_1_PERSONAL-LOAN
-        config_id: personal-loan-flow-1
-    update:
-      default:
-        config_id: default-flow
-      personal_loan:
-        condition:
-          operation:
-            type: AND
-            input:
-              value:
-                - operation:
-                    type: EQUAL
-                    title: Check search message code
-                    input:
-                      value:
-                        - operation:
-                            type: READ
-                            input:
-                              value: req_body.message.order.items.0.id
-                        - ITEM_ID_1_PERSONAL-LOAN
-        config_id: personal-loan-flow-1
-    status:
-      default:
-        config_id: default-flow
-      personal_loan:
-        condition:
-          operation:
-            type: AND
-            input:
-              value:
-                - operation:
-                    type: EQUAL
-                    title: Check search message code
-                    input:
-                      value:
-                        - operation:
-                            type: READ
-                            input:
-                              value: req_body.message.order.items.0.id
-                        - ITEM_ID_1_PERSONAL-LOAN
-        config_id: personal-loan-flow-1
-schema: *ref_366
+schema: *ref_365
 attributes:
   personal-loan-flow-1:
     search:

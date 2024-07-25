@@ -618,9 +618,7 @@ BAP:
           mapping:
             - beckn_key: context
               value: session
-              compute: ondc.beckn.create.context(session, action)
-            - beckn_key: message.intent.category.descriptor.code
-              value: session.loanCategaory
+              compute: buildContext(session, action)
             - beckn_key: message.intent.provider.id
               value: session.providerId
             - beckn_key: message.intent.provider.items[0].id

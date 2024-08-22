@@ -762,3 +762,10 @@ protocol:
         extractionPath: context.bpp_uri
       - business_key: "items"
         extractionPath: "message.catalog.providers[]{providerId: id}.items[]{id: id, name: descriptor.name}"
+
+  on_cancel:
+    mapping:
+      - beckn_key: context
+        value: data.context
+      - beckn_key: message
+        value: data.message

@@ -34,3 +34,6 @@ protocol:
 
   on_status:
     $ref: "./common.yaml"
+
+  on_cancel:
+    $ref: "./common.yaml"

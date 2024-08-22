@@ -23135,6 +23135,12 @@ BPP:
               extractionPath: >-
                 message.catalog.providers[]{providerId: id}.items[]{id: id,
                 name: descriptor.name}
+        on_cancel:
+          mapping:
+            - beckn_key: context
+              value: data.context
+            - beckn_key: message
+              value: data.message
       schema: *ref_443
       api:
         search:
@@ -23269,6 +23275,27 @@ BPP:
                                   value: req_body.context.action
                             - status
             service_url: http://localhost:5502/status
+            sync: false
+        cancel:
+          default:
+            callback: on_cancel
+          cancelride:
+            condition:
+              operation:
+                type: AND
+                input:
+                  value:
+                    - operation:
+                        type: EQUAL
+                        title: Check search message code
+                        input:
+                          value:
+                            - operation:
+                                type: READ
+                                input:
+                                  value: req_body.context.action
+                            - cancel
+            service_url: http://localhost:5502/cancel
             sync: false
     - summary: IntraCity - Code Based Flow
       id: intracity-flow-1
@@ -24862,6 +24889,7 @@ BPP:
         on_update: *ref_444
         status: *ref_444
         on_status: *ref_444
+        on_cancel: *ref_444
       schema: *ref_443
       api:
         search:

@@ -767,10 +767,6 @@ protocol:
     mapping:
       - beckn_key: context
         value: data.context
-      - beckn_key: context.bpp_id
-        value: session.bpp_id
-      - beckn_key: context.bpp_uri
-        value: session.bpp_uri
       - beckn_key: message
         value: data.message
 
@@ -780,5 +776,9 @@ protocol:
     mapping:
       - beckn_key: context
         value: data.context
+      - beckn_key: context.bpp_id
+        value: session.bpp_id
+      - beckn_key: context.bpp_uri
+        value: session.bpp_uri
       - beckn_key: message
         value: data.message

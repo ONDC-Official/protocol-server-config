@@ -7,6 +7,6 @@ BPP:
 # attributes:
 #   personal-loan-flow-1:
 #     $ref: ./attributes/personal-loan-flow-1/index.yaml
-# version: "1.0.0"
+version: "1.0.0"
 # enums:
  

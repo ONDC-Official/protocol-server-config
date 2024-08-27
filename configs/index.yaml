@@ -2,9 +2,11 @@ BAP:
   $ref: ./BAP/index.yaml
 BPP:
   $ref: ./BPP/index_loan.yaml
-schema:
-  $ref: ./schema/FIS/index.yaml
-attributes:
-  personal-loan-flow-1:
-    $ref: ./attributes/personal-loan-flow-1/index.yaml
-version: "1.0.0"
+# schema:
+#   $ref: ./schema/FIS/index.yaml
+# attributes:
+#   personal-loan-flow-1:
+#     $ref: ./attributes/personal-loan-flow-1/index.yaml
+# version: "1.0.0"
+# enums:
+ 

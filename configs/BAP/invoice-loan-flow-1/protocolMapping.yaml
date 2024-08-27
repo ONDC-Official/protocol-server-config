@@ -17,7 +17,6 @@ protocol:
         value: session.search2FormStatus || session.search1FormStatus
       - beckn_key: message.intent.provider.items[0].xinput.form_response.submission_id
         value: data.personalInfoSubmissionId
-
       - beckn_key: message.intent.payment.collected_by
         value: session.paymentCollectedBy
       - beckn_key: message.intent.payment.tags
@@ -72,7 +71,7 @@ protocol:
 
   #     - beckn_key: message.intent.category.descriptor.code
   #       value: session.loanCategaory
-  #     - beckn_key: message.intent.provider.id
+  #     - beckn_key: messae.intent.provider.id
   #       value: data.providerId
   #     - beckn_key: message.intent.provider.items[0].id
   #       value: session.itemId

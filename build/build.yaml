@@ -18997,3 +18997,4 @@ BPP:
                               value: req_body.message.order.items.0.id
                         - ITEM_ID_1_PERSONAL-LOAN
         config_id: personal-loan-flow-1
+version: 1.0.0

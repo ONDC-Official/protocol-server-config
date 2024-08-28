@@ -1,7 +1,7 @@
 BAP:
   $ref: ./BAP/index.yaml
 BPP:
-  $ref: ./BPP/index_loan.yaml
+  $ref: ./BPP/index.yaml
 schema:
   $ref: ./schema/FIS/index.yaml
 attributes:

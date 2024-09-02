@@ -3,6 +3,21 @@ BAP:
     - summary: Metro Flow
       id: metro-flow-1
       shouldDispaly: false
+      sessionData:
+        version: 2.0.0
+        collectedBy: BAP
+        bankAccountNumber: '123456789'
+        virtualPaymentAddress: adasd@okiciic
+        bankCode: fj3jf9ij3f02
+        vehicleCategaory: Metro
+        paymentTagsSearch:
+          BUYER_FINDER_FEES:
+            BUYER_FINDER_FEES_TYPE: percent-annualized
+            BUYER_FINDER_FEES_PERCENTAGE: '1'
+          SETTLEMENT_TERMS:
+            DELAY_INTEREST: 2.5
+            STATIC_TERMS: ''
+            OFFLINE_CONTRACT: 'true'
       protocol:
         search_route:
           mapping:
@@ -29,43 +44,10 @@ BAP:
             - beckn_key: context.action
               value: action
             - beckn_key: message.intent.fulfillment.vehicle.category
-              value: data.vehicleCategaory || session.vehicleCategaory
+              value: session.vehicleCategaory
             - beckn_key: message.intent.payment.tags
               value: data.paymentTagsSearch
               compute: buildTags(data.paymentTagsSearch)
-        search_trip:
-          sessionData:
-            - beckn_key: currentTransactionId
-              value: newTranscationId
-            - beckn_key: transactionIds
-              value: '[...session.transactionIds, newTranscationId]'
-          mapping:
-            - beckn_key: context.bap_id
-              value: session.bap_id
-            - beckn_key: context.bap_uri
-              value: session.bap_uri
-            - beckn_key: context.bpp_id
-              value: data.bpp_id
-            - beckn_key: context.bpp_uri
-              value: data.bpp_uri
-            - beckn_key: context.location.country.code
-              value: session.country
-            - beckn_key: context.location.city.code
-              value: session.cityCode
-            - beckn_key: context.transaction_id
-              value: session.currentTransactionId
-            - beckn_key: context.message_id
-              value: messageId
-            - beckn_key: context.timestamp
-              value: timestamp
-            - beckn_key: context.domain
-              value: session.domain
-            - beckn_key: context.version
-              value: session.version
-            - beckn_key: context.ttl
-              value: session.ttl
-            - beckn_key: context.action
-              value: action
             - beckn_key: message.intent.fulfillment.stops[0].type
               value: startPoint
               check: data?.startStop
@@ -76,11 +58,6 @@ BAP:
               check: data?.endStop
             - beckn_key: message.intent.fulfillment.stops[1].location.descriptor.code
               value: data?.endStop
-            - beckn_key: message.intent.fulfillment.vehicle.category
-              value: data.vehicleCategaory || session.vehicleCategaory
-            - beckn_key: message.intent.payment.tags
-              value: data.paymentTags || session.paymentTagsSearch
-              compute: buildTags(data.paymentTags || session.paymentTagsSearch)
         select:
           mapping:
             - beckn_key: context.bap_id

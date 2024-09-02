@@ -19,7 +19,7 @@ BAP:
             STATIC_TERMS: ''
             OFFLINE_CONTRACT: 'true'
       protocol:
-        search_route:
+        search:
           mapping:
             - beckn_key: context.bap_id
               value: session.bap_id

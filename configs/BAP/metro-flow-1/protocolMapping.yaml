@@ -1,5 +1,5 @@
 protocol:
-  search_route:
+  search:
     mapping:
       - beckn_key: context.bap_id
         value: session.bap_id

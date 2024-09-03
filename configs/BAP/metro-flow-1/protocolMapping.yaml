@@ -37,7 +37,7 @@ protocol:
         value: data.paymentTagsSearch
         compute: buildTags(data.paymentTagsSearch)
       - beckn_key: message.intent.fulfillment.stops[0].type
-        value: session.bap_id
+        value: START
       - beckn_key: message.intent.fulfillment.stops[0].location.descriptor.code
         value: session.StationCode1IsRequired
         check: sessio?.StationCode1IsRequired

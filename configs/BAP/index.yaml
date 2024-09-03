@@ -49,7 +49,7 @@ flows:
   #     $ref: ./invoice-loan-missed-emi-flow-1/calls.yaml#/calls
 
   - summary: Metro Flow
-    id: metro-flow-2
+    id: metro-flow-1
     domain: ONDC:TRV11
     shouldDispaly: false
     

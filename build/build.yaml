@@ -53,11 +53,11 @@ BAP:
             - beckn_key: message.intent.payment.tags
               value: data.paymentTagsSearch
               compute: buildTags(data.paymentTagsSearch)
-            - beckn_key: message.intent.fulfillment.stops.type
+            - beckn_key: message.intent.fulfillment.stops[0].type
               value: session.bap_id
             - beckn_key: message.intent.fulfillment.stops[0].location.descriptor.code
-              value: data.StationCode2IsRequired
-              check: data?.StationCode2IsRequired
+              value: session.StationCode1IsRequired
+              check: sessio?.StationCode1IsRequired
         select:
           mapping:
             - beckn_key: context.bap_id

@@ -37,15 +37,16 @@ protocol:
         value: data.paymentTagsSearch
         compute: buildTags(data.paymentTagsSearch)
       - beckn_key: message.intent.fulfillment.stops[0].type
-        value: startPoint
-        check: data?.startStop
+        value: "START"
       - beckn_key: message.intent.fulfillment.stops[0].location.descriptor.code
-        value: data?.startStop
-      - beckn_key: message.intent.fulfillment.stops[1].type
-        value: endPoint
-        check: data?.endStop
-      - beckn_key: message.intent.fulfillment.stops[1].location.descriptor.code
-        value: data?.endStop  
+        value: data.StationCode2IsRequired
+        check: data?.StationCode2IsRequired
+    
+      # - beckn_key: message.intent.fulfillment.stops[1].type
+      #   value: endPoint
+      #   check: data?.endStop
+      # - beckn_key: message.intent.fulfillment.stops[1].location.descriptor.code
+      #   value: data?.endStop  
 
   # search_trip:
   #   sessionData:

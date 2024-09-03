@@ -298,6 +298,12 @@ BAP:
             - business_key: error
               extractionPath: error
       calls:
+        - config: search
+          mode: ASYNC
+          callback:
+            config: on_search
+            endpoint: mapper/ondc
+            unsolicitedEndpoint: mapper/unsolicited
         - config: select
           mode: ASYNC
           callback:

@@ -44,6 +44,10 @@ BAP:
               value: session.ttl
             - beckn_key: context.action
               value: action
+            - beckn_key: context.bpp_id
+              value: data.bpp_id && data.bpp_id
+            - beckn_key: context.bpp_uri
+              value: data.bpp_uri && data.bpp_uri
             - beckn_key: message.intent.fulfillment.vehicle.category
               value: session.vehicleCategaory
             - beckn_key: message.intent.payment.tags
@@ -294,12 +298,6 @@ BAP:
             - business_key: error
               extractionPath: error
       calls:
-        - config: search
-          mode: ASYNC
-          callback:
-            config: on_search
-            endpoint: mapper/ondc
-            unsolicitedEndpoint: mapper/unsolicited
         - config: select
           mode: ASYNC
           callback:

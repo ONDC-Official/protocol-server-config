@@ -37,16 +37,16 @@ protocol:
         value: data.paymentTagsSearch
         compute: buildTags(data.paymentTagsSearch)
       - beckn_key: message.intent.fulfillment.stops[0].type
-        value: START
+        value: '"START"'
       - beckn_key: message.intent.fulfillment.stops[0].location.descriptor.code
-        value: session.StationCode1IsRequired
-        check: sessio?.StationCode1IsRequired
+        value: session.startPoint
+        check: session?.startPoint
     
       # - beckn_key: message.intent.fulfillment.stops[1].type
       #   value: endPoint
       #   check: data?.endStop
       # - beckn_key: message.intent.fulfillment.stops[1].location.descriptor.code
-      #   value: data?.endStop  
+      #   value: data?.endStop  g
 
   # search_trip:
   #   sessionData:

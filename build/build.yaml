@@ -25,8 +25,8 @@ BPP:
         bankAccountNumber: '123456789'
         virtualPaymentAddress: adasd@okiciic
         bankCode: fj3jf9ij3f02
-        bpp_uri: https://fis-staging.ondc.org/seller_ui/
-        bpp_id: fis-staging.ondc.org/seller_ui
+        bpp_uri: https://mobility-staging.ondc.org/seller_ui/
+        bpp_id: mobility-staging.ondc.org/seller_ui
         loan_provider_id: PROVIDER_ID
         cancellation_terms:
           - fulfillment_state:

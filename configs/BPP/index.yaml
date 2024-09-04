@@ -17,14 +17,14 @@ flows:
         short_desc: ICICI Bank Ltd
         long_desc: ICICI Bank Ltd, India.
       loanCategaory: INVOICE_BASED_LOAN
-      version: "2.1.0"
+      version: "2.0.0"
       collectedBy: BAP
       paymentCollectedBy: BPP
       bankAccountNumber: "123456789"
       virtualPaymentAddress: "adasd@okiciic"
       bankCode: "fj3jf9ij3f02"
-      bpp_uri: https://fis-staging.ondc.org/seller_ui/
-      bpp_id: fis-staging.ondc.org/seller_ui
+      bpp_uri: https://mobility-staging.ondc.org/seller_ui/
+      bpp_id: mobility-staging.ondc.org/seller_ui
       loan_provider_id : PROVIDER_ID
       cancellation_terms:
       - fulfillment_state:
@@ -40,7 +40,6 @@ flows:
             code: DISBURSED
         cancellation_fee:
           percentage: 5%
-      
       categories:
         - descriptor:
             name: Invoice based loan

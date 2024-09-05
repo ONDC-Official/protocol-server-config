@@ -30,6 +30,10 @@ protocol:
         value: data.message
 
   select:
+    sessionData:
+      - business_key: message_id
+        extractionPath: context.message_id
+
     mapping:
       - beckn_key: context
         value: session
@@ -48,6 +52,10 @@ protocol:
         value: data.message
 
   init:
+    sessionData:
+      - business_key: message_id
+        extractionPath: context.message_id
+        
     mapping:
       - beckn_key: context
         value: session
@@ -66,6 +74,10 @@ protocol:
         value: data.message
 
   confirm:
+    sessionData:
+      - business_key: message_id
+        extractionPath: context.message_id
+        
     mapping:
       - beckn_key: context
         value: session
@@ -84,6 +96,10 @@ protocol:
         value: data.message
 
   status:
+    sessionData:
+      - business_key: message_id
+        extractionPath: context.message_id
+        
     mapping:
       - beckn_key: context
         value: session
@@ -102,6 +118,10 @@ protocol:
         value: data.message
 
   cancel:
+    sessionData:
+      - business_key: message_id
+        extractionPath: context.message_id
+        
     mapping:
       - beckn_key: context
         value: session

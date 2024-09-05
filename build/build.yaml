@@ -130,7 +130,7 @@ BAP:
             - beckn_key: message.order.items[0].id
               value: session.itemId
             - beckn_key: message.order.items[0].quantity.selected.count
-              value: session.quantitySelected
+              value: parseInt(session.quantity)
             - beckn_key: message.order.provider.id
               value: session.providerId
             - beckn_key: message.order.billing.name

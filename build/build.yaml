@@ -314,7 +314,7 @@ BAP:
             mode: SYNC
             unsolicitedEndpoint: mapper/unsolicited
         - config: init
-          mode: SYNC
+          mode: ASYNC
           callback:
             config: on_init
             endpoint: mapper/ondc

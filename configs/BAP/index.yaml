@@ -59,7 +59,7 @@ flows:
       bankAccountNumber: "123456789"
       virtualPaymentAddress: "adasd@okiciic"
       bankCode: "fj3jf9ij3f02"
-      vehicleCategaory : Metro
+      vehicleCategaory : METRO
       paymentTagsSearch:
         BUYER_FINDER_FEES:
           BUYER_FINDER_FEES_TYPE: percent-annualized

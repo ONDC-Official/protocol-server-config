@@ -60,7 +60,7 @@ BAP:
               value: session.startPoint
               check: session?.startPoint
             - beckn_key: message.intent.fulfillment.stops[1].type
-              value: '"STOP"'
+              value: '"END"'
               check: session?.endPoint
             - beckn_key: message.intent.fulfillment.stops[1].location.descriptor.code
               value: session.endPoint

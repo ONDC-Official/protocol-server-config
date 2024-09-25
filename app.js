@@ -3,7 +3,7 @@ const fs = require("fs");
 
 const indexYamlPath = "./configs/index.yaml";
 const outputFolderPath = "./build";
-const argsList = ["trv", "fis"];
+const argsList = ["trv", "fis", "nts"];
 
 async function baseYMLFile(file) {
   try {

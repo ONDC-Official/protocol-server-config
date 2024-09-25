@@ -11,3 +11,7 @@ configs:
     domain: fis
     path:
       $ref: ./fis.yaml
+  - filename: nts_build.json
+    domain: nts
+    path:
+      $ref: ./nts.yaml

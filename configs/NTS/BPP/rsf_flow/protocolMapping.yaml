@@ -112,9 +112,9 @@ protocol:
       - beckn_key: message.settlement.orders[0].self.amount.currency
         value:  session.order_data[0].self_amount   && session.currency
 
-      - beckn_key: message.settlement.orders[0].inter_participant.settled_amount.amount.value
+      - beckn_key: message.settlement.orders[0].inter_participant.settled_amount.value
         value:  session.order_data[0].inter_participant_amount &&  data.settled_amount
-      - beckn_key: message.settlement.orders[0].inter_participant.settled_amount.amount.currency
+      - beckn_key: message.settlement.orders[0].inter_participant.settled_amount.currency
         value:  session.order_data[0].inter_participant_amount && session.currency
 
       - beckn_key: message.settlement.orders[0].self.status
@@ -212,9 +212,9 @@ protocol:
       - beckn_key: message.settlement.orders[0].self.amount.currency
         value:  session.order_data[0].self_amount   && session.currency
 
-      - beckn_key: message.settlement.orders[0].inter_participant.settled_amount.amount.value
+      - beckn_key: message.settlement.orders[0].inter_participant.settled_amount.value
         value:  session.order_data[0].inter_participant_amount &&  data.settled_amount
-      - beckn_key: message.settlement.orders[0].inter_participant.settled_amount.amount.currency
+      - beckn_key: message.settlement.orders[0].inter_participant.settled_amount.currency
         value:  session.order_data[0].inter_participant_amount && session.currency
 
       - beckn_key: message.settlement.orders[0].self.status

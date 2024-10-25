@@ -134,7 +134,6 @@ properties:
                   - withholding_amount
                   - tcs
                   - tds
-                  - settlement_ref_no
           required:
             - id
             - amount

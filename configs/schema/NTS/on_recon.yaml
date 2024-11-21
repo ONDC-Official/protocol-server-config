@@ -121,7 +121,7 @@ properties:
                           diff_value:
                             type: string
                       - *ref_0
-                  commision:
+                  commission:
                     allOf:
                       - type: object
                         properties:

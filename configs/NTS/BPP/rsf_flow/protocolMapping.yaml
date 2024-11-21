@@ -275,7 +275,7 @@ protocol:
       - business_key: message_id
         extractionPath: context.message_id
       - business_key: order_data
-        extractionPath: "message.orders[]{order_id:id,  amount:amount.value }.settlements[]{settlement_id:id, payment_id: payment_id, settlement_status:status,settlement_amount:amount.value,   settlement_commission:commision.value ,   withholding_amount: withholding_amount.value, tcs_amount:tcs.value, tds_amount:tds.value, settlement_updatedat : updated_at, settlement_ref_no: settlement_ref_no}"
+        extractionPath: "message.orders[]{order_id:id,  amount:amount.value }.settlements[]{settlement_id:id, payment_id: payment_id, settlement_status:status,settlement_amount:amount.value,   settlement_commission:commission.value ,   withholding_amount: withholding_amount.value, tcs_amount:tcs.value, tds_amount:tds.value, settlement_updatedat : updated_at, settlement_ref_no: settlement_ref_no}"
 
 
     mapping:
@@ -288,7 +288,7 @@ protocol:
 
       #message
       - business_key: order_data
-        extractionPath: "message.orders[]{order_id:id,  amount:amount.value }.settlements[]{settlement_id:id, payment_id: payment_id, settlement_status:status,settlement_amount:amount.value,   settlement_commission:commision.value ,   withholding_amount: withholding_amount.value, tcs_amount:tcs.value, tds_amount:tds.value, settlement_updatedat : updated_at, settlement_ref_no: settlement_ref_no}"
+        extractionPath: "message.orders[]{order_id:id,  amount:amount.value }.settlements[]{settlement_id:id, payment_id: payment_id, settlement_status:status,settlement_amount:amount.value,   settlement_commission:commission.value ,   withholding_amount: withholding_amount.value, tcs_amount:tcs.value, tds_amount:tds.value, settlement_updatedat : updated_at, settlement_ref_no: settlement_ref_no}"
 
       #reverse mapping
       - beckn_key: context
@@ -317,9 +317,9 @@ protocol:
       - beckn_key: message.orders[0].settlements[0].amount.currency
         value: data.settlement_amount && session.currency
 
-      - beckn_key: message.orders[0].settlements[0].commision.value
+      - beckn_key: message.orders[0].settlements[0].commission.value
         value: data.settlement_commission && data.settlement_commission
-      - beckn_key: message.orders[0].settlements[0].commision.currency
+      - beckn_key: message.orders[0].settlements[0].commission.currency
         value: data.settlement_commission && session.currency
 
       - beckn_key: message.orders[0].settlements[0].withholding_amount.value
@@ -379,12 +379,12 @@ protocol:
       - beckn_key: message.orders[0].settlements[0].amount.diff_value
         value: data.diff_value_amount && data.diff_value_amount
 
-      - beckn_key: message.orders[0].settlements[0].commision.value
+      - beckn_key: message.orders[0].settlements[0].commission.value
         value: session.order_data[0].settlement_commission && session.order_data[0].settlement_commission
-      - beckn_key: message.orders[0].settlements[0].commision.currency
+      - beckn_key: message.orders[0].settlements[0].commission.currency
         value: session.order_data[0].settlement_commission && session.currency
-      - beckn_key: message.orders[0].settlements[0].commision.diff_value
-        value: data.diff_value_commision && data.diff_value_commision
+      - beckn_key: message.orders[0].settlements[0].commission.diff_value
+        value: data.diff_value_commission && data.diff_value_commission
 
       - beckn_key: message.orders[0].settlements[0].withholding_amount.value
         value: session.order_data[0].withholding_amount && session.order_data[0].withholding_amount
@@ -422,7 +422,7 @@ protocol:
       - business_key: context.message_id
         extractionPath: context.message_id
       - business_key: order_data
-        extractionPath: "message.orders[]{order_id:id,  amount:amount.value }.settlements[]{settlement_id:id, payment_id: payment_id, settlement_status:status,settlement_amount:amount.value,   settlement_commission:commision.value ,   withholding_amount: withholding_amount.value, tcs_amount:tcs.value, tds_amount:tds.value, settlement_updatedat : updated_at, settlement_ref_no: settlement_ref_no}"
+        extractionPath: "message.orders[]{order_id:id,  amount:amount.value }.settlements[]{settlement_id:id, payment_id: payment_id, settlement_status:status,settlement_amount:amount.value,   settlement_commission:commission.value ,   withholding_amount: withholding_amount.value, tcs_amount:tcs.value, tds_amount:tds.value, settlement_updatedat : updated_at, settlement_ref_no: settlement_ref_no}"
 
 
     sessionData:
@@ -437,14 +437,14 @@ protocol:
       - business_key: message_id
         extractionPath: context.message_id
       - business_key: order_data
-        extractionPath: "message.orders[]{order_id:id,  amount:amount.value }.settlements[]{settlement_id:id, payment_id: payment_id, settlement_status:status,settlement_amount:amount.value,   settlement_commission:commision.value ,   withholding_amount: withholding_amount.value, tcs_amount:tcs.value, tds_amount:tds.value, settlement_updatedat : updated_at, settlement_ref_no: settlement_ref_no}"
+        extractionPath: "message.orders[]{order_id:id,  amount:amount.value }.settlements[]{settlement_id:id, payment_id: payment_id, settlement_status:status,settlement_amount:amount.value,   settlement_commission:commission.value ,   withholding_amount: withholding_amount.value, tcs_amount:tcs.value, tds_amount:tds.value, settlement_updatedat : updated_at, settlement_ref_no: settlement_ref_no}"
 
 
 
 
       #message
       - business_key: order_data
-        extractionPath: "message.orders[]{order_id:id,  amount:amount.value }.settlements[]{settlement_id:id, payment_id: payment_id, settlement_status:status,settlement_amount:amount.value,   settlement_commission:commision.value ,   withholding_amount: withholding_amount.value, tcs_amount:tcs.value, tds_amount:tds.value, settlement_updatedat : updated_at, settlement_ref_no: settlement_ref_no}"
+        extractionPath: "message.orders[]{order_id:id,  amount:amount.value }.settlements[]{settlement_id:id, payment_id: payment_id, settlement_status:status,settlement_amount:amount.value,   settlement_commission:commission.value ,   withholding_amount: withholding_amount.value, tcs_amount:tcs.value, tds_amount:tds.value, settlement_updatedat : updated_at, settlement_ref_no: settlement_ref_no}"
 
 
 

@@ -116,7 +116,7 @@ properties:
                   status:
                     type: string
                   amount: *ref_0
-                  commision: *ref_0
+                  commission: *ref_0
                   withholding_amount: *ref_0
                   tcs: *ref_0
                   tds: *ref_0
@@ -130,7 +130,7 @@ properties:
                   - payment_id
                   - status
                   - amount
-                  - commision
+                  - commission
           required:
             - id
             - amount

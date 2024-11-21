@@ -131,9 +131,6 @@ properties:
                   - status
                   - amount
                   - commision
-                  - withholding_amount
-                  - tcs
-                  - tds
           required:
             - id
             - amount

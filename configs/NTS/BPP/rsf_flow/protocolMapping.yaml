@@ -310,6 +310,9 @@ protocol:
         value: data.payment_id && data.payment_id
 
       - beckn_key: message.orders[0].settlements[0].status
+        value: data.status && data.status
+
+      - beckn_key: message.orders[0].settlements[0].status
         value: session.settlement_status && session.settlement_status
 
       - beckn_key: message.orders[0].settlements[0].amount.value

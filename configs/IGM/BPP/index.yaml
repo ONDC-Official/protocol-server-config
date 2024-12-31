@@ -1,0 +1,136 @@
+
+flows:
+  - summary: IGM
+    id: igm-flow
+    createSessionAtBuyer: true
+    domain: ONDC:RET10
+    shouldDispaly: true
+    sessionData:
+      currency: INR
+      bpp_uri: https://igm-mock-service.ondc.org/seller_protocol_server_preprod
+      bpp_id: igm-mock-service.ondc.org/seller_protocol_server_preprod
+      actorsKey:
+      - id: NP2
+        type: TRANSACTION-COUNTERPARTY-NP
+        info:
+          org:
+            name: sellerapp.com::ONDC:RET10
+        contact:
+          phone: 9450394140
+          email: respondentapp@respond.com
+        person:
+          name: Jane Doe
+      resolutions:
+        - id: R_PARENT
+          descriptor:
+            code: PARENT
+            short_desc: PROVIDING RESOLUTION OPTIONS. PLEASE SELECT ONE
+          updated_at: "2024-08-14T09:57:58.841Z"
+          proposed_by: NP2
+
+        - id: R1
+          ref_id: R_PARENT
+          ref_type: PARENT
+          descriptor:
+            code: REFUND
+            short_desc: Providing refund for the item
+          updated_at: "2024-08-14T09:57:58.841Z"
+          proposed_by: NP2
+          tags:
+            - descriptor:
+                code: RESOLUTION_DETAILS
+              list:
+                - descriptor:
+                    code: ITEM
+                  value: I1
+                - descriptor:
+                    code: REFUND_AMOUNT
+                  value: "200"
+
+        - id: R2
+          ref_id: R_PARENT
+          ref_type: PARENT
+          descriptor:
+            code: REPLACEMENT
+            short_desc: Providing replacement of the item
+          updated_at: "2024-08-14T09:57:58.841Z"
+          proposed_by: NP2
+          tags:
+            - descriptor:
+                code: RESOLUTION_DETAILS
+              list:
+                - descriptor:
+                    code: ITEM
+                  value: I1
+      info_requested:
+        - INFO0001
+        - INFO0002
+        - INFO0003 
+        
+      resolution_keys:
+      - id: A9
+        ref_id: R_PARENT
+        ref_type: RESOLUTIONS
+        description:
+          code: RESOLUTION_PROPOSED
+        updated_at: "2023-01-15T10:00:00.469Z"
+        action_by: NP2
+        actor_details:
+          name: Sam Manuel
+
+      - id: A10
+        ref_id: R2
+        ref_type: RESOLUTIONS
+        description:
+            code: RESOLUTION_ACCEPTED
+        updated_at: "2023-01-15T10:00:00.469Z"
+        action_by: NP1
+        actor_details:
+            name: Sam Manuel
+
+      - id: A11
+        ref_id: R2
+        ref_type: RESOLUTIONS
+        description:
+        code: RESOLVED
+        name: REPLACEMENT
+        short_desc: Providing replacement
+        updated_at: "2023-01-15T10:00:00.469Z"
+        action_by: NP2
+        actor_details:
+          name: Sam Manuel
+
+    protocol:
+      $ref: ./igm-flow/protocolMapping.yaml#/protocol
+    calls:
+      $ref: ./igm-flow/calls.yaml#/calls
+    api:
+      issue:
+          default:
+            service_url: http://localhost:5501/mapper/ondc
+            sync: false
+    ui: true
+
+
+
+flow_selector:
+  issue:
+    default:
+      config_id: "igm-flow"
+    igm-flow:
+      condition:
+          operation:
+            type: AND
+            input:
+              value:
+              - operation:
+                  type: EQUAL
+                  title: Check settlement type message code
+                  input:
+                    value:
+                      - operation:
+                          type: READ
+                          input:
+                            value: "req_body.message.issue.description.code"
+                      - "ITM004"
+      config_id  : "igm-flow"

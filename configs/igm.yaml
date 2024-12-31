@@ -1,0 +1,8 @@
+BAP:
+  $ref: ./IGM/BAP/index.yaml
+BPP:
+  $ref: ./IGM/BPP/index.yaml
+schema:
+  $ref: ./schema/IGM/index.yaml
+
+version: "1.0.0"

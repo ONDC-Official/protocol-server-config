@@ -1,0 +1,206 @@
+protocol:
+  on_issue:
+    sessionData:
+      - business_key: bap_id
+        extractionPath: context.bap_id
+      - business_key: bap_uri
+        extractionPath: context.bap_uri
+      - business_key: cityCode
+        extractionPath: context.location.city.code || session.cityCode
+      - business_key: countryCode
+        extractionPath: context.location.country.code || session.countryCode
+      - business_key: message_id
+        extractionPath: context.message_id
+
+#store order details etc in session
+      # k
+
+      - business_key: context.bap_id
+        extractionPath: context.bap_id
+      - business_key: context.bap_uri
+        extractionPath: context.bap_uri
+      - business_key: context.bpp_id
+        extractionPath: context.bpp_ida
+      - business_key: context.bpp_uri
+        extractionPath: context.bpp_uri
+      - business_key: context.core_version
+        extractionPath: context.core_version
+
+      - business_key: ref_id_action
+        extractionPath: message.issue.actions.at(-1).id
+
+      - business_key: issueId
+        extractionPath:  message.issue.id
+
+      - business_key: issuelevel
+        extractionPath:  message.issue.level
+      
+      - business_key: issueStatus
+        extractionPath:  message.issue.status
+      
+      - business_key: issuelevel
+        extractionPath:  message.issue.level
+      
+      - business_key: expected_response_time
+        extractionPath:  message.issue.expected_response_time
+
+      - business_key: expected_resolution_time
+        extractionPath:  message.issue.expected_resolution_time
+
+      - business_key: sourceId
+        extractionPath:  message.issue.source_id
+      
+      - business_key: lastactionid
+        extractionPath:  message.issue.last_action_id
+      
+      - business_key: description
+        extractionPath:  message.issue.description
+
+      
+
+      - business_key: actors
+        extractionPath:  message.issue.actors
+
+      - business_key: complainantId
+        extractionPath:  message.issue.complainant_id
+
+      - business_key: refs
+        extractionPath:  message.issue.refs
+      
+      - business_key: actions
+        extractionPath:  message.issue.actions
+
+    mapping:
+      - business_key: context.action
+        extractionPath: context.action
+      - business_key: context.transaction_id
+        extractionPath: context.transaction_id
+      - business_key: context.message_id
+        extractionPath: context.message_id
+
+        #message
+      
+      - business_key: issue.id
+        extractionPath:  message.issue.id
+
+      - business_key: issue.level
+        extractionPath:  message.issue.level
+      
+      - business_key: issue.status
+        extractionPath:  message.issue.status
+
+      - business_key: issue.source_id
+        extractionPath:  message.issue.source_id
+
+      - business_key: issue.complainant_id
+        extractionPath:  message.issue.complainant_id
+
+      - business_key: issue.description
+        extractionPath:  message.issue.description
+
+      - business_key: issue.refs
+        extractionPath:  message.issue.refs
+
+      - business_key: issue.actors
+        extractionPath:  message.issue.actors
+
+      - business_key: issue.actions
+        extractionPath:  message.issue.actions
+
+      - business_key: issue.expected_resolution_time
+        extractionPath:  message.issue.expected_resolution_time
+      
+      - business_key: issue.expected_response_time
+        extractionPath:  message.issue.expected_response_time
+      
+      
+      - business_key: issue.last_action_id
+        extractionPath:  message.issue.last_action_id
+
+      # - business_key: message.settlement.orders
+      #   extractionPath: "message.settlement.orders[]{id:order_id, order_amount:amount.value,  inter_participant_amount:inter_participant.amount.value,collector_amount: collector.amount.value,self_amount:self.amount.value  ,    provider_id:provider.id, provider_name: provider.name,  provider_account_no : provider.bank_details.account_no,  provider_ifsc_code: provider.bank_details.ifsc_code, provider_amount: provider.amount.value   }"
+ 
+
+  issue:
+    sessionData:
+      - beckn_key: actions_append
+        value: '[{id:data.id||session.action_id,description:data.actions_description || session.actions_description,updated_at:new Date().toISOString(),actor_detail:data.actor_detail|| session.actor_details,action_by:"NP1",ref_id:session.ref_id_action}]'
+      
+      - beckn_key: actions
+        value: '[...session.actions,...session.actions_append]'
+
+    mapping:
+      - beckn_key: context
+        value: session
+        compute: buildContext(session, action)
+       
+      - beckn_key: message.issue.id
+        value: session.issueId
+
+      - beckn_key: refid
+        value: session.ref_id_action
+
+      - beckn_key: message.issue.level
+        value: session.issuelevel
+
+      - beckn_key: message.issue.status
+        value: session.issueStatus 
+
+      - beckn_key: message.issue.expected_response_time
+        value:  session.expected_response_time
+
+      - beckn_key: message.issue.expected_resolution_time
+        value:  session.expected_resolution_time
+
+      - beckn_key: message.issue.refs
+        value:  session.refs
+
+      - beckn_key: message.issue.actors
+        value:  session.actors 
+
+      - beckn_key: message.issue.source_id
+        value:  session.sourceId
+
+      - beckn_key: message.issue.complainant_id
+        value:  session.complainantId 
+
+      - beckn_key: message.issue.description
+        value:  session.description
+      
+      - beckn_key: message.issue.last_action_id
+        value: session.lastactionid
+
+      - beckn_key: message.issue.actions
+        value: '[...session.actions,...session.actions_append]'
+
+  session-builder:
+    sessionData:
+      - business_key: bap_id
+        extractionPath: context.bap_id
+
+      - business_key: bap_uri
+        extractionPath: context.bap_uri
+
+      - business_key: cityCode
+        extractionPath: context.location.city.code || session.cityCode
+
+      - business_key: countryCode
+        extractionPath: context.location.country.code || session.countryCode
+
+      - business_key: message_id
+        extractionPath: context.message_id
+
+      - business_key: transactionid
+        extractionPath: context.transaction_id
+
+      - business_key: messageid
+        extractionPath: context.message_id
+
+      - business_key: bpp_id
+        extractionPath: context.bpp_id
+
+      - business_key: bpp_uri
+        extractionPath: context.bpp_uri
+
+      - business_key: core_version
+        extractionPath: context.core_version

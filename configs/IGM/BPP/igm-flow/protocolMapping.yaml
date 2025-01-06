@@ -12,9 +12,6 @@ protocol:
       - business_key: message_id
         extractionPath: context.message_id
 
-#store order details etc in session
-      # k
-
       - business_key: context.bap_id
         extractionPath: context.bap_id
       - business_key: context.bap_uri
@@ -114,10 +111,6 @@ protocol:
       - business_key: issue.last_action_id
         extractionPath:  message.issue.last_action_id
 
-      # - business_key: message.settlement.orders
-      #   extractionPath: "message.settlement.orders[]{id:order_id, order_amount:amount.value,  inter_participant_amount:inter_participant.amount.value,collector_amount: collector.amount.value,self_amount:self.amount.value  ,    provider_id:provider.id, provider_name: provider.name,  provider_account_no : provider.bank_details.account_no,  provider_ifsc_code: provider.bank_details.ifsc_code, provider_amount: provider.amount.value   }"
- 
-
   on_issue:
     sessionData:
       - beckn_key: status
@@ -136,38 +129,11 @@ protocol:
         value: data.id
 
 
-      # - beckn_key: example
-      #   value: "[...session.actions_append[0],experiment]"
-      # - beckn_key: experiment
-      #   value: data.reference_no
-
-      # - beckn_key: issue.actions
-      #   value: data.actions
-      # - beckn_key: issue.actors
-      #   value: data.actors
-      # - beckn_key: issue.actors
-      #   value: data.actors
-
-
-      # - beckn_key: provider_status
-      #   value: data.provider_status
-      # - beckn_key: provider_reference_no
-      #   value: data.provider_reference_no
-
     mapping:
       - beckn_key: context
         value: session
         compute: buildContext(session, action)
 
-      # - beckn_key: context.bpp_uri
-      #   value: session.bpp_uri
-      
-      # - beckn_key: context.bpp_id
-      #   value: session.bpp_id
-      
-      # - beckn_key: context.bap_id
-      #   value: session.bap_id
-       
       - beckn_key: message.update_target.path
         value: '"issue.actions"'
       
@@ -211,7 +177,7 @@ protocol:
         value: session.last_action_id
 
       - beckn_key: message.issue.actions
-        value: data.send_resolution === "true" && [...session.actions,...session.actions_append,...session.resolution_keys] || data.send_resolution === "false" && [...session.actions,...session.actions_append]
+        value: String(data.send_resolution) === "true" && [...session.actions,...session.actions_append,...session.resolution_keys] || String(data.send_resolution) === "false" && [...session.actions,...session.actions_append]
 
       
       - beckn_key: message.issue.resolutions
@@ -219,54 +185,4 @@ protocol:
 
       - beckn_key: message.issue.info_requested_code
         value: session.info_requested[data.info_requested_code]
-
-
-  # #provider mapping
-  #     - beckn_key: message.issue.id
-  #       value:  session.issueId
-  #     - beckn_key: message.issue.level
-  #       value:  session.issuelevel
-  #     - beckn_key: message.issue.status
-  #       value:  session.issueStatus
-  #     - beckn_key: message.issue.expected_response_time
-  #       value:  session.issue.expectedresponsetime
-
-  #     - beckn_key: message.settlement.orders[0].provider.reference_no
-  #       value:  data.provider_reference_no && data.provider_reference_no
-  #     - beckn_key: message.settlement.orders[0].error.code
-  #       value:  data.error_code && data.error_code
-  #     - beckn_key: message.settlement.orders[0].error.message
-  #       value:  data.error_message && data.error_message
-
-
-  #     - business_key: context.action
-  #       extractionPath: context.action
-  #     - business_key: context.transaction_id
-  #       extractionPath: context.transaction_id
-  #     - business_key: context.message_id
-  #       extractionPath: context.message_id
-  #     - business_key: order_data
-  #       extractionPath: "message.orders[]{order_id:id,  amount:amount.value }.settlements[]{settlement_id:id, payment_id: payment_id, settlement_status:status,settlement_amount:amount.value,   settlement_commission:commission.value ,   withholding_amount: withholding_amount.value, tcs_amount:tcs.value, tds_amount:tds.value, settlement_updatedat : updated_at, settlement_ref_no: settlement_ref_no}"
-
-
-  #   sessionData:
-  #     - business_key: bap_id
-  #       extractionPath: context.bap_id
-  #     - business_key: bap_uri
-  #       extractionPath: context.bap_uri
-  #     - business_key: cityCode
-  #       extractionPath: context.location.city.code || session.cityCode
-  #     - business_key: countryCode
-  #       extractionPath: context.location.country.code || session.countryCode
-  #     - business_key: message_id
-  #       extractionPath: context.message_id
-  #     - business_key: order_data
-  #       extractionPath: "message.orders[]{order_id:id,  amount:amount.value }.settlements[]{settlement_id:id, payment_id: payment_id, settlement_status:status,settlement_amount:amount.value,   settlement_commission:commission.value ,   withholding_amount: withholding_amount.value, tcs_amount:tcs.value, tds_amount:tds.value, settlement_updatedat : updated_at, settlement_ref_no: settlement_ref_no}"
-
-
-
-
-  #     #message
-  #     - business_key: order_data
-  #       extractionPath: "message.orders[]{order_id:id,  amount:amount.value }.settlements[]{settlement_id:id, payment_id: payment_id, settlement_status:status,settlement_amount:amount.value,   settlement_commission:commission.value ,   withholding_amount: withholding_amount.value, tcs_amount:tcs.value, tds_amount:tds.value, settlement_updatedat : updated_at, settlement_ref_no: settlement_ref_no}"
 

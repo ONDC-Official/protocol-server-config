@@ -15,11 +15,26 @@ flows:
       $ref: ./rsf_flow/calls.yaml#/calls
     api:
     ui: true
+  - summary: NTS
+    id: nts-servicesnew
+    createSessionAtBuyer: true
+    domain: ONDC:NTS10
+    shouldDispaly: true
+    sessionData:
+      currency: INR
+      bpp_uri: https://rsf-mock-service.ondc.org/seller_protocol_server_preprod
+      bpp_id: rsf-mock-service.ondc.org/seller_protocol_server_preprod
+    protocol:
+      $ref: ./rsf_flow/protocolMapping.yaml#/protocol
+    calls:
+      $ref: ./rsf_flow/calls.yaml#/calls
+    api:
+    ui: true
 
 
 
 flow_selector:
-  settle:
+  issue:
     default:
       config_id: "nts-services"
     nts-flow:

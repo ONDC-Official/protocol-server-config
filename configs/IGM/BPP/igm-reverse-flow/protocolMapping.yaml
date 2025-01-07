@@ -137,9 +137,6 @@ protocol:
       - beckn_key: message.issue.id
         value: session.issueId
 
-      - beckn_key: refid
-        value: session.ref_id_action
-
       - beckn_key: message.issue.level
         value: session.issuelevel
 

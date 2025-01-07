@@ -201,3 +201,7 @@ protocol:
 
       - business_key: core_version
         extractionPath: context.core_version
+        
+    mapping:  
+      - business_key: context
+        extractionPath: context        

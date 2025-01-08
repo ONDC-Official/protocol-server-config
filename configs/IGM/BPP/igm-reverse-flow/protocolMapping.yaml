@@ -128,6 +128,9 @@ protocol:
       
       - beckn_key: actions
         value: '[...session.actions,...session.actions_append]'
+      
+      - beckn_key: refs
+        value: 'const ref = []; for (const [ref_type, ref_id] of Object.entries(data.ref)) {ref_id !="" && ref.push({ ref_id, ref_type });} ref;'
 
     mapping:
       - beckn_key: context
@@ -165,10 +168,11 @@ protocol:
         value:  session.description
       
       - beckn_key: message.issue.last_action_id
-        value: session.lastactionid
+        value: data.id
 
       - beckn_key: message.issue.actions
-        value: '[...session.actions,...session.actions_append]'
+        value: session.actions.length && [...session.actions] || [...session.actions,...session.actions_append]
+        # value: session.actions
 
   session-builder:
     sessionData:

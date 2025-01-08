@@ -1,4 +1,3 @@
-
 flows:
   - summary: IGM
     id: igm-flow
@@ -10,16 +9,16 @@ flows:
       bpp_uri: https://igm-mock-service.ondc.org/seller_protocol_server_preprod
       bpp_id: igm-mock-service.ondc.org/seller_protocol_server_preprod
       actorsKey:
-      - id: NP2
-        type: TRANSACTION-COUNTERPARTY-NP
-        info:
-          org:
-            name: sellerapp.com::ONDC:RET10
-        contact:
-          phone: 9450394140
-          email: respondentapp@respond.com
-        person:
-          name: Jane Doe
+        - id: NP2
+          type: TRANSACTION-COUNTERPARTY-NP
+          info:
+            org:
+              name: sellerapp.com::ONDC:RET10
+          contact:
+            phone: 9450394140
+            email: respondentapp@respond.com
+          person:
+            name: Jane Doe
       resolutions:
         - id: R_PARENT
           descriptor:
@@ -65,40 +64,77 @@ flows:
       info_requested:
         - INFO0001
         - INFO0002
-        - INFO0003 
-        
-      resolution_keys:
-      - id: A9
-        ref_id: R_PARENT
-        ref_type: RESOLUTIONS
-        description:
-          code: RESOLUTION_PROPOSED
-        updated_at: "2023-01-15T10:00:00.469Z"
-        action_by: NP2
-        actor_details:
-          name: Sam Manuel
+        - INFO0003
 
-      - id: A10
-        ref_id: R2
-        ref_type: RESOLUTIONS
-        description:
-            code: RESOLUTION_ACCEPTED
-        updated_at: "2023-01-15T10:00:00.469Z"
-        action_by: NP1
-        actor_details:
+      resolution_keys_proposed:
+        - id: A9
+          ref_id: R_PARENT
+          ref_type: RESOLUTIONS
+          description:
+            code: RESOLUTION_PROPOSED
+          updated_at: "2023-01-15T10:00:00.469Z"
+          action_by: NP2
+          actor_details:
             name: Sam Manuel
 
-      - id: A11
-        ref_id: R2
-        ref_type: RESOLUTIONS
-        description:
-        code: RESOLVED
-        name: REPLACEMENT
-        short_desc: Providing replacement
-        updated_at: "2023-01-15T10:00:00.469Z"
-        action_by: NP2
-        actor_details:
-          name: Sam Manuel
+      resolution_keys_replace:
+        - id: A11
+          ref_id: R2
+          ref_type: RESOLUTIONS
+          description:
+            code: RESOLVED
+            name: REPLACEMENT
+          short_desc: Providing replacement
+          updated_at: "2023-01-15T10:00:00.469Z"
+          action_by: NP2
+          actor_details:
+            name: Sam Manuel
+      
+      resolution_keys_refund:
+        - id: A11
+          ref_id: R1
+          ref_type: RESOLUTIONS
+          description:
+            code: RESOLVED
+            name: REFUND
+          short_desc: Providing refund
+          updated_at: "2023-01-15T10:00:00.469Z"
+          action_by: NP2
+          actor_details:
+            name: Sam Manuel
+
+      resolution_keys:
+        - id: A9
+          ref_id: R_PARENT
+          ref_type: RESOLUTIONS
+          description:
+            code: RESOLUTION_PROPOSED
+          updated_at: "2023-01-15T10:00:00.469Z"
+          action_by: NP2
+          actor_details:
+            name: Sam Manuel
+
+        - id: A10
+          ref_id: R2
+          ref_type: RESOLUTIONS
+          description:
+            code: RESOLUTION_ACCEPTED
+          updated_at: "2023-01-15T10:00:00.469Z"
+          action_by: NP1
+          actor_details:
+            name: Sam Manuel
+
+        - id: A11
+          ref_id: R2
+          ref_type: RESOLUTIONS
+          description:
+          code: RESOLVED
+          name: REPLACEMENT
+          short_desc: Providing replacement
+          updated_at: "2023-01-15T10:00:00.469Z"
+          action_by: NP2
+          actor_details:
+            name: Sam Manuel
 
     protocol:
       $ref: ./igm-flow/protocolMapping.yaml#/protocol
@@ -106,9 +142,9 @@ flows:
       $ref: ./igm-flow/calls.yaml#/calls
     api:
       issue:
-          default:
-            service_url: http://localhost:5501/mapper/ondc
-            sync: false
+        default:
+          service_url: http://localhost:5501/mapper/ondc
+          sync: false
     ui: true
 
   - summary: IGM
@@ -128,21 +164,21 @@ flows:
       expected_resolution_time:
         duration: "P1D"
       refs:
-      - ref_id: "O1"
-        ref_type: "ORDER"
-      - ref_id: "P1"
-        ref_type: "PROVIDER"
-      - ref_id: "F1"
-        ref_type: "FULFILMENT"
-      - ref_id: "I1"
-        ref_type: "ITEM"
-        tags:
-          - descriptor:
-              code: "message.order.items"
-            list:
-              - descriptor:
-                  code: "quantity.selected.count"
-                value: "2"
+        - ref_id: "O1"
+          ref_type: "ORDER"
+        - ref_id: "P1"
+          ref_type: "PROVIDER"
+        - ref_id: "F1"
+          ref_type: "FULFILMENT"
+        - ref_id: "I1"
+          ref_type: "ITEM"
+          tags:
+            - descriptor:
+                code: "message.order.items"
+              list:
+                - descriptor:
+                    code: "quantity.selected.count"
+                  value: "2"
       actors:
         - id: "CUST1"
           type: "CONSUMER"
@@ -179,8 +215,8 @@ flows:
       lastactionid: "A1"
       action_id: "A1"
       actions_description:
-                  code: "OPEN"
-                  short_desc: "Complaint created"
+        code: "OPEN"
+        short_desc: "Complaint created"
       actor_details:
         name: "Sam Manuel"
       action_append: []
@@ -189,21 +225,16 @@ flows:
       #     updated_at: "2023-01-15T10:00:00.469Z"
       #     action_by: "NP1"
 
-
-      
-
     protocol:
       $ref: ./igm-reverse-flow/protocolMapping.yaml#/protocol
     calls:
       $ref: ./igm-reverse-flow/calls.yaml#/calls
     api:
       issue:
-          default:
-            service_url: http://localhost:5501/mapper/ondc
-            sync: false
+        default:
+          service_url: http://localhost:5501/mapper/ondc
+          sync: false
     ui: true
-
-
 
 flow_selector:
   issue:
@@ -211,10 +242,10 @@ flow_selector:
       config_id: "igm-flow"
     igm-flow:
       condition:
-          operation:
-            type: AND
-            input:
-              value:
+        operation:
+          type: AND
+          input:
+            value:
               - operation:
                   type: EQUAL
                   title: Check settlement type message code
@@ -225,13 +256,12 @@ flow_selector:
                           input:
                             value: "req_body.message.issue.description.code"
                       - "ITM004"
-      config_id  : "igm-flow"
-  
+      config_id: "igm-flow"
+
   on_issue:
     default:
       config_id: "igm-reverse-flow"
-    
+
   session-builder:
     default:
       config_id: "igm-reverse-flow"
-

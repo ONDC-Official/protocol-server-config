@@ -122,11 +122,11 @@ protocol:
 #
 #actions_append
       - beckn_key: actions_append
-        value: "[{id:data.id,description:  ( String(data.actions_description.name) !== 'false' && data.actions_description || {code:data.actions_description.code,short_desc:data.actions_description.short_desc})   ,updated_at:new Date().toISOString(),action_by:'NP2',actor_detail:data.actor_detail}]"
+        value: 'session.actions_append=[{id:data.id,description:  ( String(data.actions_description.name) !== "false" && data.actions_description || {code:data.actions_description.code,short_desc:data.actions_description.short_desc})   ,updated_at:new Date().toISOString(),action_by:"NP2",actor_detail:data.actor_detail}]; session.actions_append '
         
       - beckn_key: actions
-        value: '[...session.actions,...session.actions_append]'
-      
+        value: '[...session.actions,...session.actions_append]' 
+        
       - beckn_key: last_action_id
         value: data.id
 
@@ -179,10 +179,10 @@ protocol:
         value: session.last_action_id
 
       - beckn_key: message.issue.actions
-        value: String(data.send_resolution) === "true" && [...session.actions,...session.actions_append,...session.resolution_keys] || String(data.send_resolution) === "false"  && [...session.actions,...session.actions_append] || String(data.send_resolution) === "proposed" && [...session.actions,...session.actions_append,...session.resolution_keys_proposed] || String(data.send_resolution) === "replacement" && [...session.actions,...session.actions_append,...session.resolution_keys_replace] || String(data.send_resolution) === "refund" && [...session.actions,...session.actions_append,...session.resolution_keys_refund]
+        value: String(data.send_resolution) === "true" && [...session.actions,...session.resolution_keys] || String(data.send_resolution) === "false"  && [...session.actions] || String(data.send_resolution) === "proposed" && [...session.actions,...session.resolution_keys_proposed] || String(data.send_resolution) === "replacement" && [...session.actions,...session.resolution_keys_replace] || String(data.send_resolution) === "refund" && [...session.actions,...session.resolution_keys_refund]
 
       
       - beckn_key: message.issue.resolutions
-        value: data.send_resolution === "true" && session.resolutions 
+        value: String(data.send_resolution) !== "false" && session.resolutions 
 
 

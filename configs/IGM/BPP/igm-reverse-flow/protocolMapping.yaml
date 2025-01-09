@@ -124,7 +124,7 @@ protocol:
   issue:
     sessionData:
       - beckn_key: actions_append
-        value: '[{id:data.id||session.action_id,description:data.actions_description || session.actions_description,updated_at:new Date().toISOString(),actor_detail:data.actor_detail|| session.actor_details,action_by:"NP1",ref_id:session.ref_id_action}]'
+        value: 'session.actions_append=[{id:data.id,description:  ( String(data.actions_description.name) !== "false" && data.actions_description || {code:data.actions_description.code,short_desc:data.actions_description.short_desc})   ,updated_at:new Date().toISOString(),action_by:"NP2",actor_detail:data.actor_detail}]; session.actions_append '
       
       - beckn_key: actions
         value: '[...session.actions,...session.actions_append]'
@@ -171,7 +171,7 @@ protocol:
         value: data.id
 
       - beckn_key: message.issue.actions
-        value: session.actions.length && [...session.actions] || [...session.actions,...session.actions_append]
+        value: session.actions
         # value: session.actions
 
   session-builder:

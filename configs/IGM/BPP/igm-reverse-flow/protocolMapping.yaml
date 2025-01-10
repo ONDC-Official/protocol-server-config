@@ -124,13 +124,20 @@ protocol:
   issue:
     sessionData:
       - beckn_key: actions_append
-        value: 'session.actions_append=[{id:data.id,description:  ( String(data.actions_description.name) !== "false" && data.actions_description || {code:data.actions_description.code,short_desc:data.actions_description.short_desc})   ,updated_at:new Date().toISOString(),action_by:"NP2",actor_detail:data.actor_detail}]; session.actions_append '
-      
+        # value: 'session.actions_append=[{id:data.id,description:  ( String(data.actions_description.name) !== "false" && data.actions_description || {code:data.actions_description.code,short_desc:data.actions_description.short_desc}),(data.images !== "" &&  images: data.images.split(",")  || ""),updated_at:new Date().toISOString(),action_by:"NP2",actor_detail:data.actor_detail}]; session.actions_append '
+        value: 'session.actions_append=[{id:data.id,description:  ( String(data.actions_description.name) !== "false" && data.actions_description || {code:data.actions_description.code,short_desc:data.actions_description.short_desc}),images: (data.images !== "" ? data.images.split(",") : undefined),updated_at:new Date().toISOString(),action_by:"NP2",actor_detail:data.actor_detail}]; session.actions_append '
+
+      - beckn_key: resolution_keys_proposed_key
+        value: session.resolution_keys_proposed_key = String(data.Resolution) !== "false" ? [{id:data.id,ref_id:data.Resolution,ref_type:"RESOLUTION", updated_at:new Date().toISOString(),action_by:"NP2","actor_details.name":"Sam Manuel"}]:[] 
+
       - beckn_key: actions
-        value: '[...session.actions,...session.actions_append]'
+        value: 'String(data.Resolution) !== "false" ? [...session.actions,...session.actions_append,...session.resolution_keys_proposed_key] : [...session.actions,...session.actions_append]'
       
       - beckn_key: refs
         value: 'const ref = []; for (const [ref_type, ref_id] of Object.entries(data.ref)) {ref_id !="" && ref.push({ ref_id, ref_type });} ref;'
+
+      - beckn_key: description_key
+        value: '({code:data.category,short_desc:session.description.short_desc,long_desc:session.description.long_desc,additional_desc:session.description.additional_desc,images:session.description.images})'
 
     mapping:
       - beckn_key: context
@@ -143,8 +150,9 @@ protocol:
       - beckn_key: message.issue.level
         value: session.issuelevel
 
+
       - beckn_key: message.issue.status
-        value: session.issueStatus 
+        value: session.issueStatus  
 
       - beckn_key: message.issue.expected_response_time
         value:  session.expected_response_time
@@ -165,7 +173,7 @@ protocol:
         value:  session.complainantId 
 
       - beckn_key: message.issue.description
-        value:  session.description
+        value:  session.description_key
       
       - beckn_key: message.issue.last_action_id
         value: data.id

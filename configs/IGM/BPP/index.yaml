@@ -214,6 +214,16 @@ flows:
           - "http://buyerapp.com/addtional-details/img2.png"
       lastactionid: "A1"
       action_id: "A1"
+      resolution_keys_proposed:
+        id: A9
+        ref_id: R_PARENT
+        ref_type: RESOLUTIONS
+        description:
+          code: RESOLUTION_PROPOSED
+        updated_at: "2023-01-15T10:00:00.469Z"
+        action_by: NP2
+        actor_details:
+            name: Sam Manuel
       actions_description:
         code: "OPEN"
         short_desc: "Complaint created"

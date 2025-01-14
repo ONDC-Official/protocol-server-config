@@ -126,7 +126,7 @@ protocol:
         
 
       - beckn_key: actions
-        value: 'String(data.send_resolution) === "true" && [...session.actions,...session.actions_append,...session.resolution_keys] || String(data.send_resolution) === "false"  && [...session.actions] || String(data.send_resolution) === "proposed" && [...session.actions,...session.actions_append,...session.resolution_keys_proposed] || String(data.send_resolution) === "replacement" && [...session.actions,...session.actions_append,...session.resolution_keys_replace] || String(data.send_resolution) === "refund" && [...session.actions,...session.actions_append,...session.resolution_keys_refund]' 
+        value: '[...session.actions,...session.actions_append]' 
         
       - beckn_key: last_action_id
         value: data.id

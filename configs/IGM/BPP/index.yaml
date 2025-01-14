@@ -66,42 +66,42 @@ flows:
         - INFO0002
         - INFO0003
 
-      resolution_keys_proposed:
-        - id: A9
+      proposed:
+        # - id: A9
           ref_id: R_PARENT
           ref_type: RESOLUTIONS
           description:
             code: RESOLUTION_PROPOSED
-          updated_at: "2023-01-15T10:00:00.469Z"
-          action_by: NP2
-          actor_details:
-            name: Sam Manuel
+          # updated_at: "2023-01-15T10:00:00.469Z"
+          # action_by: NP2
+          # actor_details:
+          #   name: Sam Manuel
 
-      resolution_keys_replace:
-        - id: A11
+      replacement:
+        # - id: A11
           ref_id: R2
           ref_type: RESOLUTIONS
           description:
             code: RESOLVED
             name: REPLACEMENT
-          short_desc: Providing replacement
-          updated_at: "2023-01-15T10:00:00.469Z"
-          action_by: NP2
-          actor_details:
-            name: Sam Manuel
+          # short_desc: Providing replacement
+          # updated_at: "2023-01-15T10:00:00.469Z"
+          # action_by: NP2
+          # actor_details:
+          #   name: Sam Manuel
       
-      resolution_keys_refund:
-        - id: A11
+      refund:
+        # - id: A11
           ref_id: R1
           ref_type: RESOLUTIONS
           description:
             code: RESOLVED
             name: REFUND
-          short_desc: Providing refund
-          updated_at: "2023-01-15T10:00:00.469Z"
-          action_by: NP2
-          actor_details:
-            name: Sam Manuel
+          # short_desc: Providing refund
+          # updated_at: "2023-01-15T10:00:00.469Z"
+          # action_by: NP2
+          # actor_details:
+          #   name: Sam Manuel
 
       resolution_keys:
         - id: A9

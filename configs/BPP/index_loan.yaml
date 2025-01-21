@@ -114,11 +114,45 @@ flows:
         default:
           service_url: http://172.17.0.1:5502/status
           sync: false          
+  - summary: Default -  Flow
+    id: default-flow
+    domain: ONDC:TRV11
+    protocol:
+      $ref: ./default/protocolMapping.yaml#/protocol
+    schema:
+      $ref: ../schema/FIS/index.yaml
+    api:
+      search:
+        default:
+          service_url: http://172.17.0.1:5501/search
+          sync: false
+
+      select:
+        default:
+          service_url: http://172.17.0.1:5501/select
+          sync: false
+
+      init:
+        default:
+          service_url: http://172.17.0.1:5501/init
+          sync: false
+
+      confirm:
+        default:
+          service_url: http://172.17.0.1:5501/confirm
+          sync: false
+
+      update:
+        default:
+          service_url: http://172.17.0.1:5501/update
+          sync: false
+
+
 
 flow_selector:
   search:
     default:
-      config_id: "personal-loan-flow-1"
+      config_id: "default-flow"
     personal_loan:
       condition:
           operation:
@@ -138,7 +172,7 @@ flow_selector:
       config_id: "personal-loan-flow-1"
   select: 
     default:
-      config_id: "personal-loan-flow-1"
+      config_id: "default-flow"
     personal_loan:
       condition:
           operation:
@@ -159,7 +193,7 @@ flow_selector:
   
   init: 
     default:
-      config_id: "personal-loan-flow-1"
+      config_id: "default-flow"
     personal_loan:
       condition:
           operation:
@@ -177,3 +211,44 @@ flow_selector:
                             value: "req_body.message.order.items.0.id"
                       - ITEM_ID_1_PERSONAL-LOAN
       config_id: "personal-loan-flow-1"
+
+  confirm: 
+    default:
+      config_id: "default-flow"
+    personal_loan:
+      condition:
+          operation:
+            type: AND
+            input:
+              value:
+              - operation:
+                  type: EQUAL
+                  title: Check search message code
+                  input:
+                    value:
+                      - operation:
+                          type: READ
+                          input:
+                            value: "req_body.message.order.items.0.id"
+                      - ITEM_ID_1_PERSONAL-LOAN
+
+
+  status: 
+    default:
+      config_id: "default-flow"
+    personal_loan:
+      condition:
+          operation:
+            type: AND
+            input:
+              value:
+              - operation:
+                  type: EQUAL
+                  title: Check search message code
+                  input:
+                    value:
+                      - operation:
+                          type: READ
+                          input:
+                            value: "req_body.message.order.items.0.id"
+                      - ITEM_ID_1_PERSONAL-LOAN

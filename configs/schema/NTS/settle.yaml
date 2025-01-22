@@ -78,8 +78,6 @@ properties:
       - version
       - transaction_id
       - message_id
-      - bap_id
-      - bap_uri
       - timestamp
   message:
     type: object

@@ -5,6 +5,7 @@ flows:
     domain: ONDC:RET10
     shouldDispaly: true
     sessionData:
+      dualmode: true
       currency: INR
       bpp_uri: https://igm-mock-service.ondc.org/seller_protocol_server_preprod
       bpp_id: igm-mock-service.ondc.org/seller_protocol_server_preprod
@@ -135,7 +136,6 @@ flows:
           action_by: NP2
           actor_details:
             name: Sam Manuel
-
     protocol:
       $ref: ./igm-flow/protocolMapping.yaml#/protocol
     calls:
@@ -150,12 +150,14 @@ flows:
   - summary: IGM
     id: igm-reverse-flow
     createSessionAtBuyer: true
+    dualmode: true
     domain: ONDC:RET10
     shouldDispaly: true
     sessionData:
       currency: INR
-      bpp_uri: https://igm-mock-service.ondc.org/seller_protocol_server_preprod
-      bpp_id: igm-mock-service.ondc.org/seller_protocol_server_preprod
+      dualmode: true
+      subscriber_url: https://igm-mock-service.ondc.org/seller_protocol_server_preprod
+      subscriber_id: igm-mock-service.ondc.org/seller_protocol_server_preprod
       issueId: "ISSUE-1"
       issueStatus: "OPEN"
       issuelevel: "ISSUE"

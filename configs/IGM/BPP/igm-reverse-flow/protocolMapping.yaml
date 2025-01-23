@@ -184,12 +184,17 @@ protocol:
 
   session-builder:
     sessionData:
+      - business_key: url
+        extractionPath: 'context.bap_uri && obj.context.bpp_uri && obj.context.bap_uri == session.subscriber_url ? obj.context.bpp_uri : obj.context.bap_uri ||  obj.context.bpp_uri && obj.context.bpp_uri || obj.context.bap_uri && obj.context.bap_uri'
+
       - business_key: bap_id
-        extractionPath: context.bap_id
-
+        extractionPath: context.bap_id && obj.context.bap_id || session && session.subscriber_id
       - business_key: bap_uri
-        extractionPath: context.bap_uri
-
+        extractionPath: context.bap_uri && obj.context.bap_uri || session && session.subscriber_url
+      - business_key: bpp_id
+        extractionPath: context.bpp_id && obj.context.bpp_id || session && session.subscriber_id
+      - business_key: bpp_uri
+        extractionPath: context.bpp_uri && obj.context.bpp_uri || session && session.subscriber_url
       - business_key: cityCode
         extractionPath: context.location.city.code || session.cityCode
 
@@ -204,12 +209,6 @@ protocol:
 
       - business_key: messageid
         extractionPath: context.message_id
-
-      - business_key: bpp_id
-        extractionPath: context.bpp_id
-
-      - business_key: bpp_uri
-        extractionPath: context.bpp_uri
 
       - business_key: core_version
         extractionPath: context.core_version

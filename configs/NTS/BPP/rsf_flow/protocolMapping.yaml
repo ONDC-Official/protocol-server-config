@@ -71,7 +71,7 @@ protocol:
  
 
   on_settle:
-    session:
+    sessionData:
       - beckn_key: settlement_status
         value: data.status
       - beckn_key: settlement_reference_no
@@ -82,6 +82,12 @@ protocol:
         value: data.provider_status
       - beckn_key: provider_reference_no
         value: data.provider_reference_no
+      
+      - beckn_key: message.settlement.orders[0].inter_participant.status
+        value:  data.inter_participant_status && data.inter_participant_status
+
+      - beckn_key: message.settlement.orders[0].self.status
+        value:  data.self_status && data.self_status
 
     mapping:
       - beckn_key: context
@@ -153,6 +159,11 @@ protocol:
         value:  data.error_code && data.error_code
       - beckn_key: message.settlement.orders[0].error.message
         value:  data.error_message && data.error_message
+
+      - beckn_key: message.settlement.orders[0].inter_participant.status
+        value:  data.inter_participant_status && data.inter_participant_status
+      - beckn_key: message.settlement.orders[0].self.status
+        value:  data.self_status && data.self_status
 
   report:
     sessionData:

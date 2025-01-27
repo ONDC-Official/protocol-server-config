@@ -3,7 +3,6 @@ protocol:
     sessionData:
       - business_key: url
         extractionPath: 'context.bap_uri && obj.context.bpp_uri && obj.context.bap_uri == session.subscriber_url ? obj.context.bpp_uri : obj.context.bap_uri ||  obj.context.bpp_uri && obj.context.bpp_uri || obj.context.bap_uri && obj.context.bap_uri'
-
       - business_key: bap_id
         extractionPath: context.bap_id && obj.context.bap_id || session && session.subscriber_id
       - business_key: bap_uri

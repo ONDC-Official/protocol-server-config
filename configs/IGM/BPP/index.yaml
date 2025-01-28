@@ -7,8 +7,8 @@ flows:
     sessionData:
       dualmode: true
       currency: INR
-      subscriber_url: https://igm-mock-service.ondc.org/seller_protocol_server
-      subscriber_id: igm-mock-service.ondc.org/seller_protocol_server
+      subscriber_url: https://igm-mock-service.ondc.org/igm-protocol-server-staging/ondc
+      subscriber_id: igm-mock-service.ondc.org/igm-protocol-server-staging
       actorsKey:
         - id: NP2
           type: TRANSACTION-COUNTERPARTY-NP
@@ -156,8 +156,8 @@ flows:
     sessionData:
       currency: INR
       dualmode: true
-      subscriber_url: https://igm-mock-service.ondc.org/seller_protocol_server_preprod
-      subscriber_id: igm-mock-service.ondc.org/seller_protocol_server_preprod
+      subscriber_url: https://igm-mock-service.ondc.org/igm-protocol-server-staging/ondc
+      subscriber_id: igm-mock-service.ondc.org/igm-protocol-server-staging
       issueId: "ISSUE-1"
       issueStatus: "OPEN"
       issuelevel: "ISSUE"

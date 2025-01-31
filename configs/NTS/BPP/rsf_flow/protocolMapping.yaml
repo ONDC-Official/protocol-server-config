@@ -22,6 +22,8 @@ protocol:
         extractionPath: context.location.country.code || session.countryCode
       - business_key: message_id
         extractionPath: context.message_id
+      - business_key: domain
+        extractionPath: context.domain
 
 #store order details etc in session
       - business_key: collector_app_id
@@ -89,6 +91,10 @@ protocol:
       - beckn_key: message.settlement.orders[0].self.status
         value:  data.self_status && data.self_status
 
+      - beckn_key: message.settlement.orders[0].self.status
+        value:  data.self_status && data.self_status
+
+
     mapping:
       - beckn_key: context
         value: session
@@ -155,10 +161,14 @@ protocol:
 
       - beckn_key: message.settlement.orders[0].provider.reference_no
         value:  data.provider_reference_no && data.provider_reference_no
+
       - beckn_key: message.settlement.orders[0].error.code
         value:  data.error_code && data.error_code
       - beckn_key: message.settlement.orders[0].error.message
         value:  data.error_message && data.error_message
+
+      - beckn_key: message.settlement.orders[0].provider.error
+        value:  data.provider_error && data.provider_error
 
       - beckn_key: message.settlement.orders[0].inter_participant.status
         value:  data.inter_participant_status && data.inter_participant_status
@@ -257,8 +267,10 @@ protocol:
         value:  session.order_data[0].provider_amount && session.currency
       - beckn_key: message.settlement.orders[0].provider.status
         value:  data.provider_status && data.provider_status
+
       - beckn_key: message.settlement.orders[0].provider.error
         value:  data.provider_error && data.provider_error
+
       - beckn_key: message.settlement.orders[0].provider.reference_no
         value:  data.provider_reference_no && data.provider_reference_no
 
@@ -386,7 +398,7 @@ protocol:
 
       #settlement
       - beckn_key: message.orders[0].recon_accord
-        value: data.recon_accord  && data.recon_accord 
+        value: data.recon_accord  &&  (String(data.recon_accord).toLowerCase() == "true")
 
       - beckn_key: message.orders[0].settlements[0].id
         value: session.order_data[0].settlement_id && session.order_data[0].settlement_id
@@ -449,6 +461,10 @@ protocol:
       - business_key: order_data
         extractionPath: "message.orders[]{order_id:id,  amount:amount.value }.settlements[]{settlement_id:id, payment_id: payment_id, settlement_status:status,settlement_amount:amount.value,   settlement_commission:commission.value ,   withholding_amount: withholding_amount.value, tcs_amount:tcs.value, tds_amount:tds.value, settlement_updatedat : updated_at, settlement_ref_no: settlement_ref_no}"
 
+
+      - beckn_key: message.orders[0].settlements[0].due_date
+        value: "const d = new Date(); d.setDate(d.getDate() + 2); d.toISOString().split('T')[0];"
+        
 
     sessionData:
       - business_key: bap_id

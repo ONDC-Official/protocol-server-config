@@ -213,6 +213,9 @@ protocol:
       - business_key: core_version
         extractionPath: context.core_version
         
+      - business_key: domain
+        extractionPath: context.domain
+        
     mapping:  
       - business_key: context
         extractionPath: context        

@@ -18,6 +18,8 @@ protocol:
         extractionPath: context.location.country.code || session.countryCode
       - business_key: message_id
         extractionPath: context.message_id
+      - business_key: domain
+        extractionPath: context.domain
 
       - business_key: context.bap_id
         extractionPath: context.bap_id

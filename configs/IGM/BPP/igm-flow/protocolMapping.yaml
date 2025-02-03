@@ -131,7 +131,7 @@ protocol:
 #
 #actions_append
       - beckn_key: actions_append
-        value: 'let action = {id:data.id,description:  ( String(data.actions_description.name) !== "false" && data.actions_description || {code:data.actions_description.code,short_desc:data.actions_description.short_desc})   ,updated_at:new Date().toISOString(),action_by:"NP2",actor_detail:data.actor_detail}; action = String(data.send_resolution)==="false" ? action : {...action,...session[data.send_resolution] }; session.actions_append=[action];   session.actions_append;'
+        value: 'let action = {id:data.id,description:  ( String(data.actions_description.name) !== "false" && data.actions_description || {code:data.actions_description.code,short_desc:data.actions_description.short_desc})   ,updated_at:new Date().toISOString(),action_by:"NP2",actor_details:data.actor_detail}; action = String(data.send_resolution)==="false" ? action : {...action,...session[data.send_resolution] }; session.actions_append=[action];   session.actions_append;'
         
 
       - beckn_key: actions

@@ -21,15 +21,15 @@ protocol:
       - business_key: domain
         extractionPath: context.domain
 
-      - business_key: context.bap_id
+      - business_key: bap_id
         extractionPath: context.bap_id
-      - business_key: context.bap_uri
+      - business_key: bap_uri
         extractionPath: context.bap_uri
-      - business_key: context.bpp_id
+      - business_key: bpp_id
         extractionPath: context.bpp_id
-      - business_key: context.bpp_uri
+      - business_key: bpp_uri
         extractionPath: context.bpp_uri
-      - business_key: context.core_version
+      - business_key: core_version
         extractionPath: context.core_version
 
       - business_key: issueId

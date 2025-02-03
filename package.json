@@ -5,7 +5,7 @@
   "main": "build.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node app.js"
+    "build": "node app igm && node app nts && node app fis && node app trv && node app"
   },
   "author": "",
   "license": "ISC",

@@ -15,11 +15,11 @@ flows:
           info:
             org:
               name: sellerapp.com::ONDC:RET10
-          contact:
-            phone: 9450394140
-            email: respondentapp@respond.com
-          person:
-            name: Jane Doe
+            contact:
+              phone: '9450394140'
+              email: respondentapp@respond.com
+            person:
+              name: Jane Doe
       resolutions:
         - id: R_PARENT
           descriptor:

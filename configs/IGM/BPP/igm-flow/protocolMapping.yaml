@@ -60,7 +60,6 @@ protocol:
         extractionPath:  message.issue.description
 
 
-
       - business_key: actors
         extractionPath:  message.issue.actors
 
@@ -72,6 +71,14 @@ protocol:
       
       - business_key: actions
         extractionPath:  message.issue.actions
+
+      - business_key: created_at
+        extractionPath:  message.issue.created_at
+
+      - business_key: updated_at
+        extractionPath:  message.issue.updated_at  
+  
+
 
     mapping:
       - business_key: context.action
@@ -194,5 +201,11 @@ protocol:
       
       - beckn_key: message.issue.resolutions
         value: String(data.send_resolution) !== "false" && session.resolutions 
+
+      - beckn_key: message.issue.created_at
+        value: session.created_at
+
+      - beckn_key: message.issue.updated_at
+        value: session.updated_at
 
 

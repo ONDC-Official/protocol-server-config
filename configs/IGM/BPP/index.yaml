@@ -165,22 +165,13 @@ flows:
         duration: "PT2H"
       expected_resolution_time:
         duration: "P1D"
-      refs:
-        - ref_id: "O1"
-          ref_type: "ORDER"
-        - ref_id: "P1"
-          ref_type: "PROVIDER"
-        - ref_id: "F1"
-          ref_type: "FULFILMENT"
-        - ref_id: "I1"
-          ref_type: "ITEM"
-          tags:
+      item_tags:
+        - descriptor:
+            code: "message.order.items"
+          list:
             - descriptor:
-                code: "message.order.items"
-              list:
-                - descriptor:
-                    code: "quantity.selected.count"
-                  value: "2"
+                code: "quantity.selected.count"
+              value: "2"
       actors:
         - id: "CUST1"
           type: "CONSUMER"
@@ -193,7 +184,7 @@ flows:
               phone: "9879879870"
               email: "sam@yahoo.com"
         - id: "NP1"
-          type: "INTERFACING-NP"
+          type: "INTERFACING_NP"
           info:
             org:
               name: "buyerapp.com::ONDC:RET10"

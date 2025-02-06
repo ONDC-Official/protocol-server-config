@@ -101,6 +101,9 @@ protocol:
       - business_key: issue.refs
         extractionPath:  message.issue.refs
 
+      - business_key: issue.refs
+        extractionPath:  message.issue.refs
+
       - business_key: issue.actors
         extractionPath:  message.issue.actors
 
@@ -120,12 +123,12 @@ protocol:
       # - business_key: message.settlement.orders
       #   extractionPath: "message.settlement.orders[]{id:order_id, order_amount:amount.value,  inter_participant_amount:inter_participant.amount.value,collector_amount: collector.amount.value,self_amount:self.amount.value  ,    provider_id:provider.id, provider_name: provider.name,  provider_account_no : provider.bank_details.account_no,  provider_ifsc_code: provider.bank_details.ifsc_code, provider_amount: provider.amount.value   }"
  
-
+# images: (data.images !== "" && data.images !== undefined ? data.images.split(",") : undefined) images logic to split input into arrays #DEPRECATED
   issue:
     sessionData:
       - beckn_key: actions_append
         # value: 'session.actions_append=[{id:data.id,description:  ( String(data.actions_description.name) !== "false" && data.actions_description || {code:data.actions_description.code,short_desc:data.actions_description.short_desc}),(data.images !== "" &&  images: data.images.split(",")  || ""),updated_at:new Date().toISOString(),action_by:"NP2",actor_detail:data.actor_detail}]; session.actions_append '
-        value: 'session.actions_append=[{id:data.id,description:  ( String(data.actions_description.name) !== "false" && data.actions_description || {code:data.actions_description.code,short_desc:data.actions_description.short_desc}),images: (data.images !== "" && data.images !== undefined ? data.images.split(",") : undefined),updated_at:new Date().toISOString(),action_by:"NP2",actor_details:data.actor_detail}]; session.actions_append '
+        value: 'session.actions_append=[{id:data.id,description:  ( String(data.actions_description.name) !== "false" && data.actions_description || {code:data.actions_description.code,short_desc:data.actions_description.short_desc,images:data.actions_description.images}),updated_at:new Date().toISOString(),action_by:"NP2",actor_details:data.actor_detail}]; session.actions_append '
 
       - beckn_key: resolution_keys_proposed_key
         value: session.resolution_keys_proposed_key = String(data.Resolution) !== "false" && data.Resolution !== undefined  ? [{id:data.id,ref_id:data.Resolution,ref_type:"RESOLUTION", updated_at:new Date().toISOString(),action_by:"NP2","actor_details.name":"Sam Manuel"}]:[] 
@@ -163,7 +166,11 @@ protocol:
       - beckn_key: message.issue.refs
         value:  session.refs
 
+      - beckn_key: message.issue.refs[1].tags
+        value:  session.refs[1] && session.item_tags
+
       - beckn_key: message.issue.actors
+
         value:  session.actors 
 
       - beckn_key: message.issue.source_id

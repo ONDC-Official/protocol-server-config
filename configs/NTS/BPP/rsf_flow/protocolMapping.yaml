@@ -161,13 +161,25 @@ protocol:
 
       - beckn_key: message.settlement.orders[0].provider.reference_no
         value:  data.provider_reference_no && data.provider_reference_no
-
-      - beckn_key: message.settlement.orders[0].error.code
+      - beckn_key: message.settlement.orders[0].self.error.code
         value:  data.error_code && data.error_code
-      - beckn_key: message.settlement.orders[0].error.message
+      - beckn_key: message.settlement.orders[0].self.error.message
         value:  data.error_message && data.error_message
 
+      - beckn_key: message.settlement.orders[0].inter_participant.error.code
+        value:  data.error_code && data.error_code
+      - beckn_key: message.settlement.orders[0].inter_participant.error.message
+        value:  data.error_message && data.error_message
+#interparticipant error
+
+
       - beckn_key: message.settlement.orders[0].provider.error
+        value:  data.provider_error && data.provider_error
+
+      - beckn_key: message.settlement.orders[0].self.error
+        value:  data.provider_error && data.provider_error
+
+      - beckn_key: message.settlement.orders[0].inter_participant.error
         value:  data.provider_error && data.provider_error
 
       - beckn_key: message.settlement.orders[0].inter_participant.status

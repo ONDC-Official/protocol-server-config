@@ -5,6 +5,7 @@ flows:
     domain: ONDC:RET10
     shouldDispaly: true
     sessionData:
+      on_status: true
       dualmode: true
       currency: INR
       subscriber_url: https://igm-mock-service.ondc.org/igm-protocol-server-preprod/ondc
@@ -154,6 +155,7 @@ flows:
     domain: ONDC:RET10
     shouldDispaly: true
     sessionData:
+      on_status: true
       currency: INR
       dualmode: true
       subscriber_url: https://igm-mock-service.ondc.org/igm-protocol-server-preprod/ondc

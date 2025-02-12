@@ -209,3 +209,14 @@ protocol:
         value: session.updated_at
 
 
+  issue_status:
+    status: true
+    mapping: []
+
+  on_issue_status:
+    mapping:
+      - beckn_key: context
+        value: session
+        compute: buildContext(session, action)
+      - beckn_key: message
+        value: session.lastPayload.message

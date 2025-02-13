@@ -128,7 +128,7 @@ protocol:
     sessionData:
       - beckn_key: actions_append
         # value: 'session.actions_append=[{id:data.id,description:  ( String(data.actions_description.name) !== "false" && data.actions_description || {code:data.actions_description.code,short_desc:data.actions_description.short_desc}),(data.images !== "" &&  images: data.images.split(",")  || ""),updated_at:new Date().toISOString(),action_by:"NP2",actor_detail:data.actor_detail}]; session.actions_append '
-        value: 'session.actions_append=[{id:data.id,description:  ( String(data.actions_description.name) !== "false" && data.actions_description || {code:data.actions_description.code,short_desc:data.actions_description.short_desc,images:data.actions_description.images}),updated_at:new Date().toISOString(),action_by:"NP2",actor_details:data.actor_detail}]; session.actions_append '
+        value: 'session.actions_append= removeEmptyKeys([{id:data.id,description:  ( String(data.actions_description.name) !== "false" && data.actions_description || {code:data.actions_description.code,short_desc:data.actions_description.short_desc,images:data.actions_description.images}),updated_at:new Date().toISOString(),action_by:"NP2",actor_details:data.actor_detail,ref_id:data.ref_id,ref_type:data.ref_type}]);  session.actions_append '
 
       - beckn_key: resolution_keys_proposed_key
         value: session.resolution_keys_proposed_key = String(data.Resolution) !== "false" && data.Resolution !== undefined  ? [{id:data.id,ref_id:data.Resolution,ref_type:"RESOLUTION", updated_at:new Date().toISOString(),action_by:"NP2","actor_details.name":"Sam Manuel"}]:[] 

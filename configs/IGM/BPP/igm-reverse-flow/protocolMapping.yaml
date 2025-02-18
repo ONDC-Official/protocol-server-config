@@ -187,6 +187,12 @@ protocol:
 
       - beckn_key: message.issue.actions
         value: session.actions
+
+      - beckn_key: message.issue.created_at
+        value: 'new Date(new Date().setDate(new Date().getDate() - 2))'
+
+      - beckn_key: message.issue.updated_at
+        value: 'new Date(new Date().setHours(new Date().getHours() - 5))'
         # value: session.actions
 
 

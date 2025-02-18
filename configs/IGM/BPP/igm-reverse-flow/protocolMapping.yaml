@@ -189,6 +189,24 @@ protocol:
         value: session.actions
         # value: session.actions
 
+
+  issue_status:
+    mapping:
+      - beckn_key: context
+        value: session
+        compute: buildContext(session, action)
+
+      - beckn_key: message.issue_id
+        value: session.issueId
+
+  on_issue_status:
+    mapping:  
+      - business_key: context
+        extractionPath: context        
+
+      - business_key: message
+        extractionPath: message        
+
   session-builder:
     sessionData:
       - business_key: url

@@ -1,6 +1,9 @@
 protocol:
   on_issue:
     sessionData:
+      - business_key: resolutions
+        extractionPath: message.issue.resolutions
+
       - business_key: bap_id
         extractionPath: context.bap_id
       - business_key: bap_uri
@@ -71,61 +74,66 @@ protocol:
         extractionPath:  message.issue.actions
 
     mapping:
-      - business_key: context.action
-        extractionPath: context.action
-      - business_key: context.transaction_id
-        extractionPath: context.transaction_id
-      - business_key: context.message_id
-        extractionPath: context.message_id
+      - business_key: context
+        extractionPath: context
 
-        #message
+      - business_key: message
+        extractionPath: message
+
+
+      # - business_key: context.action
+      #   extractionPath: context.action
+      # - business_key: context.transaction_id
+      #   extractionPath: context.transaction_id
+      # - business_key: context.message_id
+      #   extractionPath: context.message_id
+
+      #   #message
+      # - business_key: issue.id
+      #   extractionPath:  message.issue.id
+
+      # - business_key: issue.level
+      #   extractionPath:  message.issue.level
       
-      - business_key: issue.id
-        extractionPath:  message.issue.id
+      # - business_key: issue.status
+      #   extractionPath:  message.issue.status
 
-      - business_key: issue.level
-        extractionPath:  message.issue.level
+      # - business_key: issue.source_id
+      #   extractionPath:  message.issue.source_id
+
+      # - business_key: issue.complainant_id
+      #   extractionPath:  message.issue.complainant_id
+
+      # - business_key: issue.description
+      #   extractionPath:  message.issue.description
+
+      # - business_key: issue.refs
+      #   extractionPath:  message.issue.refs
+
+      # - business_key: issue.refs
+      #   extractionPath:  message.issue.refs
+
+      # - business_key: issue.actors
+      #   extractionPath:  message.issue.actors
+
+      # - business_key: issue.actions
+      #   extractionPath:  message.issue.actions
+
+      # - business_key: issue.expected_resolution_time
+      #   extractionPath:  message.issue.expected_resolution_time
       
-      - business_key: issue.status
-        extractionPath:  message.issue.status
-
-      - business_key: issue.source_id
-        extractionPath:  message.issue.source_id
-
-      - business_key: issue.complainant_id
-        extractionPath:  message.issue.complainant_id
-
-      - business_key: issue.description
-        extractionPath:  message.issue.description
-
-      - business_key: issue.refs
-        extractionPath:  message.issue.refs
-
-      - business_key: issue.refs
-        extractionPath:  message.issue.refs
-
-      - business_key: issue.actors
-        extractionPath:  message.issue.actors
-
-      - business_key: issue.actions
-        extractionPath:  message.issue.actions
-
-      - business_key: issue.expected_resolution_time
-        extractionPath:  message.issue.expected_resolution_time
-      
-      - business_key: issue.expected_response_time
-        extractionPath:  message.issue.expected_response_time
+      # - business_key: issue.expected_response_time
+      #   extractionPath:  message.issue.expected_response_time
       
       
-      - business_key: issue.last_action_id
-        extractionPath:  message.issue.last_action_id
+      # - business_key: issue.last_action_id
+      #   extractionPath:  message.issue.last_action_id
 
-      # - business_key: message.settlement.orders
-      #   extractionPath: "message.settlement.orders[]{id:order_id, order_amount:amount.value,  inter_participant_amount:inter_participant.amount.value,collector_amount: collector.amount.value,self_amount:self.amount.value  ,    provider_id:provider.id, provider_name: provider.name,  provider_account_no : provider.bank_details.account_no,  provider_ifsc_code: provider.bank_details.ifsc_code, provider_amount: provider.amount.value   }"
- 
-# images: (data.images !== "" && data.images !== undefined ? data.images.split(",") : undefined) images logic to split input into arrays #DEPRECATED
   issue:
     sessionData:
+      - beckn_key: dummy #adding closed_description_tags
+        value: "data.actions_description.code == 'CLOSED' ? data.actions_description.tags = session.closed_tags : data.actions_description.tags"
+
       - beckn_key: actions_append
         # value: 'session.actions_append=[{id:data.id,description:  ( String(data.actions_description.name) !== "false" && data.actions_description || {code:data.actions_description.code,short_desc:data.actions_description.short_desc}),(data.images !== "" &&  images: data.images.split(",")  || ""),updated_at:new Date().toISOString(),action_by:"NP2",actor_detail:data.actor_detail}]; session.actions_append '
         value: 'session.actions_append= removeEmptyKeys([{id:data.id,description:  ( String(data.actions_description.name) !== "false" && data.actions_description || {code:data.actions_description.code,short_desc:data.actions_description.short_desc,images:data.actions_description.images}),updated_at:new Date().toISOString(),action_by:"NP2",actor_details:data.actor_detail,ref_id:data.ref_id,ref_type:data.ref_type}]);  session.actions_append '
@@ -170,7 +178,6 @@ protocol:
         value:  session.refs[1] && session.item_tags
 
       - beckn_key: message.issue.actors
-
         value:  session.actors 
 
       - beckn_key: message.issue.source_id
@@ -193,6 +200,9 @@ protocol:
 
       - beckn_key: message.issue.updated_at
         value: 'new Date(new Date().setHours(new Date().getHours() - 5))'
+
+      - beckn_key: message.issue.resolutions
+        value: session.resolutions
         # value: session.actions
 
 

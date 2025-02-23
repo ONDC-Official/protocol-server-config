@@ -131,8 +131,8 @@ protocol:
 
   issue:
     sessionData:
-      - beckn_key: dummy #adding closed_description_tags
-        value: "data.actions_description.code == 'CLOSED' ? data.actions_description.tags = session.closed_tags : data.actions_description.tags"
+      # - beckn_key: dummy #adding closed_description_tags
+      #   value: "data.actions_description.code == 'CLOSED' ? data.actions_description.tags = session.closed_tags : data.actions_description.tags"
 
       - beckn_key: actions_append
         # value: 'session.actions_append=[{id:data.id,description:  ( String(data.actions_description.name) !== "false" && data.actions_description || {code:data.actions_description.code,short_desc:data.actions_description.short_desc}),(data.images !== "" &&  images: data.images.split(",")  || ""),updated_at:new Date().toISOString(),action_by:"NP2",actor_detail:data.actor_detail}]; session.actions_append '

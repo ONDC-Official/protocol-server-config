@@ -345,7 +345,7 @@ protocol:
         value: session.order_data[0].order_id && session.order_data[0].order_id
 
       - beckn_key: message.orders[0].amount.value
-        value: session.order_data[0].self_amount && session.order_data[0].self_amount
+        value: data.total_order_amount
       - beckn_key: message.orders[0].amount.currency
         value: session.order_data[0].self_amount && session.currency
         

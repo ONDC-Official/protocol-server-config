@@ -12,7 +12,7 @@ flows:
       subscriber_id: igm-mock-service.ondc.org/igm-protocol-server-preprod
       actorsKey:
         - id: NP2
-          type: TRANSACTION-COUNTERPARTY-NP
+          type: TRANSACTION_COUNTERPARTY_NP
           info:
             org:
               name: sellerapp.com::ONDC:RET10

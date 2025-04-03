@@ -23182,7 +23182,7 @@ BPP:
                                 input:
                                   value: req_body.message.intent.fulfillment.stops
                             - undefined
-            service_url: http://localhost:5502/getallstationcode
+            service_url: http://172.17.0.1:5504/getallstationcode
             sync: false
           getonestationcodetrips:
             condition:
@@ -23200,7 +23200,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - search
-            service_url: http://localhost:5502/getonestationcodetrips
+            service_url: http://172.17.0.1:5504/getonestationcodetrips
             sync: false
         select:
           default:
@@ -23221,7 +23221,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - select
-            service_url: http://localhost:5502/getfare
+            service_url: http://172.17.0.1:5504/getfare
             sync: false
         init:
           default:
@@ -23242,7 +23242,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - init
-            service_url: http://localhost:5502/getfare
+            service_url: http://172.17.0.1:5504/getfare
             sync: false
         confirm:
           default:
@@ -23263,7 +23263,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - confirm
-            service_url: http://localhost:5502/confirmticket
+            service_url: http://172.17.0.1:5504/confirmticket
             sync: false
         status:
           default:
@@ -23284,7 +23284,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - status
-            service_url: http://localhost:5502/status
+            service_url: http://172.17.0.1:5504/status
             sync: false
         cancel:
           default:
@@ -23305,7 +23305,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - cancel
-            service_url: http://localhost:5502/cancel
+            service_url: http://172.17.0.1:5504/cancel
             sync: false
     - summary: IntraCity - Code Based Flow
       id: intracity-flow-1
@@ -23993,7 +23993,7 @@ BPP:
       api:
         search:
           default:
-            service_url: http://localhost:5502/search
+            service_url: http://172.17.0.1:5504/search
             sync: false
           get_all_station_codes:
             condition:
@@ -24021,7 +24021,7 @@ BPP:
                                 input:
                                   value: req_body.message.intent.fulfillment.stops
                             - undefined
-            service_url: http://localhost:5502/getallstationcode
+            service_url: http://172.17.0.1:5504/getallstationcode
             sync: false
           getonestationcodetrips:
             condition:
@@ -24039,11 +24039,11 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - search
-            service_url: http://localhost:5502/getonestationcodetrips
+            service_url: http://172.17.0.1:5504/getonestationcodetrips
             sync: false
         select:
           default:
-            service_url: http://localhost:5502/search
+            service_url: http://172.17.0.1:5504/search
             sync: false
           get_all_station_codes:
             condition:
@@ -24061,11 +24061,11 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - select
-            service_url: http://localhost:5502/getfare
+            service_url: http://172.17.0.1:5504/getfare
             sync: false
         init:
           default:
-            service_url: http://localhost:5502/search
+            service_url: http://172.17.0.1:5504/search
             sync: false
           get_all_station_codes:
             condition:
@@ -24083,11 +24083,11 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - init
-            service_url: http://localhost:5502/getfare
+            service_url: http://172.17.0.1:5504/getfare
             sync: false
         confirm:
           default:
-            service_url: http://localhost:5502/search
+            service_url: http://172.17.0.1:5504/search
             sync: false
           get_all_station_codes:
             condition:
@@ -24105,11 +24105,11 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - confirm
-            service_url: http://localhost:5502/confirmticket
+            service_url: http://172.17.0.1:5504/confirmticket
             sync: false
         status:
           default:
-            service_url: http://localhost:5502/search
+            service_url: http://172.17.0.1:5504/search
             sync: false
           get_all_station_codes:
             condition:
@@ -24127,7 +24127,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - status
-            service_url: http://localhost:5502/status
+            service_url: http://172.17.0.1:5504/status
             sync: false
     - summary: Intercity - Code Based Flow
       id: intercity-flow-1
@@ -24735,7 +24735,7 @@ BPP:
                                 input:
                                   value: req_body.message.intent.fulfillment.id
                             - undefined
-            service_url: http://localhost:5502/getallstationcode
+            service_url: http://172.17.0.1:5504/getallstationcode
             sync: false
           getonestationcodetrips:
             condition:
@@ -24764,7 +24764,7 @@ BPP:
                                   value: >-
                                     req_body.message.intent.fulfillment.stops.0.time.label
                             - DATE_OF_JOURNEY
-            service_url: http://localhost:5502/getonestationcodetrips
+            service_url: http://172.17.0.1:5504/getonestationcodetrips
             sync: false
           get_bus_service:
             condition:
@@ -24792,7 +24792,7 @@ BPP:
                                 input:
                                   value: req_body.message.intent.provider.id
                             - INTERCITY_PROVIDER_ID
-            service_url: http://localhost:5502/getbusservice
+            service_url: http://172.17.0.1:5504/getbusservice
             sync: false
         select:
           default:
@@ -24813,7 +24813,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - select
-            service_url: http://localhost:5502/getfare
+            service_url: http://172.17.0.1:5504/getfare
             sync: false
         init:
           default:
@@ -24834,7 +24834,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - init
-            service_url: http://localhost:5502/getfare
+            service_url: http://172.17.0.1:5504/getfare
             sync: false
         confirm:
           default:
@@ -24855,7 +24855,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - confirm
-            service_url: http://localhost:5502/confirmticket
+            service_url: http://172.17.0.1:5504/confirmticket
             sync: false
         status:
           default:
@@ -24876,7 +24876,7 @@ BPP:
                                 input:
                                   value: req_body.context.action
                             - status
-            service_url: http://localhost:5502/status
+            service_url: http://172.17.0.1:5504/status
             sync: false
     - summary: Default -  Flow
       id: default-flow
@@ -24904,23 +24904,23 @@ BPP:
       api:
         search:
           default:
-            service_url: http://localhost:5501/search
+            service_url: http://172.17.0.1:5505/search
             sync: false
         select:
           default:
-            service_url: http://localhost:5501/select
+            service_url: http://172.17.0.1:5505/select
             sync: false
         init:
           default:
-            service_url: http://localhost:5501/init
+            service_url: http://172.17.0.1:5505/init
             sync: false
         confirm:
           default:
-            service_url: http://localhost:5501/confirm
+            service_url: http://172.17.0.1:5505/confirm
             sync: false
         update:
           default:
-            service_url: http://localhost:5501/update
+            service_url: http://172.17.0.1:5505/update
             sync: false
     - summary: Default -  Flow
       id: default-flow
@@ -24930,27 +24930,27 @@ BPP:
       api:
         search:
           default:
-            service_url: http://localhost:5501/search
+            service_url: http://172.17.0.1:5505/search
             sync: false
         select:
           default:
-            service_url: http://localhost:5501/select
+            service_url: http://172.17.0.1:5505/select
             sync: false
         init:
           default:
-            service_url: http://localhost:5501/init
+            service_url: http://172.17.0.1:5505/init
             sync: false
         confirm:
           default:
-            service_url: http://localhost:5501/confirm
+            service_url: http://172.17.0.1:5505/confirm
             sync: false
         update:
           default:
-            service_url: http://localhost:5501/update
+            service_url: http://172.17.0.1:5505/update
             sync: false
         status:
           default:
-            service_url: http://localhost:5501/status
+            service_url: http://172.17.0.1:5505/status
             sync: false
   flow_selector:
     search:

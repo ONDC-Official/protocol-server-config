@@ -10,6 +10,7 @@ flows:
       currency: INR
       subscriber_url: https://igm-mock-service.ondc.org/igm-protocol-server-preprod/ondc
       subscriber_id: igm-mock-service.ondc.org/igm-protocol-server-preprod
+      resolutions_object: []
       actorsKey:
         - id: NP2
           type: COUNTERPARTY_NP
@@ -21,15 +22,13 @@ flows:
               email: respondentapp@respond.com
             person:
               name: Jane Doe
+      info_requested:
+        - INFO0001
+        - INFO0002
+        - INFO0003
       resolutions:
-        - id: R_PARENT
-          descriptor:
-            code: PARENT
-            short_desc: PROVIDING RESOLUTION OPTIONS. PLEASE SELECT ONE
-          updated_at: "2024-08-14T09:57:58.841Z"
-          proposed_by: NP2
-
-        - id: R1
+        REFUND:
+          id: R1
           ref_id: R_PARENT
           ref_type: PARENT
           descriptor:
@@ -48,7 +47,8 @@ flows:
                     code: REFUND_AMOUNT
                   value: "200"
 
-        - id: R2
+        REPLACEMENT:
+          id: R2
           ref_id: R_PARENT
           ref_type: PARENT
           descriptor:
@@ -63,80 +63,87 @@ flows:
                 - descriptor:
                     code: ITEM
                   value: I1
-      info_requested:
-        - INFO0001
-        - INFO0002
-        - INFO0003
 
-      proposed:
-        # - id: A9
+        CANCEL:
+          id: R3
           ref_id: R_PARENT
-          ref_type: RESOLUTIONS
-          description:
-            code: RESOLUTION_PROPOSED
-          # updated_at: "2023-01-15T10:00:00.469Z"
-          # action_by: NP2
-          # actor_details:
-          #   name: Sam Manuel
+          ref_type: PARENT
+          descriptor:
+            code: CANCEL
+            short_desc: Cancelling the order/item
+          updated_at: "2024-08-14T10:00:00.000Z"
+          proposed_by: NP2
+          tags:
+            - descriptor:
+                code: RESOLUTION_DETAILS
+              list:
+                - descriptor:
+                    code: ITEM
+                  value: I1
+                - descriptor:
+                    code: CANCEL_REASON
+                  value: Customer requested cancellation
 
-      replacement:
-        # - id: A11
-          ref_id: R2
-          ref_type: RESOLUTIONS
-          description:
-            code: RESOLVED
-            name: REPLACEMENT
-          # short_desc: Providing replacement
-          # updated_at: "2023-01-15T10:00:00.469Z"
-          # action_by: NP2
-          # actor_details:
-          #   name: Sam Manuel
-      
-      refund:
-        # - id: A11
-          ref_id: R1
-          ref_type: RESOLUTIONS
-          description:
-            code: RESOLVED
-            name: REFUND
-          # short_desc: Providing refund
-          # updated_at: "2023-01-15T10:00:00.469Z"
-          # action_by: NP2
-          # actor_details:
-          #   name: Sam Manuel
-
-      resolution_keys:
-        - id: A9
+        NO_ACTION:
+          id: R4
           ref_id: R_PARENT
-          ref_type: RESOLUTIONS
-          description:
-            code: RESOLUTION_PROPOSED
-          updated_at: "2023-01-15T10:00:00.469Z"
-          action_by: NP2
-          actor_details:
-            name: Sam Manuel
+          ref_type: PARENT
+          descriptor:
+            code: NO_ACTION
+            short_desc: No action will be taken on this item
+          updated_at: "2024-08-14T10:01:00.000Z"
+          proposed_by: NP2
 
-        - id: A10
-          ref_id: R2
-          ref_type: RESOLUTIONS
-          description:
-            code: RESOLUTION_ACCEPTED
-          updated_at: "2023-01-15T10:00:00.469Z"
-          action_by: NP1
-          actor_details:
-            name: Sam Manuel
+        NOW_VISIBLE:
+          id: R5
+          ref_id: R_PARENT
+          ref_type: PARENT
+          descriptor:
+            code: NOW_VISIBLE
+            short_desc: Item is now visible to the customer
+          updated_at: "2024-08-14T10:02:00.000Z"
+          proposed_by: NP2
 
-        - id: A11
-          ref_id: R2
-          ref_type: RESOLUTIONS
-          description:
-          code: RESOLVED
-          name: REPLACEMENT
-          short_desc: Providing replacement
-          updated_at: "2023-01-15T10:00:00.469Z"
-          action_by: NP2
-          actor_details:
-            name: Sam Manuel
+        RECONCILED:
+          id: R6
+          ref_id: R_PARENT
+          ref_type: PARENT
+          descriptor:
+            code: RECONCILED
+            short_desc: This item has been reconciled
+          updated_at: "2024-08-14T10:03:00.000Z"
+          proposed_by: NP2
+          tags:
+            - descriptor:
+                code: RESOLUTION_DETAILS
+              list:
+                - descriptor:
+                    code: ITEM
+                  value: I1
+                - descriptor:
+                    code: STATUS
+                  value: Reconciled successfully
+
+        NOT_RECONCILED:
+          id: R7
+          ref_id: R_PARENT
+          ref_type: PARENT
+          descriptor:
+            code: NOT_RECONCILED
+            short_desc: Item could not be reconciled
+          updated_at: "2024-08-14T10:04:00.000Z"
+          proposed_by: NP2
+          tags:
+            - descriptor:
+                code: RESOLUTION_DETAILS
+              list:
+                - descriptor:
+                    code: ITEM
+                  value: I1
+                - descriptor:
+                    code: STATUS
+                  value: Pending reconciliation
+
     protocol:
       $ref: ./igm-flow/protocolMapping.yaml#/protocol
     calls:
@@ -212,8 +219,7 @@ flows:
           url: "https://buyerapp.com/additonal-details/desc.txt"
           content_type: "text/plain"
         images:
-          - "http://buyerapp.com/addtional-details/img1.png"
-          - "http://buyerapp.com/addtional-details/img2.png"
+        -  url:  "http://buyerapp.com/addtional-details/img1.png"
       lastactionid: "A1"
       action_id: "A1"
       resolution_keys_proposed:

@@ -135,10 +135,9 @@ protocol:
       - beckn_key: actions_description
         value:  ''
 
-#
-#actions_append
+
       - beckn_key: actions_append
-        value: 'let action = {id:data.id,description:  ( String(data.actions_description.name) !== "false" && data.actions_description || {code:data.actions_description.code,short_desc:data.actions_description.short_desc})   ,updated_at:new Date().toISOString(),action_by:"NP2",actor_details:data.actor_detail}; action = String(data.send_resolution)==="false" ? action : {...action,...session[data.send_resolution] }; session.actions_append=[action];   session.actions_append;'
+        value: 'let action = {id:data.id,ref_id:data.ref_id,ref_type:data.ref_type,description:  ( String(data.actions_description.name) !== "false" && data.actions_description || {code:data.actions_description.code,short_desc:data.actions_description.short_desc})   ,updated_at:new Date().toISOString(),action_by:"NP2",actor_details:data.actor_detail}; session.actions_append=[action]; session.actions_append;'
         
 
       - beckn_key: actions
@@ -147,6 +146,11 @@ protocol:
       - beckn_key: last_action_id
         value: data.id
 
+      - beckn_key: dummy
+        value: String(data.send_resolution) !== "false" && (session.resolutions_object[0]=session.resolutions[data.send_resolution]) 
+
+      - beckn_key: dummy
+        value: String(data.send_resolution2) !== "false" && (session.resolutions_object[1]=session.resolutions[data.send_resolution2]) 
 
     mapping:
       - beckn_key: context
@@ -200,7 +204,8 @@ protocol:
 
       
       - beckn_key: message.issue.resolutions
-        value: String(data.send_resolution) !== "false" && session.resolutions 
+        value: session.resolutions_object
+
 
       - beckn_key: message.issue.created_at
         value: session.created_at

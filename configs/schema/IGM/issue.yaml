@@ -29,6 +29,15 @@ properties:
       core_version:
         type: string
         description: Version of Beckn core API specification being used
+      version:
+        type: string
+        description: Version of Beckn core API specification being used
+      city:
+        type: string
+        description: Version of Beckn core API specification being used
+      country:
+        type: string
+        description: Version of Beckn core API specification being used
       bap_id:
         type: string
         description: >-
@@ -74,8 +83,8 @@ properties:
     required:
       - domain
       - action
-      - location
-      - core_version
+      # - location
+      # - core_version
       - transaction_id
       - message_id
       - bap_id

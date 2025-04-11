@@ -14,6 +14,12 @@ protocol:
         
       - business_key: cityCode
         extractionPath: context.location.city.code || session.cityCode
+
+      - business_key: country_ret
+        extractionPath: context.country || session.country_ret
+      - business_key: city_ret
+        extractionPath: context.city || session.city_ret
+
       - business_key: countryCode
         extractionPath: context.location.country.code || session.countryCode
       - business_key: message_id
@@ -31,6 +37,9 @@ protocol:
         extractionPath: context.bpp_uri
       - business_key: core_version
         extractionPath: context.core_version
+
+      - business_key: version
+        extractionPath: context.version
 
       - business_key: issueId
         extractionPath:  message.issue.id

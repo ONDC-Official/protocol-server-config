@@ -310,6 +310,18 @@ protocol:
 
   recon:
     sessionData:
+      ## reverse mapping
+      - beckn_key: bap_id
+        value: data.NP_TYPE=="buyer"?session.bap_id:session.bpp_id
+      - beckn_key: bap_uri
+        value: data.NP_TYPE=="buyer"?session.bap_uri:session.bpp_uri
+      
+      - beckn_key: bpp_id
+        value: data.NP_TYPE=="seller"?session.bap_id:session.bpp_id
+      - beckn_key: bpp_uri
+        value: data.NP_TYPE=="seller"?session.bap_uri:session.bpp_uri
+
+
       - business_key: bap_id
         extractionPath: context.bap_id
       - business_key: bap_uri
@@ -320,6 +332,9 @@ protocol:
         extractionPath: context.location.country.code || session.countryCode
       - business_key: message_id
         extractionPath: context.message_id
+
+
+
       - business_key: order_data
         extractionPath: "message.orders[]{order_id:id,  amount:amount.value }.settlements[]{settlement_id:id, payment_id: payment_id, settlement_status:status,settlement_amount:amount.value,   settlement_commission:commission.value ,   withholding_amount: withholding_amount.value, tcs_amount:tcs.value, tds_amount:tds.value, settlement_updatedat : updated_at, settlement_ref_no: settlement_ref_no}"
 
@@ -337,6 +352,7 @@ protocol:
         extractionPath: "message.orders[]{order_id:id,  amount:amount.value }.settlements[]{settlement_id:id, payment_id: payment_id, settlement_status:status,settlement_amount:amount.value,   settlement_commission:commission.value ,   withholding_amount: withholding_amount.value, tcs_amount:tcs.value, tds_amount:tds.value, settlement_updatedat : updated_at, settlement_ref_no: settlement_ref_no}"
 
       #reverse mapping
+
       - beckn_key: context
         value: session
         compute: buildContext(session, action)
@@ -357,9 +373,6 @@ protocol:
 
       - beckn_key: message.orders[0].settlements[0].status
         value: data.status && data.status
-
-      # - beckn_key: message.orders[0].settlements[0].status
-      #   value: session.settlement_status && session.settlement_status
 
       - beckn_key: message.orders[0].settlements[0].amount.value
         value: data.settlement_amount && data.settlement_amount

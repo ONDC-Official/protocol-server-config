@@ -161,26 +161,16 @@ protocol:
 
       - beckn_key: message.settlement.orders[0].provider.reference_no
         value:  data.provider_reference_no && data.provider_reference_no
-      - beckn_key: message.settlement.orders[0].self.error.code #self_error
-        value:  data.error_code && data.error_code
-      - beckn_key: message.settlement.orders[0].self.error.message
-        value:  data.error_message && data.error_message
 
-      - beckn_key: message.settlement.orders[0].inter_participant.error.code
-        value:  data.error_code && data.error_code
-      - beckn_key: message.settlement.orders[0].inter_participant.error.message
-        value:  data.error_message && data.error_message
-#interparticipant error
+      - beckn_key: message.settlement.orders[0].self.error #self_error
+        value:  data.self_error && data.self_error
 
+      - beckn_key: message.settlement.orders[0].inter_participant.error
+        value:  data.interparticipant_error && data.interparticipant_error
 
       - beckn_key: message.settlement.orders[0].provider.error
         value:  data.provider_error && data.provider_error
 
-      - beckn_key: message.settlement.orders[0].self.error   #self_error
-        value:  ((data.provider_error && data.provider_error) || message.settlement.orders[0].self.error)
-
-      - beckn_key: message.settlement.orders[0].inter_participant.error
-        value:  ((data.provider_error && data.provider_error) || message.settlement.orders[0].inter_participant.error)
 
       - beckn_key: message.settlement.orders[0].inter_participant.status
         value:  data.inter_participant_status && data.inter_participant_status
@@ -280,33 +270,31 @@ protocol:
       - beckn_key: message.settlement.orders[0].provider.status
         value:  data.provider_status && data.provider_status
 
-      - beckn_key: message.settlement.orders[0].provider.error
-        value:  data.provider_error && data.provider_error
-
       - beckn_key: message.settlement.orders[0].provider.reference_no
         value:  data.provider_reference_no && data.provider_reference_no
 
       - beckn_key: message.settlement.orders[0].inter_participant.status
         value:  data.inter_participant_status && data.inter_participant_status
-      - beckn_key: message.settlement.orders[0].inter_participant.error
-        value:  data.inter_participant_error && data.inter_participant_error
+
       - beckn_key: message.settlement.orders[0].inter_participant.reference_no
         value:  data.inter_participant_reference_no && data.inter_participant_reference_no
 
 
       - beckn_key: message.settlement.orders[0].self.status
         value:  data.self_status && data.self_status
-      - beckn_key: message.settlement.orders[0].self.error  #self_error
-        value:  data.self_error && data.self_error
+
       - beckn_key: message.settlement.orders[0].self.reference_no
         value:  data.self_reference_no && data.self_reference_no
 
 
-      - beckn_key: message.settlement.orders[0].error.code
-        value:  data.error_code && data.error_code
-      - beckn_key: message.settlement.orders[0].error.message
-        value:  data.error_message && data.error_message
+      - beckn_key: message.settlement.orders[0].self.error #self_error
+        value:  data.self_error && data.self_error
+        
+      - beckn_key: message.settlement.orders[0].inter_participant.error
+        value:  data.interparticipant_error && data.interparticipant_error
 
+      - beckn_key: message.settlement.orders[0].provider.error
+        value:  data.provider_error && data.provider_error
 
   recon:
     sessionData:

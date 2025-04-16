@@ -228,6 +228,13 @@ properties:
                   properties:
                     name:
                       type: string
+        required:
+        - id
+        - status
+        - level
+        - actors
+        - actions
+
 required:
   - context
   - message

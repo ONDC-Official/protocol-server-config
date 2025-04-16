@@ -234,7 +234,8 @@ properties:
         - level
         - actors
         - actions
-
+    required:
+      - issue
 required:
   - context
   - message

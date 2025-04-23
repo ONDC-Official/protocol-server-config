@@ -256,6 +256,9 @@ protocol:
       - beckn_key: message.settlement.orders[0].self.reference_no
         value:  data.reference_no && data.reference_no
 
+      - beckn_key: message.settlement.orders[0].collector.reference_no
+        value:  session.order_data[0].collector_amount && data.reference_no
+
       - beckn_key: message.settlement.orders[0].inter_participant.status
         value:  session.order_data[0].inter_participant_amount && data.status
       - beckn_key: message.settlement.orders[0].inter_participant.reference_no
@@ -276,15 +279,9 @@ protocol:
       - beckn_key: message.settlement.orders[0].inter_participant.status
         value:  data.inter_participant_status && data.inter_participant_status
 
-      - beckn_key: message.settlement.orders[0].inter_participant.reference_no
-        value:  data.inter_participant_reference_no && data.inter_participant_reference_no
-
 
       - beckn_key: message.settlement.orders[0].self.status
         value:  data.self_status && data.self_status
-
-      - beckn_key: message.settlement.orders[0].self.reference_no
-        value:  data.self_reference_no && data.self_reference_no
 
 
       - beckn_key: message.settlement.orders[0].self.error #self_error

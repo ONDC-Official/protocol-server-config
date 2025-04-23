@@ -201,7 +201,7 @@ properties:
               images:
                 type: array
                 items:
-                  type: string
+                  type: object
           last_action_id:
             type: string
           actions:

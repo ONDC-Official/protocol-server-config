@@ -193,7 +193,7 @@ flows:
           type: "CONSUMER"
           info:
             org:
-              name: "buyerapp.com::ONDC:RET10"
+              name: "igm-mock-service.ondc.org::ONDC:RET10"
             person:
               name: "Sam Manuel"
             contact:
@@ -203,36 +203,36 @@ flows:
           type: "INTERFACING_NP"
           info:
             org:
-              name: "buyerapp.com::ONDC:RET10"
+              name: "igm-mock-service.ondc.org::ONDC:RET10"
             contact:
               phone: "9450394039"
-              email: "buyerapp@interface.com"
+              email: "igm-mock-service.ondc.org@interface.com"
             person:
               name: "John Doe"
       sourceId: "CUST1"
       complainantId: "NP1"
-      description:
+      descriptor:
         code: "ITM004"
         short_desc: "Issue with product quality"
         long_desc: "Product quality is not correct. facing issues while using the product"
         additional_desc:
-          url: "https://buyerapp.com/additonal-details/desc.txt"
+          url: "https://igm-mock-service.ondc.org.com/additonal-details/desc.txt"
           content_type: "text/plain"
         images:
-        -  url:  "http://buyerapp.com/addtional-details/img1.png"
+        -  url:  "http://igm-mock-service.ondc.org.com/addtional-details/img1.png"
       lastactionid: "A1"
       action_id: "A1"
       resolution_keys_proposed:
         id: A9
         ref_id: R_PARENT
         ref_type: RESOLUTIONS
-        description:
+        descriptor:
           code: RESOLUTION_PROPOSED
         updated_at: "2023-01-15T10:00:00.469Z"
         action_by: NP2
         actor_details:
             name: Sam Manuel
-      actions_description:
+      actions_descriptor:
         code: "OPEN"
         short_desc: "Complaint created"
       actor_details:
@@ -269,7 +269,7 @@ flow_selector:
                       - operation:
                           type: READ
                           input:
-                            value: "req_body.message.issue.description.code"
+                            value: "req_body.message.issue.descriptor.code"
                       - "ITM004"
       config_id: "igm-flow"
 

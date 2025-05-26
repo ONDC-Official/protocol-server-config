@@ -65,8 +65,8 @@ protocol:
       - business_key: lastactionid
         extractionPath:  message.issue.last_action_id
       
-      - business_key: description
-        extractionPath:  message.issue.description
+      - business_key: descriptor
+        extractionPath:  message.issue.descriptor
 
 
       - business_key: actors
@@ -114,8 +114,8 @@ protocol:
       - business_key: issue.complainant_id
         extractionPath:  message.issue.complainant_id
 
-      - business_key: issue.description
-        extractionPath:  message.issue.description
+      - business_key: issue.descriptor
+        extractionPath:  message.issue.descriptor
 
       - business_key: issue.refs
         extractionPath:  message.issue.refs
@@ -141,12 +141,12 @@ protocol:
       - beckn_key: status
         value: data.status
       
-      - beckn_key: actions_description
+      - beckn_key: actions_descriptor
         value:  ''
 
 
       - beckn_key: actions_append
-        value: 'let action = {id:data.id,ref_id:data.ref_id,ref_type:data.ref_type,description:  ( String(data.actions_description.name) !== "false" && data.actions_description || {code:data.actions_description.code,short_desc:data.actions_description.short_desc})   ,updated_at:new Date().toISOString(),action_by:"NP2",actor_details:data.actor_detail}; session.actions_append=[action]; session.actions_append;'
+        value: 'let action = {id:data.id,ref_id:data.ref_id,ref_type:data.ref_type,descriptor:  ( String(data.actions_descriptor.name) !== "false" && data.actions_descriptor || {code:data.actions_descriptor.code,short_desc:data.actions_descriptor.short_desc})   ,updated_at:new Date().toISOString(),action_by:"NP2",actor_details:data.actor_detail}; session.actions_append=[action]; session.actions_append;'
         
 
       - beckn_key: actions
@@ -202,8 +202,8 @@ protocol:
       - beckn_key: message.issue.respondent_ids
         value:  '["NP2"]'
 
-      - beckn_key: message.issue.description
-        value:  session.description
+      - beckn_key: message.issue.descriptor
+        value:  session.descriptor
       
       - beckn_key: message.issue.last_action_id
         value: session.last_action_id

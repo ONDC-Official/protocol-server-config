@@ -50,8 +50,8 @@ protocol:
       - business_key: lastactionid
         extractionPath:  message.issue.last_action_id
       
-      - business_key: description
-        extractionPath:  message.issue.description
+      - business_key: descriptor
+        extractionPath:  message.issue.descriptor
 
       - business_key: actors
         extractionPath:  message.issue.actors
@@ -96,8 +96,8 @@ protocol:
       # - business_key: issue.complainant_id
       #   extractionPath:  message.issue.complainant_id
 
-      # - business_key: issue.description
-      #   extractionPath:  message.issue.description
+      # - business_key: issue.descriptor
+      #   extractionPath:  message.issue.descriptor
 
       # - business_key: issue.refs
       #   extractionPath:  message.issue.refs
@@ -123,12 +123,12 @@ protocol:
 
   issue:
     sessionData:
-      # - beckn_key: dummy #adding closed_description_tags
-      #   value: "data.actions_description.code == 'CLOSED' ? data.actions_description.tags = session.closed_tags : data.actions_description.tags"
+      # - beckn_key: dummy #adding closed_descriptor_tags
+      #   value: "data.actions_descriptor.code == 'CLOSED' ? data.actions_descriptor.tags = session.closed_tags : data.actions_descriptor.tags"
 
       - beckn_key: actions_append
-        # value: 'session.actions_append=[{id:data.id,description:  ( String(data.actions_description.name) !== "false" && data.actions_description || {code:data.actions_description.code,short_desc:data.actions_description.short_desc}),(data.images !== "" &&  images: data.images.split(",")  || ""),updated_at:new Date().toISOString(),action_by:"NP2",actor_detail:data.actor_detail}]; session.actions_append '
-        value: 'session.actions_append= removeEmptyKeys([{id:data.id ,description:  ( String(data.actions_description.name) !== "false" && data.actions_description || {code:data.actions_description.code,short_desc:data.actions_description.short_desc,images:data.actions_description.images}),updated_at:new Date().toISOString(),action_by:"NP1",actor_details:data.actor_detail,ref_id:data.ref_id,ref_type:data.ref_type,tags: data.actions_description.code == "CLOSED" ? session.closed_tags:""}]);  session.actions_append '
+        # value: 'session.actions_append=[{id:data.id,descriptor:  ( String(data.actions_descriptor.name) !== "false" && data.actions_descriptor || {code:data.actions_descriptor.code,short_desc:data.actions_descriptor.short_desc}),(data.images !== "" &&  images: data.images.split(",")  || ""),updated_at:new Date().toISOString(),action_by:"NP2",actor_detail:data.actor_detail}]; session.actions_append '
+        value: 'session.actions_append= removeEmptyKeys([{id:data.id ,descriptor:  ( String(data.actions_descriptor.name) !== "false" && data.actions_descriptor || {code:data.actions_descriptor.code,short_desc:data.actions_descriptor.short_desc,images:data.actions_descriptor.images}),updated_at:new Date().toISOString(),action_by:"NP1",actor_details:data.actor_detail,ref_id:data.ref_id,ref_type:data.ref_type,tags: data.actions_descriptor.code == "CLOSED" ? session.closed_tags:""}]);  session.actions_append '
 
       - beckn_key: resolution_keys_proposed_key
         value: session.resolution_keys_proposed_key = String(data.Resolution) !== "false" && data.Resolution !== undefined  ? [{id:data.id,ref_id:data.Resolution,ref_type:"RESOLUTION", updated_at:new Date().toISOString(),action_by:"NP2","actor_details.name":"Sam Manuel"}]:[] 
@@ -139,8 +139,8 @@ protocol:
       - beckn_key: refs
         value: 'const ref = []; for (const [ref_type, ref_id] of Object.entries(data.ref)) {ref_id !="" && ref.push({ ref_id, ref_type });} ref;'
 
-      - beckn_key: description_key
-        value: '({code:data.category,short_desc:session.description.short_desc,long_desc:session.description.long_desc,additional_desc:session.description.additional_desc,images:session.description.images})'
+      - beckn_key: descriptor_key
+        value: '({code:data.category,short_desc:session.descriptor.short_desc,long_desc:session.descriptor.long_desc,additional_desc:session.descriptor.additional_desc,images:session.descriptor.images})'
 
 
       - beckn_key: issueStatus
@@ -181,8 +181,8 @@ protocol:
       - beckn_key: message.issue.complainant_id
         value:  session.complainantId 
 
-      - beckn_key: message.issue.description
-        value:  session.description_key
+      - beckn_key: message.issue.descriptor
+        value:  session.descriptor_key
       
       - beckn_key: message.issue.last_action_id
         value: data.id

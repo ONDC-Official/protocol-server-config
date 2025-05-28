@@ -84,8 +84,6 @@ protocol:
       - business_key: created_at
         extractionPath:  message.issue.created_at
 
-      - business_key: updated_at
-        extractionPath:  message.issue.updated_at  
   
 
 
@@ -161,6 +159,9 @@ protocol:
       - beckn_key: dummy
         value: String(data.send_resolution2) !== "false" && (session.resolutions_object[1]=session.resolutions[data.send_resolution2]) 
 
+      - beckn_key: timestamp
+        value:  new Date().toISOString()
+
     mapping:
       - beckn_key: context
         value: session
@@ -220,7 +221,7 @@ protocol:
         value: session.created_at
 
       - beckn_key: message.issue.updated_at
-        value: session.updated_at
+        value: session.timestamp
 
 
   issue_status:

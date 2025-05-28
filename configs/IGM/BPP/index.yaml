@@ -5,6 +5,7 @@ flows:
     domain: ONDC:RET10
     shouldDispaly: true
     sessionData:
+      ttl: PT30S
       on_status: true
       dualmode: true
       currency: INR
@@ -162,6 +163,7 @@ flows:
     domain: ONDC:RET10
     shouldDispaly: true
     sessionData:
+      ttl: PT30S
       closed_tags:
         - descriptor:
             code: CLOSURE_DETAILS
@@ -193,7 +195,7 @@ flows:
           type: "CONSUMER"
           info:
             org:
-              name: "igm-mock-service.ondc.org::ONDC:RET10"
+              name: "igm-mock-service.ondc.org/igm-protocol-server-preprod::ONDC:RET10"
             person:
               name: "Sam Manuel"
             contact:
@@ -203,7 +205,7 @@ flows:
           type: "INTERFACING_NP"
           info:
             org:
-              name: "igm-mock-service.ondc.org::ONDC:RET10"
+              name: "igm-mock-service.ondc.org/igm-protocol-server-preprod::ONDC:RET10"
             contact:
               phone: "9450394039"
               email: "igm-mock-service.ondc.org@interface.com"

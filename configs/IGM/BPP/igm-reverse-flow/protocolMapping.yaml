@@ -146,10 +146,21 @@ protocol:
       - beckn_key: issueStatus
         value:  data.status
 
+      - beckn_key: timestamp
+        value:  "new Date().toISOString()"
+
+      - beckn_key: created_at
+        value: 'session.created_at ? session.created_at : new Date().toISOString()'
+
+
     mapping:
       - beckn_key: context
         value: session
         compute: buildContext(session, action)
+
+      - beckn_key: context.timestamp
+        value: session.timestamp
+  
        
       - beckn_key: message.issue.id
         value: data.issueId || session.issueId
@@ -194,7 +205,7 @@ protocol:
         value: session.created_at
 
       - beckn_key: message.issue.updated_at
-        value: 'new Date(new Date().setHours(new Date().getHours() - 5))'
+        value: session.timestamp
 
       - beckn_key: message.issue.resolutions
         value: session.resolutions
@@ -259,8 +270,8 @@ protocol:
       - business_key: domain
         extractionPath: context.domain
 
-      - business_key: created_at
-        extractionPath: 'session.created_at?session.created_at:new Date(new Date().setDate(new Date().getDate() - 2))'
+      # - business_key: created_at
+      #   extractionPath: 'session.created_at?session.created_at:new Date(new Date().setDate(new Date().getDate() - 2))'
         
     mapping:  
       - business_key: context

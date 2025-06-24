@@ -127,7 +127,6 @@ properties:
                     type: string
                 required:
                   - id
-                  - payment_id
                   - status
                   - amount
                   - commission

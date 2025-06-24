@@ -222,6 +222,7 @@ flows:
           content_type: "text/plain"
         images:
         -  url:  "http://igm-mock-service.ondc.org.com/addtional-details/img1.png"
+           size_type: xs
       lastactionid: "A1"
       action_id: "A1"
       resolution_keys_proposed:

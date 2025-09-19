@@ -166,7 +166,7 @@ protocol:
         value: data.issueId || session.issueId
 
       - beckn_key: message.issue.level
-        value: session.issuelevel
+        value: "data.actions_descriptor.code==='ESCALATED'?'GRIEVANCE':session.issuelevel"
 
       - beckn_key: message.issue.status
         value: session.issueStatus  

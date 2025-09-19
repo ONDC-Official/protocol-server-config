@@ -307,16 +307,18 @@ protocol:
         value: data.NP_TYPE=="seller"?session.bap_uri:session.bpp_uri
 
 
-      - business_key: bap_id
-        extractionPath: context.bap_id
-      - business_key: bap_uri
-        extractionPath: context.bap_uri
-      - business_key: cityCode
-        extractionPath: context.location.city.code || session.cityCode
-      - business_key: countryCode
-        extractionPath: context.location.country.code || session.countryCode
-      - business_key: message_id
-        extractionPath: context.message_id
+      - business_key: context
+        extractionPath: context
+      # - business_key: bap_id
+      #   extractionPath: context.bap_id
+      # - business_key: bap_uri
+      #   extractionPath: context.bap_uri
+      # - business_key: cityCode
+      #   extractionPath: context.location.city.code || session.cityCode
+      # - business_key: countryCode
+      #   extractionPath: context.location.country.code || session.countryCode
+      # - business_key: message_id
+      #   extractionPath: context.message_id
 
 
 
